@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final TaskList taskList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +38,7 @@ public class ModelManager implements Model {
         this.taskList = taskList;
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTasks = new FilteredList<>(this.taskList.getSerializeTaskList());
     }
 
     public ModelManager() {
@@ -138,6 +140,7 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         taskList.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
     @Override
@@ -161,6 +164,21 @@ public class ModelManager implements Model {
     @Override
     public TaskList getTaskList() {
         return taskList;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -195,7 +213,8 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && taskList.equals(otherModelManager.taskList)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredTasks.equals(otherModelManager.filteredTasks);
     }
 
 }
