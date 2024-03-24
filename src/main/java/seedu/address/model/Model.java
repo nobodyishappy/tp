@@ -102,9 +102,15 @@ public interface Model {
 
     /**
      * Adds the given task.
-     * {@code task} must not already exist in the address book.
+     * {@code task} must not already exist in the task list.
      */
     void addTask(Task task);
+
+    /**
+     * Deletes the given task.
+     * {@code task} the task must exist in the task list.
+     */
+    void deleteTask(Task task);
 
     /**
      * Returns true if a task has the same description as a {@code task} in the task list.
@@ -112,7 +118,7 @@ public interface Model {
     boolean hasTask(Task task);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);

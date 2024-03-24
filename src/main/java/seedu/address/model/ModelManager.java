@@ -45,7 +45,8 @@ public class ModelManager implements Model {
         this(new AddressBook(), new TaskList(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -91,7 +92,7 @@ public class ModelManager implements Model {
     /**
      * Sets the user prefs' task list file path.
      *
-     * @param taskListFilePath
+     * @param taskListFilePath File path to task list.
      */
     @Override
     public void setTaskListFilePath(Path taskListFilePath) {
@@ -99,7 +100,8 @@ public class ModelManager implements Model {
         userPrefs.setTaskListFilePath(taskListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // =========== AddressBook
+    // ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -135,12 +137,19 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Task Manager ===============================================================================
+    // =========== Task Manager
+    // ===============================================================================
 
     @Override
     public void addTask(Task task) {
         taskList.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void deleteTask(Task task) {
+        addressBook.deleteAssignedTask(task);
+        taskList.deleteTask(task);
     }
 
     @Override
@@ -152,7 +161,7 @@ public class ModelManager implements Model {
     /**
      * Replaces task list data with the data in {@code taskList}.
      *
-     * @param tasks
+     * @param tasks Instance of the tasklist.
      */
     public void setTaskList(TaskList tasks) {
         taskList.setTaskList(tasks);
@@ -167,7 +176,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -181,10 +190,12 @@ public class ModelManager implements Model {
         filteredTasks.setPredicate(predicate);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -213,8 +224,7 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && taskList.equals(otherModelManager.taskList)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons)
-                && filteredTasks.equals(otherModelManager.filteredTasks);
+                && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
 }

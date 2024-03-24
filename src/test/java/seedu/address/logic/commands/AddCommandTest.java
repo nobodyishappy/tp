@@ -188,12 +188,33 @@ public class AddCommandTest {
         }
 
         /**
-         * Returns true if a task has the same description as a {@code task} in the task list.
+         * Deletes a task based on the index of list.
+         *
+         * @param task The task to be deleted in the list.
+         */
+        @Override
+        public void deleteTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns true if a task has the same description as a {@code task} in the task
+         * list.
          *
          * @param task
          */
         @Override
         public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
