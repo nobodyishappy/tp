@@ -66,9 +66,32 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
+    public void execute_duplicateValidIndexUnfilteredList_success() {
+        Task taskToDelete = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { INDEX_FIRST, INDEX_FIRST });
+
+        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASKS_SUCCESS,
+                Messages.format(taskToDelete));
+
+        ModelManager expectedModel = new ModelManager(
+                model.getAddressBook(), new TaskList(model.getTaskList()), new UserPrefs());
+        expectedModel.deleteTask(taskToDelete);
+
+        assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_singleInvalidTaskIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { outOfBoundIndex });
+
+        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_duplicateInvalidTaskIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { outOfBoundIndex, outOfBoundIndex });
 
         assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
