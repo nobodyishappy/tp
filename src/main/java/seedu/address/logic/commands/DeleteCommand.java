@@ -71,8 +71,8 @@ public class DeleteCommand extends Command {
 
     @Override
     public String toString() {
-        ToStringBuilder toStringBuilder = new ToStringBuilder(this)
-                .add("targetIndices", Arrays.toString(targetIndices));
-        return toStringBuilder.toString();
+        return new ToStringBuilder(this)
+                .add("targetIndices", Arrays.toString(targetIndices))
+                .toString();
     }
 }
