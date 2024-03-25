@@ -8,15 +8,17 @@ import java.util.Objects;
 public class Task {
     private TaskName name;
     private TaskDescription description;
+    private TaskPriority priority;
     private TaskStatus status;
 
     /**
      * The constructor of the class.
      * @param description Description of the task.
      */
-    public Task(TaskName name, TaskDescription description, TaskStatus status) {
+    public Task(TaskName name, TaskDescription description, TaskPriority priority, TaskStatus status) {
         this.name = name;
         this.description = description;
+        this.priority = priority;
         this.status = status;
     }
 
@@ -38,10 +40,18 @@ public class Task {
 
     /**
      * Gets the status of a task.
-     * @return The statis of the task.
+     * @return The status of the task.
      */
     public TaskStatus getStatus() {
         return status;
+    }
+
+    /**
+     * Gets the priority of a task.
+     * @return The priority of the task.
+     */
+    public TaskPriority getPriority() {
+        return priority;
     }
 
     @Override

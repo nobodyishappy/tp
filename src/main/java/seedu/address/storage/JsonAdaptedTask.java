@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDescription;
-import seedu.address.model.task.TaskName;
-import seedu.address.model.task.TaskStatus;
+import seedu.address.model.task.*;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -18,6 +15,7 @@ public class JsonAdaptedTask {
 
     private final String taskName;
     private final String taskDescription;
+    private final String taskPriority;
     private final String taskStatus;
 
     /**
@@ -26,9 +24,11 @@ public class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
             @JsonProperty("taskDescription") String taskDescription,
+            @JsonProperty("taskPriority") String taskPriority,
             @JsonProperty("taskStatus") String taskStatus) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
+        this.taskPriority = taskPriority;
         this.taskStatus = taskStatus;
     }
 
@@ -39,6 +39,7 @@ public class JsonAdaptedTask {
         taskName = source.getName().taskName;
         taskDescription = source.getDescription().taskDescription;
         taskStatus = source.getStatus().toString();
+        taskPriority = source.getPriority().toString();
     }
 
     /**
@@ -71,6 +72,12 @@ public class JsonAdaptedTask {
         }
         final TaskStatus modelTaskStatus = new TaskStatus(taskStatus);
 
-        return new Task(modelTaskName, modelTaskDescription, modelTaskStatus);
+        if (taskPriority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskPriority.class.getSimpleName()));
+        }
+        final TaskPriority modelTaskPriority = new TaskPriority();
+
+        return new Task(modelTaskName, modelTaskDescription, modelTaskPriority, modelTaskStatus);
     }
 }

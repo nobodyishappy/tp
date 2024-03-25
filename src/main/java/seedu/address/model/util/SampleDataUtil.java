@@ -12,10 +12,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDescription;
-import seedu.address.model.task.TaskName;
-import seedu.address.model.task.TaskStatus;
+import seedu.address.model.task.*;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -36,9 +33,11 @@ public class SampleDataUtil {
         return new Task[] {
             new Task(new TaskName("Implement find for task"),
                     new TaskDescription("Find task has to be done"),
+                    new TaskPriority(),
                     new TaskStatus()),
             new Task(new TaskName("Implement remind for task"),
                     new TaskDescription("Remind task has to be done"),
+                    new TaskPriority(),
                     new TaskStatus())
         };
     }

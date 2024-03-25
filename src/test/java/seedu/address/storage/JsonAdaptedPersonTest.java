@@ -27,6 +27,8 @@ public class JsonAdaptedPersonTest {
 
     private static final String TASK_STATUS = "Not Done";
 
+    private static final String TASK_PRIORITY = "LOW";
+
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
@@ -104,7 +106,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidTasks_throwsIllegalValueException() {
         List<JsonAdaptedTask> invalidTasks = new ArrayList<>(VALID_TASKS);
-        invalidTasks.add(new JsonAdaptedTask(INVALID_TASK_NAME, INVALID_TASK_DESCRIPTION, TASK_STATUS));
+        invalidTasks.add(new JsonAdaptedTask(INVALID_TASK_NAME, INVALID_TASK_DESCRIPTION, TASK_PRIORITY ,TASK_STATUS));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTasks);
         assertThrows(IllegalValueException.class, person::toModelType);
