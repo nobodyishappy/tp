@@ -21,7 +21,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the people identified by the index numbers used in the displayed person list.\n"
-            + "Parameters: INDEX [MORE_INDICES] (must be positive integers)\n"
+            + "Parameters: INDEX [MORE_INDICES] (must be distinct positive integers)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted People: %1$s";
@@ -32,22 +32,24 @@ public class DeleteCommand extends Command {
         this.targetIndices = targetIndices;
     }
 
+    private void verifyAllWithinRange(Index[] targetIndices, int range) throws CommandException {
+        if (Arrays.stream(targetIndices).anyMatch(targetIndex -> targetIndex.getZeroBased() >= range)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Person> lastShownList = model.getFilteredPersonList();
+        verifyAllWithinRange(targetIndices, lastShownList.size());
 
-        Person[] peopleToDelete = new Person[targetIndices.length];
-        for (int i = 0; i < targetIndices.length; i++) {
-            if (targetIndices[i].getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-            peopleToDelete[i] = lastShownList.get(targetIndices[i].getZeroBased());
-        }
+        Person[] peopleToDelete = Arrays.stream(targetIndices).distinct()
+                .map(targetIndex -> lastShownList.get(targetIndex.getZeroBased()))
+                .toArray(Person[]::new);
 
-        for (Person person : peopleToDelete) {
-            model.deletePerson(person);
-        }
+        Arrays.stream(peopleToDelete).forEach(model::deletePerson);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(peopleToDelete)));
     }
@@ -69,8 +71,8 @@ public class DeleteCommand extends Command {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("targetIndices", targetIndices)
-                .toString();
+        ToStringBuilder toStringBuilder = new ToStringBuilder(this)
+                .add("targetIndices", Arrays.toString(targetIndices));
+        return toStringBuilder.toString();
     }
 }

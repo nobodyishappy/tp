@@ -1,11 +1,11 @@
 package seedu.address.logic;
 
+import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -55,11 +55,8 @@ public class Messages {
      * Formats the {@code people} for display to the user.
      */
     public static String format(Person[] people) {
-        String[] personNames = new String[people.length];
-        for (int i = 0; i < people.length; i++) {
-            personNames[i] = people[i].getName().toString();
-        }
-        return String.join(", ", personNames);
+        return Arrays.stream(people).map(person -> person.getName().toString())
+                .collect(Collectors.joining(", "));
     }
 
     /**
