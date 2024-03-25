@@ -1,9 +1,12 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
 
 /**
@@ -54,6 +57,30 @@ public class TaskList {
 
     public ObservableList<Task> getSerializeTaskList() {
         return observableList;
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with
+     * {@code editedTask}.
+     * {@code target} must exist in the task list.
+     * The task of {@code editedTask} must not be the same as another
+     * existing task in the task list.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        int index = observableList.indexOf(target);
+
+        /* todo
+        if (index == -1) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        if (!target.equals(editedTask) && contains(editedPerson)) {
+            throw new DuplicateTaskException();
+        } */
+
+        observableList.set(index, editedTask);
     }
 
     public boolean hasTask(Task task) {

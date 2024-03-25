@@ -158,6 +158,13 @@ public class ModelManager implements Model {
         return taskList.hasTask(task);
     }
 
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        taskList.setTask(target, editedTask);
+    }
+
     /**
      * Replaces task list data with the data in {@code taskList}.
      *
@@ -224,7 +231,8 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && taskList.equals(otherModelManager.taskList)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredTasks.equals(otherModelManager.filteredTasks);
     }
 
 }
