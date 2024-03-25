@@ -43,7 +43,7 @@ public class UnmarkTaskCommand extends Command {
 
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
-        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, Messages.formatTask(taskToMark)));
+        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, Messages.format(taskToMark)));
     }
 
     @Override

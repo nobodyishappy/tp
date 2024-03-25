@@ -28,7 +28,7 @@ public class UnmarkTaskCommandTest {
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
-                Messages.formatTask(taskToMark));
+                Messages.format(taskToMark));
 
         ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
         taskToMark.getStatus().setAsUndone();

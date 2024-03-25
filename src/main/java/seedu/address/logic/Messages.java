@@ -62,8 +62,16 @@ public class Messages {
     /**
      * Formats the {@code task} for display to the user.
      */
-    public static String formatTask(Task task) {
+    public static String format(Task task) {
         return task.getName().taskName;
+    }
+
+    /**
+     * Formats the {@code tasks} for display to the user.
+     */
+    public static String format(Task[] tasks) {
+        return Arrays.stream(tasks).map(task -> task.getName().toString())
+                .collect(Collectors.joining(", "));
     }
 
 }

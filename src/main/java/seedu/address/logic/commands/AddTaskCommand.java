@@ -49,7 +49,7 @@ public class AddTaskCommand extends Command {
         }
 
         model.addTask(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatTask(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
     @Override

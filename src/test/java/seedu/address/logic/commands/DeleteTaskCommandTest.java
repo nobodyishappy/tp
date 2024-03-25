@@ -32,7 +32,7 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_SUCCESS,
-                Messages.formatTask(taskToDelete));
+                Messages.format(taskToDelete));
 
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
     }

@@ -41,7 +41,7 @@ class AssignCommandTest {
 
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST, INDEX_FIRST);
 
-        String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS, Messages.formatTask(taskToAssign),
+        String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS, Messages.format(taskToAssign),
                 editedPerson.getName());
 
         Model expectedModel = new ModelManager(
@@ -63,7 +63,7 @@ class AssignCommandTest {
 
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST, INDEX_FIRST);
 
-        String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS, Messages.formatTask(taskToAssign),
+        String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS, Messages.format(taskToAssign),
                 editedPerson.getName());
 
         Model expectedModel = new ModelManager(

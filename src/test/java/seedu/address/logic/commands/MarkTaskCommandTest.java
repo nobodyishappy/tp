@@ -28,7 +28,7 @@ public class MarkTaskCommandTest {
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS,
-                Messages.formatTask(taskToMark));
+                Messages.format(taskToMark));
 
         ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
         taskToMark.getStatus().setAsDone();

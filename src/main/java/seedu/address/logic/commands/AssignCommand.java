@@ -66,7 +66,7 @@ public class AssignCommand extends Command {
         model.setPerson(personToBeAssigned, assignedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatTask(taskToAssign),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(taskToAssign),
                 assignedPerson.getName()));
     }
 
