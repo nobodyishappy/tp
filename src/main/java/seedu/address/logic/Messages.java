@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -48,6 +49,17 @@ public class Messages {
                 .append("; Tasks: ");
         person.getTasks().forEach(builder::append);
         return builder.toString();
+    }
+
+    /**
+     * Formats the {@code people} for display to the user.
+     */
+    public static String format(Person[] people) {
+        String[] personNames = new String[people.length];
+        for (int i = 0; i < people.length; i++) {
+            personNames[i] = people[i].getName().toString();
+        }
+        return String.join(", ", personNames);
     }
 
     /**
