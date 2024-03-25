@@ -10,51 +10,97 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code DeleteTaskCommand}.
+ */
 public class DeleteTaskCommandTest {
+
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
-        Task expectedTaskToDelete = expectedModel.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
-        expectedModel.deleteTask(expectedTaskToDelete);
-
+    public void execute_singleValidIndexUnfilteredList_success() {
         Task taskToDelete = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { INDEX_FIRST });
 
-        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASKS_SUCCESS,
                 Messages.format(taskToDelete));
+
+        ModelManager expectedModel = new ModelManager(
+                model.getAddressBook(), new TaskList(model.getTaskList()), new UserPrefs());
+        expectedModel.deleteTask(taskToDelete);
 
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidTaskIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1);
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex);
+    public void execute_multipleValidIndexUnfilteredList_success() {
+        Task[] tasksToDelete = new Task[] {
+                model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased()),
+                model.getTaskList().getSerializeTaskList().get(INDEX_SECOND.getZeroBased())
+        };
 
-        assertCommandFailure(deleteTaskCommand, model, DeleteTaskCommand.MESSAGE_INDEX_TOO_LARGE);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { INDEX_FIRST, INDEX_SECOND });
+
+        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASKS_SUCCESS,
+                Messages.format(tasksToDelete));
+
+        ModelManager expectedModel = new ModelManager(
+                model.getAddressBook(), new TaskList(model.getTaskList()), new UserPrefs());
+        expectedModel.deleteTask(tasksToDelete[0]);
+        expectedModel.deleteTask(tasksToDelete[1]);
+
+        assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_singleInvalidTaskIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { outOfBoundIndex });
+
+        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_someInvalidIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { outOfBoundIndex, INDEX_FIRST });
+
+        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_allInvalidIndexUnfilteredList_throwsCommandException() {
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] {
+                Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1),
+                Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 2)
+        });
+
+        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteTaskCommand deleteFirstCommand = new DeleteTaskCommand(INDEX_FIRST);
-        DeleteTaskCommand deleteSecondCommand = new DeleteTaskCommand(INDEX_SECOND);
+        DeleteTaskCommand deleteFirstCommand = new DeleteTaskCommand(new Index[] { INDEX_FIRST });
+        DeleteTaskCommand deleteSecondCommand = new DeleteTaskCommand(new Index[] { INDEX_SECOND });
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteTaskCommand deleteFirstCommandCopy = new DeleteTaskCommand(INDEX_FIRST);
+        DeleteTaskCommand deleteFirstCommandCopy = new DeleteTaskCommand(new Index[] { INDEX_FIRST });
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -69,9 +115,13 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void toStringMethod() {
-        Index targetIndex = Index.fromOneBased(1);
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(targetIndex);
-        String expected = DeleteTaskCommand.class.getCanonicalName() + "{toDelete=" + targetIndex.getOneBased() + "}";
+        Index[] targetIndices = new Index[] {
+                Index.fromOneBased(1),
+                Index.fromOneBased(2)
+        };
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(targetIndices);
+        String expected = DeleteTaskCommand.class.getCanonicalName() + "{targetIndices="
+                + Arrays.toString(targetIndices) + "}";
         assertEquals(expected, deleteTaskCommand.toString());
     }
 }

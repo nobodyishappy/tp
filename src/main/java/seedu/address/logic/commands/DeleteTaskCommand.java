@@ -24,7 +24,7 @@ public class DeleteTaskCommand extends Command {
             + "Parameters: INDEX [MORE_INDICES] (must be distinct positive integers)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_SUCCESS = "Deleted Tasks: %1$s";
+    public static final String MESSAGE_DELETE_TASKS_SUCCESS = "Deleted Tasks: %1$s";
 
     private final Index[] targetIndices;
 
@@ -54,7 +54,7 @@ public class DeleteTaskCommand extends Command {
 
         Arrays.stream(tasksToDelete).forEach(model::deleteTask);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(tasksToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_TASKS_SUCCESS, Messages.format(tasksToDelete)));
     }
 
     @Override

@@ -68,7 +68,7 @@ public class AddressBookParserTest {
         parser.parseCommand("addtask n/ test d/ test description");
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(TaskUtil.getDeleteTaskCommand(
                 Index.fromOneBased(1)));
-        assertEquals(new DeleteTaskCommand(INDEX_FIRST), command);
+        assertEquals(new DeleteTaskCommand(new Index[] { INDEX_FIRST }), command);
     }
 
     @Test
