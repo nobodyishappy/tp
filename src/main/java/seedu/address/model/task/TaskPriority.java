@@ -10,14 +10,14 @@ public class TaskPriority {
     private Priority taskPriority;
 
     /**
-     * Constructs an {@code TaskStatus}.
+     * Constructs an {@code TaskPriority}.
      */
     public TaskPriority() {
         taskPriority = Priority.LOW;
     }
 
     /**
-     * Constructs an {@code TaskStatus}.
+     * Constructs an {@code TaskPriority}.
      */
     public TaskPriority(String priority) {
         if (priority.equals("LOW") || priority.equals("1")) {
