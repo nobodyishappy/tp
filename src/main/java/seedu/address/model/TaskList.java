@@ -3,10 +3,10 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
 
 /**
@@ -71,20 +71,25 @@ public class TaskList {
 
         int index = observableList.indexOf(target);
 
-        /* todo
-        if (index == -1) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
-
-        if (!target.equals(editedTask) && contains(editedPerson)) {
-            throw new DuplicateTaskException();
-        } */
-
         observableList.set(index, editedTask);
     }
 
     public boolean hasTask(Task task) {
         return observableList.contains(task);
+    }
+
+    /**
+     * Sorts tasks based on the task priority.
+     *
+     */
+    public void sortByPriority() {
+        observableList.sort(new Comparator<Task>() {
+            @Override
+            public int compare(Task o1, Task o2) {
+                System.out.println(o2.getPriority().getValue() - o1.getPriority().getValue());
+                return o2.getPriority().getValue() - o1.getPriority().getValue();
+            }
+        });
     }
 
     @Override

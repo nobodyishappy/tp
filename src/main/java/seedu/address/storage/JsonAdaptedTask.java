@@ -80,7 +80,7 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskPriority.class.getSimpleName()));
         }
-        final TaskPriority modelTaskPriority = new TaskPriority();
+        final TaskPriority modelTaskPriority = new TaskPriority(taskPriority);
 
         return new Task(modelTaskName, modelTaskDescription, modelTaskPriority, modelTaskStatus);
     }

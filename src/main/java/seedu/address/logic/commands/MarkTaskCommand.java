@@ -41,9 +41,9 @@ public class MarkTaskCommand extends Command {
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
         Task editedTask = new Task(taskToMark.getName(),
-                                    taskToMark.getDescription(),
-                                    taskToMark.getPriority(),
-                                    taskToMark.getStatus());
+                taskToMark.getDescription(),
+                taskToMark.getPriority(),
+                taskToMark.getStatus());
         editedTask.getStatus().setAsDone();
 
         model.setTask(taskToMark, editedTask);

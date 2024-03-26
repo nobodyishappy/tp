@@ -40,7 +40,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         TaskName name = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get());
         TaskDescription description = ParserUtil.parseTaskDescription(
                 argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
-        TaskPriority priority = new TaskPriority();
+        TaskPriority priority = new TaskPriority(argMultimap.getValue(PREFIX_TASK_PRIORITY).get());
         TaskStatus status = new TaskStatus();
 
         Task task = new Task(name, description, priority, status);

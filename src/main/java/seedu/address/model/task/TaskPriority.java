@@ -16,6 +16,26 @@ public class TaskPriority {
         taskPriority = Priority.LOW;
     }
 
+    /**
+     * Constructs an {@code TaskStatus}.
+     */
+    public TaskPriority(String priority) {
+        if (priority.equals("LOW") || priority.equals("1")) {
+            this.taskPriority = Priority.LOW;
+        } else if (priority.equals("MEDIUM") || priority.equals("2")) {
+            this.taskPriority = Priority.MEDIUM;
+        } else {
+            this.taskPriority = Priority.HIGH;
+        }
+    }
+
+    /**
+     * Returns an int of {@code TaskPriority}.
+     */
+    public int getValue() {
+        return taskPriority.getValue();
+    }
+
     @Override
     public String toString() {
         if (taskPriority.equals(Priority.LOW)) {

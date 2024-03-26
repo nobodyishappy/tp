@@ -39,7 +39,13 @@ public class UnmarkTaskCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        taskToMark.getStatus().setAsUndone();
+        Task editedTask = new Task(taskToMark.getName(),
+                taskToMark.getDescription(),
+                taskToMark.getPriority(),
+                taskToMark.getStatus());
+        editedTask.getStatus().setAsUndone();
+
+        model.setTask(taskToMark, editedTask);
 
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
