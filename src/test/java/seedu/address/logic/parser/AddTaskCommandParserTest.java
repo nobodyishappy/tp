@@ -1,8 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
@@ -18,8 +17,12 @@ public class AddTaskCommandParserTest {
 
     @Test
     public void parse_validInput_success() throws ParseException {
-        String userInput = " " + PREFIX_NAME + "test 1 " + PREFIX_TASK_DESCRIPTION + "test 1";
-        Task task = new TaskBuilder().withTaskName("test 1").withTaskDescription("test 1").build();
+        String userInput = " " + PREFIX_NAME + "test 1 "
+                + PREFIX_TASK_DESCRIPTION + "test 1 "
+                + PREFIX_TASK_PRIORITY + "LOW";
+        Task task = new TaskBuilder().withTaskName("test 1")
+                .withTaskDescription("test 1")
+                .withTaskPriority("LOW").build();
         assertParseSuccess(parser, userInput, new AddTaskCommand(task));
     }
 

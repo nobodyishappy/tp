@@ -8,6 +8,7 @@
     "tasks" : [ {
       "taskName" : "Testing",
       "taskDescription" : "Test to test the code",
+      "taskPriority" : "LOW",
       "taskStatus" : "Not Done"
     } ]
   }, {
@@ -18,10 +19,12 @@
     "tasks" : [ {
       "taskName" : "Testing 1",
       "taskDescription" : "Test to test the code",
+      "taskPriority" : "LOW",
       "taskStatus" : "Not Done"
     }, {
       "taskName" : "Testing 2",
       "taskDescription" : "Test to test the code",
+      "taskPriority" : "LOW",
       "taskStatus" : "Not Done"
     } ]
   }, {
@@ -38,6 +41,7 @@
     "tasks" : [ {
       "taskName" : "Testing",
       "taskDescription" : "Test to test the code",
+      "taskPriority" : "LOW",
       "taskStatus" : "Not Done"
     }]
   }, {

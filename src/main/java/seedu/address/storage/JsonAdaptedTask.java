@@ -42,8 +42,8 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         taskName = source.getName().taskName;
         taskDescription = source.getDescription().taskDescription;
-        taskStatus = source.getStatus().toString();
         taskPriority = source.getPriority().toString();
+        taskStatus = source.getStatus().toString();
     }
 
     /**

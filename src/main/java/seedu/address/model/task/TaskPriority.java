@@ -7,7 +7,7 @@ import seedu.address.model.util.Priority;
  */
 public class TaskPriority {
 
-    private final Priority taskPriority;
+    private Priority taskPriority;
 
     /**
      * Constructs an {@code TaskStatus}.

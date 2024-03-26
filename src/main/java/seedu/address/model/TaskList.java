@@ -86,7 +86,6 @@ public class TaskList {
         observableList.sort(new Comparator<Task>() {
             @Override
             public int compare(Task o1, Task o2) {
-                System.out.println(o2.getPriority().getValue() - o1.getPriority().getValue());
                 return o2.getPriority().getValue() - o1.getPriority().getValue();
             }
         });
