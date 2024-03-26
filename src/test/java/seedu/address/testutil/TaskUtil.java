@@ -1,13 +1,14 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PRIORITY;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.model.task.Task;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PRIORITY;
 /**
  * A utility class for Task.
  */
