@@ -18,7 +18,11 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.*;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskPriority;
+import seedu.address.model.task.TaskStatus;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**

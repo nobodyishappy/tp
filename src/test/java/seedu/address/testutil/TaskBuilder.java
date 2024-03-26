@@ -1,6 +1,10 @@
 package seedu.address.testutil;
 
-import seedu.address.model.task.*;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskPriority;
+import seedu.address.model.task.TaskStatus;
 
 /**
  * A utility class to help with building Task objects.
