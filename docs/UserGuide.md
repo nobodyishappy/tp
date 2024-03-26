@@ -35,7 +35,7 @@ TeamTracker is a **desktop app for managing contacts, optimized for use via a  L
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
-  
+
    * `add n/Task 1 d/Do homework` : Add a task named `Task 1`
 
    * `exit` : Exits the app.
