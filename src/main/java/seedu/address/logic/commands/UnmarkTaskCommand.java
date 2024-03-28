@@ -32,7 +32,7 @@ public class UnmarkTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getTaskList().getSerializeTaskList();
+        List<Task> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -40,8 +40,6 @@ public class UnmarkTaskCommand extends Command {
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
         taskToMark.getStatus().setAsUndone();
-
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, Messages.formatTask(taskToMark)));
     }
