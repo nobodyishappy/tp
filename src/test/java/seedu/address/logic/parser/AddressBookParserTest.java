@@ -20,6 +20,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.AssignCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearTaskCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -30,6 +31,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
+import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -101,6 +103,21 @@ public class AddressBookParserTest {
                 AssignCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
                 + PREFIX_TO + " " + INDEX_FIRST.getOneBased());
         assertEquals(new AssignCommand(INDEX_FIRST, INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_unassign() throws Exception {
+        UnassignCommand command = (UnassignCommand) parser.parseCommand(
+                UnassignCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
+                        + PREFIX_TO + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new UnassignCommand(INDEX_FIRST, INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_cleartask() throws Exception {
+        ClearTaskCommand command = (ClearTaskCommand) parser.parseCommand(
+                ClearTaskCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new ClearTaskCommand(INDEX_FIRST), command);
     }
 
     @Test

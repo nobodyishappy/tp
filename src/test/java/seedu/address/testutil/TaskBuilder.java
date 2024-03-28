@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskName;
 import seedu.address.model.task.TaskPriority;
@@ -13,10 +14,12 @@ public class TaskBuilder {
 
     public static final String DEFAULT_TASK_NAME = "Implement Test";
     public static final String DEFAULT_TASK_DESCRIPTION = "Test to test the code";
+    public static final String DEFAULT_TASK_DEADLINE = "Empty";
 
     private TaskName taskName;
     private TaskDescription taskDescription;
     private TaskPriority taskPriority;
+    private TaskDeadline taskDeadline;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -24,6 +27,7 @@ public class TaskBuilder {
     public TaskBuilder() {
         taskName = new TaskName(DEFAULT_TASK_NAME);
         taskDescription = new TaskDescription(DEFAULT_TASK_DESCRIPTION);
+        taskDeadline = new TaskDeadline();
     }
 
     /**
@@ -32,6 +36,7 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         taskName = taskToCopy.getName();
         taskDescription = taskToCopy.getDescription();
+        taskDeadline = taskToCopy.getDeadline();
     }
 
     /**
@@ -55,10 +60,17 @@ public class TaskBuilder {
      */
     public TaskBuilder withTaskPriority(String taskPriority) {
         this.taskPriority = new TaskPriority(taskPriority);
+    }
+  
+    /**
+     * Sets the {@code TaskDeadline} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withTaskDeadline(String taskDeadline) {
+        this.taskDeadline = new TaskDeadline(taskDeadline);
         return this;
     }
 
     public Task build() {
-        return new Task(taskName, taskDescription, new TaskPriority(), new TaskStatus());
+        return new Task(taskName, taskDescription, new TaskPriority(), new TaskStatus(), taskDeadline);
     }
 }

@@ -10,16 +10,35 @@ public class Task {
     private TaskDescription description;
     private TaskPriority priority;
     private TaskStatus status;
+    private TaskDeadline deadline;
 
     /**
      * The constructor of the class.
+     * @param name Name of the task.
      * @param description Description of the task.
+     * @param status Status of the task.
      */
     public Task(TaskName name, TaskDescription description, TaskPriority priority, TaskStatus status) {
         this.name = name;
         this.description = description;
         this.priority = priority;
         this.status = status;
+        this.deadline = new TaskDeadline();
+    }
+
+    /**
+     * The constructor of the class.
+     * @param name Name of the task.
+     * @param description Description of the task.
+     * @param status Status of the task.
+     * @param deadline Deadline of the task.
+     */
+    public Task(TaskName name, TaskDescription description, TaskPriority priority, TaskStatus status, TaskDeadline deadline) {
+        this.name = name;
+        this.description = description;
+        this.priority = priority;
+        this.status = status;
+        this.deadline = deadline;
     }
 
     /**
@@ -53,6 +72,14 @@ public class Task {
     public TaskPriority getPriority() {
         return priority;
     }
+  
+    /**
+     * Gets the deadline of a task.
+     * @return The deadline of the task.
+     */
+    public TaskDeadline getDeadline() {
+        return deadline;
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -67,19 +94,20 @@ public class Task {
 
         Task otherTask = (Task) other;
         return this.name.equals(otherTask.name)
-                && this.description.equals(otherTask.description);
+                && this.description.equals(otherTask.description)
+                && this.deadline.equals(otherTask.deadline);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description);
+        return Objects.hash(name, description, deadline);
     }
 
     /**
      * Compare with other tasks for sorting in tags
      * @param otherTask Task to be compared to
-     * @return value of the comparison
+     * @return Value of the comparison
      */
     public int compare(Task otherTask) {
         if (this.getName().taskName.compareTo(otherTask.getName().taskName) == 0) {
