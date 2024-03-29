@@ -20,8 +20,7 @@ public class TaskNameContainsKeywordsPredicate implements Predicate<Task> {
      * Evaluates this predicate on the given argument.
      *
      * @param task The input argument
-     * @return {@code true} if the input argument matches the predicate,
-     * otherwise {@code false}
+     * @return {@code true} if the input argument matches the predicate, otherwise {@code false}
      */
     @Override
     public boolean test(Task task) {
