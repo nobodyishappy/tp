@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Task {
     private TaskName name;
     private TaskDescription description;
+    private TaskPriority priority;
     private TaskStatus status;
     private TaskDeadline deadline;
 
@@ -17,9 +18,10 @@ public class Task {
      * @param description Description of the task.
      * @param status Status of the task.
      */
-    public Task(TaskName name, TaskDescription description, TaskStatus status) {
+    public Task(TaskName name, TaskDescription description, TaskPriority priority, TaskStatus status) {
         this.name = name;
         this.description = description;
+        this.priority = priority;
         this.status = status;
         this.deadline = new TaskDeadline();
     }
@@ -31,9 +33,14 @@ public class Task {
      * @param status Status of the task.
      * @param deadline Deadline of the task.
      */
-    public Task(TaskName name, TaskDescription description, TaskStatus status, TaskDeadline deadline) {
+    public Task(TaskName name,
+                TaskDescription description,
+                TaskPriority priority,
+                TaskStatus status,
+                TaskDeadline deadline) {
         this.name = name;
         this.description = description;
+        this.priority = priority;
         this.status = status;
         this.deadline = deadline;
     }
@@ -60,6 +67,14 @@ public class Task {
      */
     public TaskStatus getStatus() {
         return status;
+    }
+
+    /**
+     * Gets the priority of a task.
+     * @return The priority of the task.
+     */
+    public TaskPriority getPriority() {
+        return priority;
     }
 
     /**

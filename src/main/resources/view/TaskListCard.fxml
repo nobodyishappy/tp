@@ -40,6 +40,7 @@
                            <Region fx:constant="USE_PREF_SIZE" />
                         </minWidth>
                      </Label>
+                    <Label fx:id="priority" styleClass="cell_medium_label" text="\$priority" />
                   </children>
                </HBox>
                    <Label fx:id="status" alignment="TOP_CENTER" contentDisplay="RIGHT" styleClass="cell_big_label" text="\$status" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />

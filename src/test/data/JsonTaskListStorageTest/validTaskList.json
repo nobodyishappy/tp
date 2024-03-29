@@ -1,9 +1,18 @@
 {
   "tasks" : [ {
-    "description" : "test 1"
+    "taskName" : "test 1",
+    "description" : "test 1",
+    "taskPriority" : "LOW",
+    "taskStatus" : "Not Done"
   }, {
-    "description" : "test 2"
+    "taskName" : "test 2",
+    "description" : "test 2",
+    "taskPriority" : "LOW",
+    "taskStatus" : "Not Done"
   }, {
-    "description" : "test 3"
+    "taskName" : "test 3",
+    "description" : "test 3",
+    "taskPriority" : "LOW",
+    "taskStatus" : "Not Done"
   } ]
 }

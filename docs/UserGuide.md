@@ -36,6 +36,8 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `clear` : Deletes all contacts.
 
+   * `add n/Task 1 d/Do homework` : Add a task named `Task 1`
+
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -151,6 +153,56 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Adding a task: `addtask`
+
+Adds a task to the task list with three levels of priority (LOW, MEDIUM, HIGH).
+
+Format: `add n/NAME d/DESCRIPTION p/PRIORITY​`
+
+Examples:
+* `add n/Task 1 d/Do homework p/ HIGH`
+
+### Assigning a task: `assign`
+
+Assign a task to a person
+
+Format: `assign TASK_INDEX to/PERSON_INDEX​`
+
+Examples:
+* `assign 1 to/ 1`
+
+### Marking a task: `marktask`
+
+Marks a task to the task list as done.
+
+Format: `marktask TASK_INDEX`
+
+Examples:
+* `marktask 1`
+
+### Unmarking a task: `unmarktask`
+
+Marks a task to the task list as not done.
+
+Format: `unmarktask TASK_INDEX`
+
+Examples:
+* `unmarktask 1`
+
+### Deleting a task: `deletetask`
+
+Format: `deletetask TASK_INDEX`
+
+Examples:
+* `deletetask 1`
+
+### Listing the tasks: `listtask`
+
+Format: `listtask`
+
+Examples:
+* `listtask`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -202,3 +254,9 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
+**Add Task**   | `addtask TASK_INDEX [n/NAME] [d/DESCRIPTION] [p/PRIORITY]`
+**Delete Task**   | `deletetask TASK_INDEX`
+**Assign Task**   | `assign TASK_INDEX to/PERSON_INDEX​`
+**Mark Task**   | `marktask TASK_INDEX​`
+**Unmark Task**   | `unmarktask TASK_INDEX​`
+**List Task**   | `listtask​`
