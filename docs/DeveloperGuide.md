@@ -219,7 +219,7 @@ The `redo` command does the opposite — it calls `Model#redo()`, which shif
 
 </box>
 
-Step 4. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commit()`, `Model#undo()` or `Model#redo()`. Thus, the `addressBookStateList` and `taskListStateList` remains unchanged.
+Step 4. The user then decides to execute the command `listtask`. Commands that do not modify the task list, such as `listtask`, will usually not call `Model#commit()`, `Model#undo()` or `Model#redo()`. Thus, the `taskListStateList` and `taskListStatePointer` remains unchanged.
 
 <puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
 

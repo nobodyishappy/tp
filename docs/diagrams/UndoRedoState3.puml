@@ -4,7 +4,7 @@ skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 skinparam ClassBackgroundColor #FFFFAA
 
-title after command "add n/David"
+title after command "addtask n/task1"
 
 package States {
     class ABState1 as "<u>ab0:AddressBook</u>"
