@@ -4,6 +4,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskPriority;
 import seedu.address.model.task.TaskStatus;
 
 /**
@@ -17,6 +18,7 @@ public class TaskBuilder {
 
     private TaskName taskName;
     private TaskDescription taskDescription;
+    private TaskPriority taskPriority;
     private TaskDeadline taskDeadline;
 
     /**
@@ -54,6 +56,14 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code TaskPriority} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withTaskPriority(String taskPriority) {
+        this.taskPriority = new TaskPriority(taskPriority);
+        return this;
+    }
+
+    /**
      * Sets the {@code TaskDeadline} of the {@code Task} that we are building.
      */
     public TaskBuilder withTaskDeadline(String taskDeadline) {
@@ -62,6 +72,6 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(taskName, taskDescription, new TaskStatus(), taskDeadline);
+        return new Task(taskName, taskDescription, new TaskPriority(), new TaskStatus(), taskDeadline);
     }
 }

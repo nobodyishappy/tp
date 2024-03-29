@@ -38,7 +38,13 @@ public class UnmarkTaskCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        taskToMark.getStatus().setAsUndone();
+        Task editedTask = new Task(taskToMark.getName(),
+                taskToMark.getDescription(),
+                taskToMark.getPriority(),
+                taskToMark.getStatus());
+        editedTask.getStatus().setAsUndone();
+
+        model.setTask(taskToMark, editedTask);
 
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, Messages.formatTask(taskToMark)));
     }
