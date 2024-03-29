@@ -47,14 +47,14 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                 argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
         TaskPriority priority = new TaskPriority(argMultimap.getValue(PREFIX_TASK_PRIORITY).get());
         TaskStatus status = new TaskStatus();
-      
+
         Task task;
-      
+
         if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
             TaskDeadline deadline = ParserUtil.parseTaskDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).get());
             task = new Task(name, description, priority, status, deadline);
         } else {
-            Task task = new Task(name, description, priority, status);
+            task = new Task(name, description, priority, status);
         }
         return new AddTaskCommand(task);
     }

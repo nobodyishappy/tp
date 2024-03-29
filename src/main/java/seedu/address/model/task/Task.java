@@ -33,7 +33,11 @@ public class Task {
      * @param status Status of the task.
      * @param deadline Deadline of the task.
      */
-    public Task(TaskName name, TaskDescription description, TaskPriority priority, TaskStatus status, TaskDeadline deadline) {
+    public Task(TaskName name,
+                TaskDescription description,
+                TaskPriority priority,
+                TaskStatus status,
+                TaskDeadline deadline) {
         this.name = name;
         this.description = description;
         this.priority = priority;
@@ -72,7 +76,7 @@ public class Task {
     public TaskPriority getPriority() {
         return priority;
     }
-  
+
     /**
      * Gets the deadline of a task.
      * @return The deadline of the task.

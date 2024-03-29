@@ -86,7 +86,7 @@ public class JsonAdaptedTask {
                     TaskPriority.class.getSimpleName()));
         }
         final TaskPriority modelTaskPriority = new TaskPriority(taskPriority);
-      
+
         if (taskDeadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskDeadline.class.getSimpleName()));

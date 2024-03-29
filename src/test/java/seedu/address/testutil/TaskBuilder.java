@@ -60,8 +60,9 @@ public class TaskBuilder {
      */
     public TaskBuilder withTaskPriority(String taskPriority) {
         this.taskPriority = new TaskPriority(taskPriority);
+        return this;
     }
-  
+
     /**
      * Sets the {@code TaskDeadline} of the {@code Task} that we are building.
      */

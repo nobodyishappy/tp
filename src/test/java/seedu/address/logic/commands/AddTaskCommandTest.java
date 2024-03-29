@@ -64,6 +64,7 @@ class AddTaskCommandTest {
                 new TaskStatus());
         Task testTask2 = new Task(new TaskName("Implement test2"),
                 new TaskDescription("First test to test the code"),
+                new TaskPriority(),
                 new TaskStatus());
         Task testTask3 = new Task(new TaskName("Implement test1"),
                 new TaskDescription("Second test to test the code"),
@@ -71,10 +72,12 @@ class AddTaskCommandTest {
                 new TaskStatus());
         Task testTask4 = new Task(new TaskName("Implement test1"),
                 new TaskDescription("First test to test the code"),
+                new TaskPriority(),
                 new TaskStatus(),
                 new TaskDeadline("12-12-2024 16:00"));
         Task testTask5 = new Task(new TaskName("Implement test1"),
                 new TaskDescription("First test to test the code"),
+                new TaskPriority(),
                 new TaskStatus(),
                 new TaskDeadline("12-12-2024 18:00"));
         AddTaskCommand addTaskCommand1 = new AddTaskCommand(testTask1);

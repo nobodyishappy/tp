@@ -22,7 +22,7 @@ public class AddTaskCommand extends Command {
             + "Parameter: "
             + PREFIX_NAME + "TASK NAME "
             + PREFIX_TASK_DESCRIPTION + "TASK DESCRIPTION "
-            + PREFIX_TASK_PRIORITY + "TASK PRIORITY";
+            + PREFIX_TASK_PRIORITY + "TASK PRIORITY"
             + "[" + PREFIX_TASK_DEADLINE + "TASK DEADLINE]";
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";

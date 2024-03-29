@@ -26,56 +26,65 @@ public class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_validTask_success() throws IllegalValueException {
-        JsonAdaptedTask jsonAdaptedTask = new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, PRIORITY, STATUS, VALID_DEADLINE);
+        JsonAdaptedTask jsonAdaptedTask =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, PRIORITY, STATUS, VALID_DEADLINE);
         Task modelTask = jsonAdaptedTask.toModelType();
         assertEquals(VALID_TASK, modelTask);
     }
 
     @Test
     public void toModelType_emptyName_throwsIllegalValueException() {
-        JsonAdaptedTask jsonAdaptedTask = new JsonAdaptedTask(EMPTY_NAME, VALID_DESCRIPTION, PRIORITY, STATUS, VALID_DEADLINE);
+        JsonAdaptedTask jsonAdaptedTask =
+                new JsonAdaptedTask(EMPTY_NAME, VALID_DESCRIPTION, PRIORITY, STATUS, VALID_DEADLINE);
         assertThrows(IllegalValueException.class, jsonAdaptedTask::toModelType);
     }
 
     @Test
     public void toModelType_emptyDescription_throwsIllegalValueException() {
-        JsonAdaptedTask jsonAdaptedTask = new JsonAdaptedTask(VALID_NAME, EMPTY_DESCRIPTION, PRIORITY, STATUS, VALID_DEADLINE);
+        JsonAdaptedTask jsonAdaptedTask =
+                new JsonAdaptedTask(VALID_NAME, EMPTY_DESCRIPTION, PRIORITY, STATUS, VALID_DEADLINE);
         assertThrows(IllegalValueException.class, jsonAdaptedTask::toModelType);
     }
 
     @Test
     public void toModelType_invalidDeadline_throwsIllegalValueException() {
-        JsonAdaptedTask jsonAdaptedTask = new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, PRIORITY, STATUS, INVALID_DEADLINE);
+        JsonAdaptedTask jsonAdaptedTask =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, PRIORITY, STATUS, INVALID_DEADLINE);
         assertThrows(IllegalValueException.class, jsonAdaptedTask::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedTask jsonAdaptedTask = new JsonAdaptedTask(null, VALID_DESCRIPTION, PRIORITY, STATUS, VALID_DEADLINE);
+        JsonAdaptedTask jsonAdaptedTask =
+                new JsonAdaptedTask(null, VALID_DESCRIPTION, PRIORITY, STATUS, VALID_DEADLINE);
         assertThrows(IllegalValueException.class, jsonAdaptedTask::toModelType);
     }
 
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
-        JsonAdaptedTask jsonAdaptedTask = new JsonAdaptedTask(VALID_NAME, null, PRIORITY, STATUS, VALID_DEADLIN);
+        JsonAdaptedTask jsonAdaptedTask =
+                new JsonAdaptedTask(VALID_NAME, null, PRIORITY, STATUS, VALID_DEADLINE);
         assertThrows(IllegalValueException.class, jsonAdaptedTask::toModelType);
     }
 
     @Test
     public void toModelType_nullPriority_throwsIllegalValueException() {
-        JsonAdaptedTask jsonAdaptedTask = new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, null, STATUS, VALID_DEADLINE);
+        JsonAdaptedTask jsonAdaptedTask =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, null, STATUS, VALID_DEADLINE);
         assertThrows(IllegalValueException.class, jsonAdaptedTask::toModelType);
     }
 
     @Test
     public void toModelType_nullStatus_throwsIllegalValueException() {
-        JsonAdaptedTask jsonAdaptedTask = new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, PRIORITY, null, VALID_DEADLINE);
+        JsonAdaptedTask jsonAdaptedTask =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, PRIORITY, null, VALID_DEADLINE);
         assertThrows(IllegalValueException.class, jsonAdaptedTask::toModelType);
     }
 
     @Test
     public void toModelType_nullDeadline_throwsIllegalValueException() {
-        JsonAdaptedTask jsonAdaptedTask = new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, PRIORITY, STATUS , null);
+        JsonAdaptedTask jsonAdaptedTask =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, PRIORITY, STATUS , null);
         assertThrows(IllegalValueException.class, jsonAdaptedTask::toModelType);
     }
 }
