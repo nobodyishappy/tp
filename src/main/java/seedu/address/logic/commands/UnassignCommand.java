@@ -47,8 +47,8 @@ public class UnassignCommand extends Command {
     }
 
     private Task getTaskToUnassign(Model model) throws CommandException {
-        // TODO: change to use filtered list instead
-        List<Task> lastShownTaskList = model.getTaskList().getSerializeTaskList();
+        // Use filtered list
+        List<Task> lastShownTaskList = model.getFilteredTaskList();
 
         if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
