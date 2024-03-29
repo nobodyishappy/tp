@@ -8,13 +8,13 @@ title Model
 
 package Groups {
     class Group1 as "<u>2103T:GroupedUniquePersonList</u>"
-}   
+}
 
 package Persons {
     class Person1 as "<u>Ivan:Person</u>"
     class Person2 as "<u>Greg:Person</u>"
     class Person3 as "<u>Dave:Person</u>"
-}  
+}
 
 Person1 -[hidden]right-> Person2
 Person2 -[hidden]right-> Person3
