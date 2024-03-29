@@ -379,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **System admin commands**: commands or instructions that are used through a command-line interface (CLI) 
+* **System admin commands**: commands or instructions that are used through a command-line interface (CLI)
 or a terminal window
 * **Action**: The AddressBook processing a user command
 

@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PRIORITY;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTaskCommand;
@@ -19,7 +20,8 @@ public class TaskUtil {
     public static String getAddTaskCommand(Task task) {
         return AddTaskCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + task.getName() + " "
-                + PREFIX_TASK_DESCRIPTION + task.getDescription();
+                + PREFIX_TASK_DESCRIPTION + task.getDescription() + " "
+                + PREFIX_TASK_PRIORITY + task.getPriority();
     }
 
     /**

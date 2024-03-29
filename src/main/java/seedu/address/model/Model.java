@@ -113,6 +113,13 @@ public interface Model {
     void deleteTask(Task task);
 
     /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     * The task of {@code editedTask} must not be the same as another existing task in the task list.
+     */
+    void setTask(Task target, Task editedTask);
+
+    /**
      * Returns true if a task has the same description as a {@code task} in the task list.
      */
     boolean hasTask(Task task);
