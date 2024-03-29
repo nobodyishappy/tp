@@ -57,7 +57,8 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     boolean hasPerson(Person person);
 
@@ -76,7 +77,8 @@ public interface Model {
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -93,7 +95,8 @@ public interface Model {
     /**
      * Replaces task list data with the data in {@code taskList}.
      */
-    static void setTaskList(TaskList taskList) {}
+    static void setTaskList(TaskList taskList) {
+    }
 
     /**
      * Returns the task list.
@@ -113,12 +116,29 @@ public interface Model {
     void deleteTask(Task task);
 
     /**
-     * Returns true if a task has the same description as a {@code task} in the task list.
+     * Sets the given task in the task list.
+     * {@code taskToEdit} must exist to be deleted.
+     * {@code editedTask} must exist to be updated.
+     */
+    void setTask(Task taskToEdit, Task editedTask);
+
+    /**
+     * Replaces the given task {@code taskToEdit} with {@code editedTask}.
+     * {@code taskToEdit} must exist to be deleted.
+     * {@code editedTask} must exist to be updated.
+     */
+    void setPersonTask(Task taskToEdit, Task editedTask);
+
+    /**
+     * Returns true if a task has the same description as a {@code task} in the task
+     * list.
      */
     boolean hasTask(Task task);
 
     /**
-     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered task list to filter by the given
+     * {@code predicate}.
+     * 
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
@@ -130,7 +150,9 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given
+     * {@code predicate}.
+     * 
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);

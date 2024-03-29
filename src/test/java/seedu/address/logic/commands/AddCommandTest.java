@@ -150,6 +150,16 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void setPersonTask(Task taskToEdit, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTask(Task taskToEdit, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         /**
          * Returns the user prefs' task list file path.
          */

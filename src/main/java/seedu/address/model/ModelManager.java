@@ -137,6 +137,13 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void setPersonTask(Task taskToEdit, Task editedTask) {
+        requireAllNonNull(taskToEdit, editedTask);
+
+        addressBook.setTask(taskToEdit, editedTask);
+    }
+
     // =========== Task Manager
     // ===============================================================================
 
@@ -150,6 +157,13 @@ public class ModelManager implements Model {
     public void deleteTask(Task task) {
         addressBook.deleteAssignedTask(task);
         taskList.deleteTask(task);
+    }
+
+    @Override
+    public void setTask(Task taskToEdit, Task editedTask) {
+        taskList.deleteTask(taskToEdit);
+        taskList.addTask(editedTask);
+        setPersonTask(taskToEdit, editedTask);
     }
 
     @Override
