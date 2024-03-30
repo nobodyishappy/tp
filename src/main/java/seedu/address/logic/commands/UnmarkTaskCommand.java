@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -32,7 +31,7 @@ public class UnmarkTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getTaskList().getSerializeTaskList();
+        List<Task> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -46,8 +45,6 @@ public class UnmarkTaskCommand extends Command {
         editedTask.getStatus().setAsUndone();
 
         model.setTask(taskToMark, editedTask);
-
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, Messages.formatTask(taskToMark)));
     }
