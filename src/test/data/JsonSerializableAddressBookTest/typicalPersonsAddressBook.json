@@ -8,7 +8,9 @@
     "tasks" : [ {
       "taskName" : "Testing",
       "taskDescription" : "Test to test the code",
-      "taskStatus" : "Not Done"
+      "taskPriority" : "LOW",
+      "taskStatus" : "Not Done",
+      "taskDeadline" : "Empty"
     } ]
   }, {
     "name" : "Benson Meier",
@@ -18,11 +20,15 @@
     "tasks" : [ {
       "taskName" : "Testing 1",
       "taskDescription" : "Test to test the code",
-      "taskStatus" : "Not Done"
+      "taskPriority" : "LOW",
+      "taskStatus" : "Not Done",
+      "taskDeadline" : "Empty"
     }, {
       "taskName" : "Testing 2",
       "taskDescription" : "Test to test the code",
-      "taskStatus" : "Not Done"
+      "taskPriority" : "LOW",
+      "taskStatus" : "Not Done",
+      "taskDeadline" : "Empty"
     } ]
   }, {
     "name" : "Carl Kurz",
@@ -38,7 +44,9 @@
     "tasks" : [ {
       "taskName" : "Testing",
       "taskDescription" : "Test to test the code",
-      "taskStatus" : "Not Done"
+      "taskPriority" : "LOW",
+      "taskStatus" : "Not Done",
+      "taskDeadline" : "Empty"
     }]
   }, {
     "name" : "Elle Meyer",

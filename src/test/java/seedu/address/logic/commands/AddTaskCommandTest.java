@@ -11,8 +11,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskPriority;
 import seedu.address.model.task.TaskStatus;
 
 class AddTaskCommandTest {
@@ -34,6 +36,7 @@ class AddTaskCommandTest {
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         Task validTask = new Task(new TaskName("Implement test"),
                 new TaskDescription("Test to test the code"),
+                new TaskPriority(),
                 new TaskStatus());
 
         CommandResult commandResult = new AddTaskCommand(validTask).execute(model);
@@ -45,6 +48,7 @@ class AddTaskCommandTest {
     public void execute_duplicateTask_throwsCommandException() throws CommandException {
         Task validTask = new Task(new TaskName("Implement test"),
                 new TaskDescription("Test to test the code"),
+                new TaskPriority(),
                 new TaskStatus());
         new AddTaskCommand(validTask).execute(model);
 
@@ -56,12 +60,31 @@ class AddTaskCommandTest {
     void testEquals() {
         Task testTask1 = new Task(new TaskName("Implement test1"),
                 new TaskDescription("First test to test the code"),
+                new TaskPriority(),
                 new TaskStatus());
         Task testTask2 = new Task(new TaskName("Implement test2"),
-                new TaskDescription("Second test to test the code"),
+                new TaskDescription("First test to test the code"),
+                new TaskPriority(),
                 new TaskStatus());
+        Task testTask3 = new Task(new TaskName("Implement test1"),
+                new TaskDescription("Second test to test the code"),
+                new TaskPriority(),
+                new TaskStatus());
+        Task testTask4 = new Task(new TaskName("Implement test1"),
+                new TaskDescription("First test to test the code"),
+                new TaskPriority(),
+                new TaskStatus(),
+                new TaskDeadline("12-12-2024 16:00"));
+        Task testTask5 = new Task(new TaskName("Implement test1"),
+                new TaskDescription("First test to test the code"),
+                new TaskPriority(),
+                new TaskStatus(),
+                new TaskDeadline("12-12-2024 18:00"));
         AddTaskCommand addTaskCommand1 = new AddTaskCommand(testTask1);
         AddTaskCommand addTaskCommand2 = new AddTaskCommand(testTask2);
+        AddTaskCommand addTaskCommand3 = new AddTaskCommand(testTask3);
+        AddTaskCommand addTaskCommand4 = new AddTaskCommand(testTask4);
+        AddTaskCommand addTaskCommand5 = new AddTaskCommand(testTask5);
 
         // same object -> returns true
         assertTrue(addTaskCommand1.equals(addTaskCommand1));
@@ -78,12 +101,22 @@ class AddTaskCommandTest {
 
         // different tasks -> returns false
         assertFalse(addTaskCommand1.equals(addTaskCommand2));
+
+        // different description -> returns false
+        assertFalse(addTaskCommand1.equals(addTaskCommand3));
+
+        // different deadline -> returns false
+        assertFalse(addTaskCommand1.equals(addTaskCommand4));
+
+        // different deadline -> returns false
+        assertFalse(addTaskCommand4.equals(addTaskCommand5));
     }
 
     @Test
     void testToString() {
         Task test = new Task(new TaskName("Implement test"),
                 new TaskDescription("Test to test the code"),
+                new TaskPriority(),
                 new TaskStatus());
         AddTaskCommand addTaskCommand = new AddTaskCommand(test);
         String expected = AddTaskCommand.class.getCanonicalName() + "{toAdd=" + test + "}";

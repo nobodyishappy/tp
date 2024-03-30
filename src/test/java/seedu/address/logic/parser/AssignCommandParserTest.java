@@ -81,6 +81,4 @@ public class AssignCommandParserTest {
         // invalid arguments being parsed as to
         assertParseFailure(parser, "1 " + TO_ONE + " a", MESSAGE_INVALID_FORMAT);
     }
-
-
 }

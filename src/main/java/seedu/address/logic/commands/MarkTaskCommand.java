@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -33,16 +32,20 @@ public class MarkTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getTaskList().getSerializeTaskList();
+        List<Task> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        taskToMark.getStatus().setAsDone();
+        Task editedTask = new Task(taskToMark.getName(),
+                taskToMark.getDescription(),
+                taskToMark.getPriority(),
+                taskToMark.getStatus());
+        editedTask.getStatus().setAsDone();
 
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.setTask(taskToMark, editedTask);
 
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, Messages.format(taskToMark)));
     }
