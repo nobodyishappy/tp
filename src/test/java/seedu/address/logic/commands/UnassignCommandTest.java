@@ -41,7 +41,7 @@ class UnassignCommandTest {
 
         UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST, INDEX_FIRST);
 
-        String expectedMessage = String.format(UnassignCommand.MESSAGE_SUCCESS, Messages.formatTask(taskToUnassign),
+        String expectedMessage = String.format(UnassignCommand.MESSAGE_SUCCESS, Messages.format(taskToUnassign),
                 editedPerson.getName());
 
         Model expectedModel = new ModelManager(
@@ -63,7 +63,7 @@ class UnassignCommandTest {
 
         UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST, INDEX_FIRST);
 
-        String expectedMessage = String.format(UnassignCommand.MESSAGE_SUCCESS, Messages.formatTask(taskToUnassign),
+        String expectedMessage = String.format(UnassignCommand.MESSAGE_SUCCESS, Messages.format(taskToUnassign),
                 editedPerson.getName());
 
         Model expectedModel = new ModelManager(

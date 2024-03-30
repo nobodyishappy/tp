@@ -77,7 +77,7 @@ public class UnassignCommand extends Command {
         model.setPerson(personToBeUnassigned, unassignedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatTask(taskToUnassign),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(taskToUnassign),
                 unassignedPerson.getName()));
     }
 
