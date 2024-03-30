@@ -158,9 +158,51 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Grouping Feature
 
 #### Proposed Implementation
+
+The proposed grouping mechanism is facilitated by `GroupedUniquePersonList`. It extends `UniquePersonList` with task that are linked between the people of the same group. Additionally, it implements the following operations:
+
+* `GroupedUniquePersonList#assignTask(Task)` - Add task to everyone in the group
+* `GroupedAddressBook#markTask(Index)` - Mark task of everyone in the group
+* `GroupedAddressBook#unmarkTask(Index)` - Unmark task of everyone in the group
+
+These operations are exposed in the `Model` interface as `Model#assignTaskToGroup(String, Task)`, `Model#markTaskOfGroup(String, Index)` and `Model#unmarkTaskofGroup(String, Index)` respectively.
+
+`GroupedUniquePersonList` adds a new string called `groupName` to label each of their groups.
+
+A new list of `GroupedUniquePersonList` will be added to the `Model` interface.
+
+To add to the list of `GroupedUniquePersonList`, the Model interface includes `Model#addGroup(String, List<Person>)` and `Model#addListOfGroups(List<Group>)`.
+
+To remove to the list of `GroupedUniquePersonList`, the Model interface includes `Model#removeGroup(String)`.
+
+New operation are exposed in the `Model` interface are `Model#addPersonToGroup(String, Person)`, `Model#removePersonFromGroup(String, Person)` and `Model#deleteAssignedTaskGroup(String, Task)` which would call `UniquePersonList#add(Person)`, `UniquePersonList#remove(Person)` and `UniquePersonList#deleteAssignedTask(Person)`respectively.
+
+Given below is an example usage scenario and how the grouping mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The list of the `GroupedUniquePersonList` will be empty if there are no groups stored in the storage.
+
+<puml src="diagrams/GroupingState0.puml" alt="GroupingState0" />
+
+Step 2. The user executes `group gn/2103T gp/Ivan gp/Greg gp/Dave` command to group Ivan, Greg and Dave from the displayed person list to one group. The `group` command calls `Model#addGroup(String, List<Person>)`, which creates a new group with that contains the list of people that was indicated by the user.
+
+<puml src="diagrams/GroupingState1.puml" alt="GroupingState1" />
+
+Step 3. The user executes `assigngroup gn/2103T gt/Task 1` command to assign a task named "Task 1" to the group named "2103T" from the group list. The `assigngroup` command calls `Model#assignTaskToGroup(String, Task)`, which finds the group with the same name and assign that task to everyone that is in the group.
+
+<puml src="diagrams/GroupingState2.puml" alt="GroupingState2" />
+
+Step 4. The user executes `addpersontogroup gn/2103T gp/Bob` command to add Bob to the group named "2103T" from the group list. The `addpersontogroup` command calls `Model#addPersonToGroup(String, Person)`, which finds the group with the same name and add the person to the group.
+
+Step 5. The user executes `removepersonfromgroup gn/2103T gp/4` command to remove Bob from the group named "2103T" from the group list. The `removepersonfromgroup` command calls `Model#removePersonFromGroup(String, Person)`, which finds the group with the same name and remove the person to the group.
+
+Step 6. The user executes `deletetaskgroup gn/2103T gt/Task 1` command to remove a task named "Task 1" from the group named "2103T" from the group list. The `deletetaskgroup` command calls `Model#deleteAssignedTaskGroup(String, Task)`, which finds the group with the same name and remove that task from everyone that is in the group.
+
+Step 7. The user executes `deletegroup gn/2103T` command to remove the group from the list. The `deletegroup` command calls `Model#removeGroup(String)`, which finds the group with the same name and remove that group from the list.
+
+### \[Proposed\] Undo/Redo Feature
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -296,6 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                    | mark/unmark the tasks as done/not done          | keep track of tasks that are completed                                 |
 | `* *`    | group leader                               | assign tasks to individuals within the group    | manage individual tasks                                                |
 | `* *`    | busy group leader                          | see an overview of all the saved task           | save time                                                              |
+| `* *`    | student                                    | set deadline for my tasks                       | see which task need to be done earlier                                 |
 
 *{More to be added}*
 
