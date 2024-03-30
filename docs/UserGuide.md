@@ -162,12 +162,30 @@ Examples:
 
 ### Assigning a task: `assign`
 
-Assign a task to a person
+Assigns a task to a person.
 
-Format: `assign TASK_INDEX to/PERSON_INDEX​`
+Format: `assign TASK_INDEX to/PERSON_INDEX`
 
 Examples:
-* `assign 1 to/ 1`
+* `assign 1 to/1`
+
+### Unassigning a task: `unassign`
+
+Unassigns a task to a person.
+
+Format: `unassign TASK_INDEX to/PERSON_INDEX`
+
+Examples:
+* `unassign 1 to/1`
+
+### Clearing the tasks of a person: `cleartask`
+
+Clears the tasks of a person.
+
+Format: `cleartask PERSON_INDEX`
+
+Examples
+* `cleartask 1`
 
 ### Marking a task: `marktask`
 
