@@ -130,6 +130,14 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<box type="info" seamless>
+
+**Note:** An alternative (arguably, a more OOP) model is given below. `TaskList` implements the `ReadOnlyTaskList` interface, and has a `UniqueTaskList` that contains all `Task`s. This allows `TaskList` to be implemented in a way that is consistent to how `AddressBook` is implemented, thus any benefits arising from the design decisions of `Person` also applies to `Task`. We are currently not adopting this model due to time constraints and the benefits are not immediately obvious.<br>
+
+<puml src="diagrams/BetterModelClassDiagram.puml" width="562.5" />
+
+</box>
+
 
 ### Storage component
 
