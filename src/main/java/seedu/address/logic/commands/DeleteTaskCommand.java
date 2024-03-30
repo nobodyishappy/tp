@@ -46,7 +46,7 @@ public class DeleteTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getTaskList().getSerializeTaskList();
+        List<Task> lastShownList = model.getFilteredTaskList();
 
         if (taskIndexToDelete.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INDEX_TOO_LARGE);
