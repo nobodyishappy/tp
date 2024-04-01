@@ -29,7 +29,7 @@ public class TaskBuilder {
         taskName = new TaskName(DEFAULT_TASK_NAME);
         taskDescription = new TaskDescription(DEFAULT_TASK_DESCRIPTION);
         taskPriority = new TaskPriority(DEFAULT_TASK_PRIORITY);
-        taskDeadline = new TaskDeadline();
+        taskDeadline = new TaskDeadline(DEFAULT_TASK_DEADLINE);
     }
 
     /**

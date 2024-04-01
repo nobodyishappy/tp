@@ -48,7 +48,7 @@ public class MarkTaskCommand extends Command {
     }
     private static Task getTask(Task taskToMark) {
         Task editedTask;
-        if (taskToMark.getDeadline() != null) {
+        if (!taskToMark.getDeadline().toString().isEmpty()) {
             editedTask = new Task(taskToMark.getName(),
                     taskToMark.getDescription(),
                     taskToMark.getPriority(),
