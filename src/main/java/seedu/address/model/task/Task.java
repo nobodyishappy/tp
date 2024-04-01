@@ -99,13 +99,14 @@ public class Task {
         Task otherTask = (Task) other;
         return this.name.equals(otherTask.name)
                 && this.description.equals(otherTask.description)
+                && this.priority.equals(otherTask.priority)
                 && this.deadline.equals(otherTask.deadline);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description, deadline);
+        return Objects.hash(name, description, priority, deadline);
     }
 
     /**

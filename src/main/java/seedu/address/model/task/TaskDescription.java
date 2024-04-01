@@ -24,10 +24,10 @@ public class TaskDescription {
      *
      * @param description A valid description.
      */
-    public TaskDescription(String decription) {
-        requireNonNull(decription);
-        checkArgument(isValidTaskDescription(decription), MESSAGE_CONSTRAINTS);
-        taskDescription = decription;
+    public TaskDescription(String description) {
+        requireNonNull(description);
+        checkArgument(isValidTaskDescription(description), MESSAGE_CONSTRAINTS);
+        taskDescription = description;
     }
 
     /**

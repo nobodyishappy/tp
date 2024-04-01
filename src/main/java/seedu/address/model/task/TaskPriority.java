@@ -89,4 +89,9 @@ public class TaskPriority {
         TaskPriority otherPriority = (TaskPriority) other;
         return taskPriority == otherPriority.taskPriority;
     }
+
+    @Override
+    public int hashCode() {
+        return taskPriority.hashCode();
+    }
 }
