@@ -4,8 +4,6 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Locale;
-
 import seedu.address.model.util.Priority;
 
 /**
@@ -31,11 +29,13 @@ public class TaskPriority {
         requireNonNull(priority);
         checkArgument(isValidTaskPriority(priority), MESSAGE_CONSTRAINTS);
 
-        if (priority.equals("LOW") || priority.equals("1")) {
+        priority = priority.toLowerCase();
+
+        if (priority.equals("low") || priority.equals("1")) {
             this.taskPriority = Priority.LOW;
-        } else if (priority.equals("MEDIUM") || priority.equals("2")) {
+        } else if (priority.equals("medium") || priority.equals("2")) {
             this.taskPriority = Priority.MEDIUM;
-        } else {
+        } else if (priority.equals("high") || priority.equals("3")) {
             this.taskPriority = Priority.HIGH;
         }
     }
@@ -51,7 +51,7 @@ public class TaskPriority {
      * Returns true if a given string is a valid description.
      */
     public static boolean isValidTaskPriority(String test) {
-        test = test.toLowerCase(Locale.ROOT);
+        test = test.toLowerCase();
 
         if (test.equals("low") || test.equals("medium") || test.equals("high")) {
             return true;

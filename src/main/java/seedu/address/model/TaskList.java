@@ -82,45 +82,31 @@ public class TaskList {
      * Sorts tasks based on the task priority.
      *
      */
-    public void sort() {
+    public void sortByPriority() {
         observableList.sort(new Comparator<Task>() {
             @Override
             public int compare(Task o1, Task o2) {
                 if (o1.getStatus().compareTo(o2.getStatus()) == 0) {
                     if (o2.getPriority().getValue() - o1.getPriority().getValue() == 0) {
-                        return sortByDeadline(o1, o2);
+                        if (o1.getDeadline().taskDeadline != null && o2.getDeadline().taskDeadline != null) {
+                            return o1.getDeadline().taskDeadline.compareTo(o2.getDeadline().taskDeadline);
+                        } else {
+                            if (o1.getDeadline() != null) {
+                                return -1;
+                            } else if (o2.getDeadline() != null) {
+                                return 1;
+                            }
+
+                            return 0;
+                        }
                     } else {
-                        return sortByPriority(o1, o2);
+                        return o2.getPriority().getValue() - o1.getPriority().getValue();
                     }
                 } else {
-                    return sortByStatus(o1);
+                    return o1.getStatus().getTaskStatus() ? 1 : -1;
                 }
             }
         });
-    }
-
-    private int sortByStatus(Task o1) {
-        return o1.getStatus().getTaskStatus() ? 1 : -1;
-    }
-
-    private int sortByPriority(Task o1, Task o2) {
-        if (o2.getPriority().getValue() - o1.getPriority().getValue() == 1) {
-            return 1;
-        } else {
-            return -1;
-        }
-    }
-
-    private int sortByDeadline(Task o1, Task o2) {
-        if (o1.getDeadline().taskDeadline != null && o2.getDeadline().taskDeadline != null) {
-            return o1.getDeadline().taskDeadline.compareTo(o2.getDeadline().taskDeadline);
-        } else if (o1.getDeadline() != null) {
-            return -1;
-        } else if (o2.getDeadline() != null) {
-            return 1;
-        } else {
-            return 0;
-        }
     }
 
     @Override
