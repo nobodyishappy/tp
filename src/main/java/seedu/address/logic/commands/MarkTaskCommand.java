@@ -50,8 +50,7 @@ public class MarkTaskCommand extends Command {
             editedTask = new Task(taskToMark.getName(),
                     taskToMark.getDescription(),
                     taskToMark.getPriority(),
-                    taskToMark.getStatus(),
-                    taskToMark.getDeadline());
+                    taskToMark.getStatus());
         }
         editedTask.getStatus().setAsDone();
 
