@@ -132,6 +132,9 @@ public interface Model {
     /**
      * Returns true if a task has the same description as a {@code task} in the task
      * list.
+
+    /**
+     * Returns true if a task has the same description as a {@code task} in the task list.
      */
     boolean hasTask(Task task);
 

@@ -71,7 +71,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `TaskListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -96,14 +96,14 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+**Note:** The lifeline for `DeleteTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </box>
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteTaskCommandParser`) and uses it to parse the command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteTaskCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a task).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -112,27 +112,29 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddTaskCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddTaskCommandParser`, `DeleteTaskCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width="450" />
+<puml src="diagrams/ModelClassDiagram.puml" width="675" />
 
 
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the task list data i.e., all `Task` objects (which are contained in a `TaskList` object).
+* stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. `TaskList` implements the `ReadOnlyTaskList` interface, and has a `UniqueTaskList` that contains all `Task`s. This allows `TaskList` to be implemented in a way that is consistent to how `AddressBook` is implemented, thus any benefits arising from the design decisions of `Person` also applies to `Task`. We are currently not adopting this model due to time constraints and the benefits are not immediately obvious.<br>
 
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
+<puml src="diagrams/BetterModelClassDiagram.puml" width="562.5" />
 
 </box>
 
@@ -158,47 +160,84 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Grouping Feature
 
 #### Proposed Implementation
 
+The proposed grouping mechanism is facilitated by `GroupedUniquePersonList`. It extends `UniquePersonList` with task that are linked between the people of the same group. Additionally, it implements the following operations:
+
+* `GroupedUniquePersonList#assignTask(Task)` - Add task to everyone in the group
+* `GroupedAddressBook#markTask(Index)` - Mark task of everyone in the group
+* `GroupedAddressBook#unmarkTask(Index)` - Unmark task of everyone in the group
+
+These operations are exposed in the `Model` interface as `Model#assignTaskToGroup(String, Task)`, `Model#markTaskOfGroup(String, Index)` and `Model#unmarkTaskofGroup(String, Index)` respectively.
+
+`GroupedUniquePersonList` adds a new string called `groupName` to label each of their groups.
+
+A new list of `GroupedUniquePersonList` will be added to the `Model` interface.
+
+To add to the list of `GroupedUniquePersonList`, the Model interface includes `Model#addGroup(String, List<Person>)` and `Model#addListOfGroups(List<Group>)`.
+
+To remove to the list of `GroupedUniquePersonList`, the Model interface includes `Model#removeGroup(String)`.
+
+New operation are exposed in the `Model` interface are `Model#addPersonToGroup(String, Person)`, `Model#removePersonFromGroup(String, Person)` and `Model#deleteAssignedTaskGroup(String, Task)` which would call `UniquePersonList#add(Person)`, `UniquePersonList#remove(Person)` and `UniquePersonList#deleteAssignedTask(Person)`respectively.
+
+Given below is an example usage scenario and how the grouping mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The list of the `GroupedUniquePersonList` will be empty if there are no groups stored in the storage.
+
+<puml src="diagrams/GroupingState0.puml" alt="GroupingState0" />
+
+Step 2. The user executes `group gn/2103T gp/Ivan gp/Greg gp/Dave` command to group Ivan, Greg and Dave from the displayed person list to one group. The `group` command calls `Model#addGroup(String, List<Person>)`, which creates a new group with that contains the list of people that was indicated by the user.
+
+<puml src="diagrams/GroupingState1.puml" alt="GroupingState1" />
+
+Step 3. The user executes `assigngroup gn/2103T gt/Task 1` command to assign a task named "Task 1" to the group named "2103T" from the group list. The `assigngroup` command calls `Model#assignTaskToGroup(String, Task)`, which finds the group with the same name and assign that task to everyone that is in the group.
+
+<puml src="diagrams/GroupingState2.puml" alt="GroupingState2" />
+
+Step 4. The user executes `addpersontogroup gn/2103T gp/Bob` command to add Bob to the group named "2103T" from the group list. The `addpersontogroup` command calls `Model#addPersonToGroup(String, Person)`, which finds the group with the same name and add the person to the group.
+
+Step 5. The user executes `removepersonfromgroup gn/2103T gp/4` command to remove Bob from the group named "2103T" from the group list. The `removepersonfromgroup` command calls `Model#removePersonFromGroup(String, Person)`, which finds the group with the same name and remove the person to the group.
+
+Step 6. The user executes `deletetaskgroup gn/2103T gt/Task 1` command to remove a task named "Task 1" from the group named "2103T" from the group list. The `deletetaskgroup` command calls `Model#deleteAssignedTaskGroup(String, Task)`, which finds the group with the same name and remove that task from everyone that is in the group.
+
+Step 7. The user executes `deletegroup gn/2103T` command to remove the group from the list. The `deletegroup` command calls `Model#removeGroup(String)`, which finds the group with the same name and remove that group from the list.
+
+### \[Proposed\] Undo/Redo Feature
+
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedAddressBook#commit()` — Saves the current address book and task list state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous address book and task list state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone address book and task list state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commit()`, `Model#undo()` and `Model#redo()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book and task list state, with the `addressBookStatePointer` and `taskListStatePointer`.
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `add n/task 1 …​` to add a new task. The `addtask` command also calls `Model#commit()`, causing another modified task kust state to be saved into the `taskListStateList`.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
-
 <box type="info" seamless>
 
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Note:** If a command fails its execution, it will not call `Model#commit()`, so the state will not be saved.
 
 </box>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 3. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which will shift the `taskListStatePointer` once to the left, pointing it to the previous task list state, and restores the task list to that state.
 
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
+<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+**Note:** If the pointers are at index 0, pointing to the initial state, then there are no previous states to restore. The `undo` command uses `Model#canUndo()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 </box>
 
@@ -216,21 +255,17 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 
 <puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redo()`, which shifts the pointers once to the right, pointing to the previously undone state, and restores the address book or task list to that state.
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** If the `addressBookStatePointer` is at index `addressBookStateList.size() - 1` or `taskListStatePointer` is at index `taskListStateList.size() - 1`, pointing to the latest state, then there are no undone states to restore for the respective commands. The `redo` command uses `Model#canRedo()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </box>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 4. The user then decides to execute the command `listtask`. Commands that do not modify the task list, such as `listtask`, will usually not call `Model#commit()`, `Model#undo()` or `Model#redo()`. Thus, the `taskListStateList` and `taskListStatePointer` remains unchanged.
 
 <puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -246,14 +281,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `deletetask`, just save the task being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -296,6 +328,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                    | mark/unmark the tasks as done/not done          | keep track of tasks that are completed                                 |
 | `* *`    | group leader                               | assign tasks to individuals within the group    | manage individual tasks                                                |
 | `* *`    | busy group leader                          | see an overview of all the saved task           | save time                                                              |
+| `* *`    | student                                    | set deadline for my tasks                       | see which task need to be done earlier                                 |
 
 *{More to be added}*
 
@@ -379,7 +412,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **System admin commands**: commands or instructions that are used through a command-line interface (CLI) 
+* **System admin commands**: commands or instructions that are used through a command-line interface (CLI)
 or a terminal window
 * **Action**: The AddressBook processing a user command
 
