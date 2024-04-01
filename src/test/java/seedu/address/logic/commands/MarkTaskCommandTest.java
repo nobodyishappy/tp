@@ -61,6 +61,24 @@ public class MarkTaskCommandTest {
     }
 
     @Test
+    public void execute_taskWithDeadline() {
+        Task taskWithDeadline = new TaskBuilder()
+                .withTaskName("Task 1")
+                .withTaskDeadline("10-10-2020 10:00")
+                .build();
+        model.addTask(taskWithDeadline);
+        Index noDeadlineTask = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size());
+        MarkTaskCommand markTaskCommand = new MarkTaskCommand(noDeadlineTask);
+
+        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS,
+                Messages.formatTask(taskWithDeadline));
+
+        ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
+
+        assertCommandSuccess(markTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void equals() {
         MarkTaskCommand markTaskFirstCommand = new MarkTaskCommand(INDEX_FIRST);
         MarkTaskCommand markTaskSecondCommand = new MarkTaskCommand(INDEX_SECOND);
