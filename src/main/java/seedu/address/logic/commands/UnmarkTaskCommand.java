@@ -41,7 +41,8 @@ public class UnmarkTaskCommand extends Command {
         Task editedTask = new Task(taskToMark.getName(),
                 taskToMark.getDescription(),
                 taskToMark.getPriority(),
-                taskToMark.getStatus());
+                taskToMark.getStatus(),
+                taskToMark.getDeadline());
         editedTask.getStatus().setAsUndone();
 
         model.setTask(taskToMark, editedTask);

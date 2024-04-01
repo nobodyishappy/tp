@@ -18,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.TaskBuilder;
 
 public class MarkTaskCommandTest {
     private Model model = new ModelManager(new AddressBook(), getTypicalTaskList(), new UserPrefs());
@@ -42,6 +43,39 @@ public class MarkTaskCommandTest {
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(outOfBoundIndex);
 
         assertCommandFailure(markTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_taskWithoutDeadline() {
+        Task taskWithoutDeadline = new TaskBuilder().withTaskName("Task 1").withTaskDeadline("Empty").build();
+        model.addTask(taskWithoutDeadline);
+        Index noDeadlineTask = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() - 1);
+        MarkTaskCommand markTaskCommand = new MarkTaskCommand(noDeadlineTask);
+
+        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS,
+                Messages.formatTask(taskWithoutDeadline));
+
+        ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
+
+        assertCommandSuccess(markTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_taskWithDeadline() {
+        Task taskWithDeadline = new TaskBuilder()
+                .withTaskName("Task 1")
+                .withTaskDeadline("10-10-2020 10:00")
+                .build();
+        model.addTask(taskWithDeadline);
+        Index noDeadlineTask = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size());
+        MarkTaskCommand markTaskCommand = new MarkTaskCommand(noDeadlineTask);
+
+        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS,
+                Messages.formatTask(taskWithDeadline));
+
+        ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
+
+        assertCommandSuccess(markTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

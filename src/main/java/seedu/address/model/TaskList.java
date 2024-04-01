@@ -86,7 +86,24 @@ public class TaskList {
         observableList.sort(new Comparator<Task>() {
             @Override
             public int compare(Task o1, Task o2) {
-                return o2.getPriority().getValue() - o1.getPriority().getValue();
+                if (o1.getStatus().compareTo(o2.getStatus()) == 0) {
+                    if (o2.getPriority().getValue() - o1.getPriority().getValue() == 0) {
+                        if (o1.getDeadline().taskDeadline != null && o2.getDeadline().taskDeadline != null) {
+                            return o1.getDeadline().taskDeadline.compareTo(o2.getDeadline().taskDeadline);
+                        } else {
+                            if (o1.getDeadline() != null) {
+                                return -1;
+                            } else if (o2.getDeadline() != null) {
+                                return 1;
+                            }
+                            return 0;
+                        }
+                    } else {
+                        return o2.getPriority().getValue() - o1.getPriority().getValue();
+                    }
+                } else {
+                    return o1.getStatus().getTaskStatus() ? 1 : -1;
+                }
             }
         });
     }
@@ -105,5 +122,4 @@ public class TaskList {
         TaskList otherTaskList = (TaskList) other;
         return observableList.equals(otherTaskList.observableList);
     }
-
 }
