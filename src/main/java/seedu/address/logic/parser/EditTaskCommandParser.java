@@ -3,7 +3,9 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PRIORITY;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
@@ -41,9 +43,22 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editTaskDescriptor.setName(ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get()));
         }
+
         if (argMultimap.getValue(PREFIX_TASK_DESCRIPTION).isPresent()) {
             editTaskDescriptor.setDescription(
                     ParserUtil.parseTaskDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get()));
+        }
+
+        /* 
+        if (argMultimap.getValue(PREFIX_TASK_PRIORITY).isPresent()) {
+            editTaskDescriptor.setPriority(
+                    ParserUtil.parseTaskPriority(argMultimap.getValue(PREFIX_TASK_PRIORITY).get()));
+        }
+        */
+
+        if (argMultimap.getValue(PREFIX_TASK_PRIORITY).isPresent()) {
+            editTaskDescriptor.setDeadline(
+                    ParserUtil.parseTaskDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).get()));
         }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {

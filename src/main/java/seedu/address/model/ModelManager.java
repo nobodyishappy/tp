@@ -160,23 +160,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTask(Task taskToEdit, Task editedTask) {
-        taskList.deleteTask(taskToEdit);
-        taskList.addTask(editedTask);
+    public void setTask(Task target, Task editedTask) {
+        taskList.setTask(target, editedTask);
         setPersonTask(taskToEdit, editedTask);
+        taskList.sortByPriority();
     }
 
     @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return taskList.hasTask(task);
-    }
-
-    @Override
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-        taskList.setTask(target, editedTask);
-        taskList.sortByPriority();
     }
 
     /**
@@ -197,7 +190,8 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Task} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -249,5 +243,4 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons)
                 && filteredTasks.equals(otherModelManager.filteredTasks);
     }
-
 }

@@ -87,13 +87,9 @@ public class AddressBookParser {
 
             case FindCommand.COMMAND_WORD:
                 return new FindCommandParser().parse(arguments);
-            
-        case FindTaskCommand.COMMAND_WORD:
-            return new FindTaskCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
+            case FindTaskCommand.COMMAND_WORD:
+                return new FindTaskCommandParser().parse(arguments);
 
             case ListCommand.COMMAND_WORD:
                 return new ListCommand();
@@ -104,14 +100,11 @@ public class AddressBookParser {
             case AssignCommand.COMMAND_WORD:
                 return new AssignCommandParser().parse(arguments);
 
-        case UnassignCommand.COMMAND_WORD:
-            return new UnassignCommandParser().parse(arguments);
+            case UnassignCommand.COMMAND_WORD:
+                return new UnassignCommandParser().parse(arguments);
 
-        case ClearTaskCommand.COMMAND_WORD:
-            return new ClearTaskCommandParser().parse(arguments);
-
-        case MarkTaskCommand.COMMAND_WORD:
-            return new MarkTaskCommandParser().parse(arguments);
+            case ClearTaskCommand.COMMAND_WORD:
+                return new ClearTaskCommandParser().parse(arguments);
 
             case MarkTaskCommand.COMMAND_WORD:
                 return new MarkTaskCommandParser().parse(arguments);
