@@ -19,9 +19,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * EditTaskCommand
-     * and returns an EditTaskCommand object for execution.
-     * 
+     * EditTaskCommand returns an EditTaskCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditTaskCommand parse(String args) throws ParseException {
@@ -31,14 +29,12 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
         Index index;
         try {
-            System.out.println("@");
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            System.out.println("!");
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE), pe);
         }
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_TASK_DESCRIPTION, PREFIX_TASK_PRIORITY, PREFIX_TASK_DEADLINE);
-        System.out.println("#");
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_TASK_DESCRIPTION, PREFIX_TASK_PRIORITY,
+                PREFIX_TASK_DEADLINE);
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

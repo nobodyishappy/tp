@@ -130,14 +130,14 @@ public interface Model {
     void setPersonTask(Task target, Task editedTask);
 
     /**
-     * Returns true if a task has the same description as a {@code task} in the task list.
+     * Returns true if a task has the same description as a {@code task} in the task
+     * list.
      */
     boolean hasTask(Task task);
 
     /**
      * Updates the filter of the filtered task list to filter by the given
      * {@code predicate}.
-     * 
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
@@ -151,7 +151,6 @@ public interface Model {
     /**
      * Updates the filter of the filtered person list to filter by the given
      * {@code predicate}.
-     * 
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);

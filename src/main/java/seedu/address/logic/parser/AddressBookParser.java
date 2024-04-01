@@ -64,64 +64,63 @@ public class AddressBookParser {
 
         switch (commandWord) {
 
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
 
-            case AddTaskCommand.COMMAND_WORD:
-                return new AddTaskCommandParser().parse(arguments);
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
 
-            case DeleteTaskCommand.COMMAND_WORD:
-                return new DeleteTaskCommandParser().parse(arguments);
+        case DeleteTaskCommand.COMMAND_WORD:
+            return new DeleteTaskCommandParser().parse(arguments);
 
-            case EditTaskCommand.COMMAND_WORD:
-                return new EditTaskCommandParser().parse(arguments);
+        case EditTaskCommand.COMMAND_WORD:
+            return new EditTaskCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
-            case FindTaskCommand.COMMAND_WORD:
-                return new FindTaskCommandParser().parse(arguments);
+        case FindTaskCommand.COMMAND_WORD:
+            return new FindTaskCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            case ListTaskCommand.COMMAND_WORD:
-                return new ListTaskCommand();
+        case ListTaskCommand.COMMAND_WORD:
+            return new ListTaskCommand();
 
-            case AssignCommand.COMMAND_WORD:
-                return new AssignCommandParser().parse(arguments);
+        case AssignCommand.COMMAND_WORD:
+            return new AssignCommandParser().parse(arguments);
 
-            case UnassignCommand.COMMAND_WORD:
-                return new UnassignCommandParser().parse(arguments);
+        case UnassignCommand.COMMAND_WORD:
+            return new UnassignCommandParser().parse(arguments);
 
-            case ClearTaskCommand.COMMAND_WORD:
-                return new ClearTaskCommandParser().parse(arguments);
+        case ClearTaskCommand.COMMAND_WORD:
+            return new ClearTaskCommandParser().parse(arguments);
 
-            case MarkTaskCommand.COMMAND_WORD:
-                return new MarkTaskCommandParser().parse(arguments);
+        case MarkTaskCommand.COMMAND_WORD:
+            return new MarkTaskCommandParser().parse(arguments);
 
-            case UnmarkTaskCommand.COMMAND_WORD:
-                return new UnmarkTaskCommandParser().parse(arguments);
+        case UnmarkTaskCommand.COMMAND_WORD:
+            return new UnmarkTaskCommandParser().parse(arguments);
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            default:
-                logger.finer("This user input caused a ParseException: " + userInput);
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            logger.finer("This user input caused a ParseException: " + userInput);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

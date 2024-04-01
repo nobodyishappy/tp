@@ -14,7 +14,6 @@ public class Task {
 
     /**
      * The constructor of the class.
-     * 
      * @param name        Name of the task.
      * @param description Description of the task.
      * @param status      Status of the task.
@@ -29,7 +28,6 @@ public class Task {
 
     /**
      * The constructor of the class.
-     * 
      * @param name        Name of the task.
      * @param description Description of the task.
      * @param status      Status of the task.
@@ -49,7 +47,6 @@ public class Task {
 
     /**
      * Gets the name of a task.
-     * 
      * @return The name of the task.
      */
     public TaskName getName() {
@@ -58,7 +55,6 @@ public class Task {
 
     /**
      * Gets the description of a task.
-     * 
      * @return The description of the task.
      */
     public TaskDescription getDescription() {
@@ -67,7 +63,6 @@ public class Task {
 
     /**
      * Gets the status of a task.
-     * 
      * @return The status of the task.
      */
     public TaskStatus getStatus() {
@@ -76,7 +71,6 @@ public class Task {
 
     /**
      * Gets the priority of a task.
-     * 
      * @return The priority of the task.
      */
     public TaskPriority getPriority() {
@@ -85,7 +79,6 @@ public class Task {
 
     /**
      * Gets the deadline of a task.
-     * 
      * @return The deadline of the task.
      */
     public TaskDeadline getDeadline() {
@@ -118,7 +111,6 @@ public class Task {
 
     /**
      * Compare with other tasks for sorting in tags.
-     * 
      * @param otherTask Task to be compared to
      * @return Value of the comparison
      */

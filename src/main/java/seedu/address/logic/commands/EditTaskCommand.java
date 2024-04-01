@@ -99,7 +99,6 @@ public class EditTaskCommand extends Command {
         return new Task(updatedName, updatedDescription, updatedPriority, taskToEdit.getStatus(), updatedDeadline);
     }
 
-    // Need to fix this.
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -201,7 +200,13 @@ public class EditTaskCommand extends Command {
             EditTaskDescriptor otherEditTaskDescriptor = (EditTaskDescriptor) other;
             return Objects.equals(taskName, otherEditTaskDescriptor.taskName)
                     && Objects.equals(taskDescription, otherEditTaskDescriptor.taskDescription)
-                    && Objects.equals(taskPriority, otherEditTaskDescriptor.taskPriority);
+                    && Objects.equals(taskPriority, otherEditTaskDescriptor.taskPriority)
+                    && Objects.equals(taskDeadline, otherEditTaskDescriptor.taskDeadline);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(taskName, taskDescription, taskPriority, taskDeadline);
         }
 
         @Override

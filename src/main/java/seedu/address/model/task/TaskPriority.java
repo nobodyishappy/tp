@@ -1,6 +1,5 @@
 package seedu.address.model.task;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -11,8 +10,8 @@ import seedu.address.model.util.Priority;
  */
 public class TaskPriority {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Task priority can take either an integer or low, medium, high, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Task priority can take either an integer or low, medium, high, "
+            + "and it should not be blank";
     private Priority taskPriority;
 
     /**
@@ -48,7 +47,7 @@ public class TaskPriority {
     }
 
     /**
-     * Returns true if a given string is a valid description.
+     * Returns true if a given string is a valid priority.
      */
     public static boolean isValidTaskPriority(String test) {
         test = test.toLowerCase();
