@@ -39,6 +39,14 @@ public class MarkTaskCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
+        Task editedTask = getTask(taskToMark);
+        editedTask.getStatus().setAsDone();
+
+        model.setTask(taskToMark, editedTask);
+
+        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, Messages.formatTask(taskToMark)));
+    }
+    private static Task getTask(Task taskToMark) {
         Task editedTask;
         if (taskToMark.getDeadline() != null) {
             editedTask = new Task(taskToMark.getName(),
@@ -52,13 +60,8 @@ public class MarkTaskCommand extends Command {
                     taskToMark.getPriority(),
                     taskToMark.getStatus());
         }
-        editedTask.getStatus().setAsDone();
-
-        model.setTask(taskToMark, editedTask);
-
-        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, Messages.formatTask(taskToMark)));
+        return editedTask;
     }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
