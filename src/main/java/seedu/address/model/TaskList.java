@@ -8,7 +8,6 @@ import java.util.Comparator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDeadline;
 
 /**
  * A class that stores the tasks from users.
