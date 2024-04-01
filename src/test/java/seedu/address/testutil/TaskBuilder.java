@@ -15,6 +15,7 @@ public class TaskBuilder {
     public static final String DEFAULT_TASK_NAME = "Implement Test";
     public static final String DEFAULT_TASK_DESCRIPTION = "Test to test the code";
     public static final String DEFAULT_TASK_DEADLINE = "Empty";
+    public static final String DEFAULT_TASK_PRIORITY = "low";
 
     private TaskName taskName;
     private TaskDescription taskDescription;
@@ -27,7 +28,8 @@ public class TaskBuilder {
     public TaskBuilder() {
         taskName = new TaskName(DEFAULT_TASK_NAME);
         taskDescription = new TaskDescription(DEFAULT_TASK_DESCRIPTION);
-        taskDeadline = new TaskDeadline();
+        taskPriority = new TaskPriority(DEFAULT_TASK_PRIORITY);
+        taskDeadline = new TaskDeadline(DEFAULT_TASK_DEADLINE);
     }
 
     /**
@@ -36,6 +38,7 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         taskName = taskToCopy.getName();
         taskDescription = taskToCopy.getDescription();
+        taskPriority = taskToCopy.getPriority();
         taskDeadline = taskToCopy.getDeadline();
     }
 
@@ -72,6 +75,6 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(taskName, taskDescription, new TaskPriority(), new TaskStatus(), taskDeadline);
+        return new Task(taskName, taskDescription, taskPriority, new TaskStatus(), taskDeadline);
     }
 }

@@ -16,8 +16,10 @@ import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.TaskBuilder;
 
 public class UnmarkTaskCommandTest {
     private Model model = new ModelManager(new AddressBook(), getTypicalTaskList(), new UserPrefs());
@@ -42,6 +44,41 @@ public class UnmarkTaskCommandTest {
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(outOfBoundIndex);
 
         assertCommandFailure(unmarkTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_taskWithoutDeadline() {
+        Task taskWithoutDeadline = new TaskBuilder().withTaskName("Task 1").withTaskDeadline("Empty").build();
+        model.addTask(taskWithoutDeadline);
+        Index noDeadlineTask = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size());
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(noDeadlineTask);
+
+        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
+                Messages.formatTask(taskWithoutDeadline));
+
+        ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
+
+        assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_taskWithDeadline() {
+        TaskList taskList = new TaskList();
+        Model m = new ModelManager(new AddressBook(), taskList, new UserPrefs());
+        Task taskWithDeadline = new TaskBuilder()
+                .withTaskName("Task 1")
+                .withTaskDeadline("12-12-2024 16:00")
+                .build();
+        m.addTask(taskWithDeadline);
+        Index deadlineTask = Index.fromOneBased(m.getTaskList().getSerializeTaskList().size());
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(deadlineTask);
+
+        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
+                Messages.formatTask(taskWithDeadline));
+
+        ModelManager expectedModel = new ModelManager(new AddressBook(), m.getTaskList(), new UserPrefs());
+
+        assertCommandSuccess(unmarkTaskCommand, m, expectedMessage, expectedModel);
     }
 
     @Test

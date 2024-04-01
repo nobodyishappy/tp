@@ -160,10 +160,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTask(Task taskToEdit, Task editedTask) {
-        taskList.deleteTask(taskToEdit);
-        taskList.addTask(editedTask);
+    public void setTask(Task target, Task editedTask) {
+        taskList.setTask(target, editedTask);
         setPersonTask(taskToEdit, editedTask);
+        taskList.sortByPriority();
     }
 
     @Override
