@@ -90,7 +90,7 @@ public class TaskList {
                     if (o2.getPriority().getValue() - o1.getPriority().getValue() == 0) {
                         return sortByDeadline(o1, o2);
                     } else {
-                        return sortByPriority(o1,o2);
+                        return sortByPriority(o1, o2);
                     }
                 } else {
                     return sortByStatus(o1);
