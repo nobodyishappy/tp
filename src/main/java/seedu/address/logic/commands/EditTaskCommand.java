@@ -32,8 +32,8 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: TASK_INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_NAME + "TASK_NAME] "
             + "[" + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION] "
             + "[" + PREFIX_TASK_PRIORITY + "TASK_PRIORITY] "
             + "[" + PREFIX_TASK_DEADLINE + "TASK_DEADLINE] "
@@ -41,7 +41,7 @@ public class EditTaskCommand extends Command {
             + PREFIX_NAME + "name "
             + PREFIX_TASK_DESCRIPTION + "new description "
             + PREFIX_TASK_PRIORITY + "HIGH "
-            + PREFIX_TASK_DEADLINE + "10/10/2023 1000";
+            + PREFIX_TASK_DEADLINE + "30/03/2024 1000";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -65,7 +65,7 @@ public class EditTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getTaskList().getSerializeTaskList();
+        List<Task> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);

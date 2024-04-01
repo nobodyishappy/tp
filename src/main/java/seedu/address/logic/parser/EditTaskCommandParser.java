@@ -26,20 +26,21 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
      */
     public EditTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TASK_DESCRIPTION);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TASK_DESCRIPTION,
+                PREFIX_TASK_PRIORITY, PREFIX_TASK_DEADLINE);
 
         Index index;
-
         try {
+            System.out.println("@");
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            System.out.println("!");
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE), pe);
         }
-
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_TASK_DESCRIPTION);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_TASK_DESCRIPTION, PREFIX_TASK_PRIORITY, PREFIX_TASK_DEADLINE);
+        System.out.println("#");
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
-
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editTaskDescriptor.setName(ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -49,14 +50,12 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
                     ParserUtil.parseTaskDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get()));
         }
 
-        /* 
         if (argMultimap.getValue(PREFIX_TASK_PRIORITY).isPresent()) {
             editTaskDescriptor.setPriority(
                     ParserUtil.parseTaskPriority(argMultimap.getValue(PREFIX_TASK_PRIORITY).get()));
         }
-        */
 
-        if (argMultimap.getValue(PREFIX_TASK_PRIORITY).isPresent()) {
+        if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
             editTaskDescriptor.setDeadline(
                     ParserUtil.parseTaskDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).get()));
         }

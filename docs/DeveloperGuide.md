@@ -267,10 +267,6 @@ Step 4. The user then decides to execute the command `listtask`. Commands that d
 
 <puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**

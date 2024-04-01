@@ -138,10 +138,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPersonTask(Task taskToEdit, Task editedTask) {
-        requireAllNonNull(taskToEdit, editedTask);
+    public void setPersonTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
 
-        addressBook.setTask(taskToEdit, editedTask);
+        addressBook.setTask(target, editedTask);
     }
 
     // =========== Task Manager
@@ -161,8 +161,10 @@ public class ModelManager implements Model {
 
     @Override
     public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
         taskList.setTask(target, editedTask);
-        setPersonTask(taskToEdit, editedTask);
+        setPersonTask(target, editedTask);
         taskList.sortByPriority();
     }
 
@@ -190,9 +192,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Task} backed by the
-     * internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Task}.
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {

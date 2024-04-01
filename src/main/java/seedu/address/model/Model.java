@@ -117,21 +117,17 @@ public interface Model {
 
     /**
      * Sets the given task in the task list.
-     * {@code taskToEdit} must exist to be deleted.
+     * {@code target} must exist to be deleted.
      * {@code editedTask} must exist to be updated.
      */
-    void setTask(Task taskToEdit, Task editedTask);
+    void setTask(Task target, Task editedTask);
 
     /**
-     * Replaces the given task {@code taskToEdit} with {@code editedTask}.
-     * {@code taskToEdit} must exist to be deleted.
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist to be deleted.
      * {@code editedTask} must exist to be updated.
      */
-    void setPersonTask(Task taskToEdit, Task editedTask);
-
-    /**
-     * Returns true if a task has the same description as a {@code task} in the task
-     * list.
+    void setPersonTask(Task target, Task editedTask);
 
     /**
      * Returns true if a task has the same description as a {@code task} in the task list.

@@ -20,10 +20,10 @@ public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "addtask";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list. "
             + "Parameter: "
-            + PREFIX_NAME + "TASK NAME "
-            + PREFIX_TASK_DESCRIPTION + "TASK DESCRIPTION "
-            + PREFIX_TASK_PRIORITY + "TASK PRIORITY"
-            + "[" + PREFIX_TASK_DEADLINE + "TASK DEADLINE]";
+            + PREFIX_NAME + "TASK_NAME "
+            + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION "
+            + PREFIX_TASK_PRIORITY + "TASK_PRIORITY"
+            + "[" + PREFIX_TASK_DEADLINE + "TASK_DEADLINE]";
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
 
