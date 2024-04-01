@@ -17,6 +17,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskPriority;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -153,6 +154,21 @@ public class ParserUtil {
             throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
         }
         return new TaskDescription(trimmedTaskDescription);
+    }
+
+    /**
+     * Parses a {@code String taskPriority} into an {@code taskPriority}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskPriority} is invalid.
+     */
+    public static TaskPriority parseTaskPriority(String taskPriority) throws ParseException {
+        requireNonNull(taskPriority);
+        String trimmedTaskPriority = taskPriority.trim();
+        if (!TaskPriority.isValidTaskPriority(trimmedTaskPriority)) {
+            throw new ParseException(TaskPriority.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskPriority(trimmedTaskPriority);
     }
 
     /**
