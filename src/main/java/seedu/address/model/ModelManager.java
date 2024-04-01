@@ -162,7 +162,7 @@ public class ModelManager implements Model {
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
         taskList.setTask(target, editedTask);
-        taskList.sortByPriority();
+        taskList.sort();
     }
 
     /**
@@ -194,7 +194,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        taskList.sortByPriority();
+        taskList.sort();
         filteredTasks.setPredicate(predicate);
     }
 
