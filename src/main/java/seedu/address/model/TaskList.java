@@ -8,6 +8,7 @@ import java.util.Comparator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDeadline;
 
 /**
  * A class that stores the tasks from users.
@@ -87,7 +88,21 @@ public class TaskList {
             @Override
             public int compare(Task o1, Task o2) {
                 if (o1.getStatus().compareTo(o2.getStatus()) == 0) {
-                    return o2.getPriority().getValue() - o1.getPriority().getValue();
+                    if (o2.getPriority().getValue() - o1.getPriority().getValue() == 0) {
+                        if (o1.getDeadline().taskDeadline != null && o2.getDeadline().taskDeadline != null) {
+                            return o1.getDeadline().taskDeadline.compareTo(o2.getDeadline().taskDeadline);
+                        } else if (o1.getDeadline() != null) {
+                            return -1;
+                        } else if (o2.getDeadline() != null) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    } else if (o2.getPriority().getValue() - o1.getPriority().getValue() == 1) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
                 } else if (o1.getStatus().getTaskStatus()) {
                     return 1;
                 } else {
