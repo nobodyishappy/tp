@@ -13,10 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -62,20 +59,22 @@ public class UnmarkTaskCommandTest {
 
     @Test
     public void execute_taskWithDeadline() {
+        TaskList taskList = new TaskList();
+        Model m = new ModelManager(new AddressBook(), taskList, new UserPrefs());
         Task taskWithDeadline = new TaskBuilder()
                 .withTaskName("Task 1")
                 .withTaskDeadline("12-12-2024 16:00")
                 .build();
-        model.addTask(taskWithDeadline);
-        Index noDeadlineTask = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size());
-        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(noDeadlineTask);
+        m.addTask(taskWithDeadline);
+        Index deadlineTask = Index.fromOneBased(m.getTaskList().getSerializeTaskList().size());
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(deadlineTask);
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
                 Messages.formatTask(taskWithDeadline));
 
-        ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(new AddressBook(), m.getTaskList(), new UserPrefs());
 
-        assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(unmarkTaskCommand, m, expectedMessage, expectedModel);
     }
 
     @Test
