@@ -50,7 +50,7 @@ public class UnmarkTaskCommandTest {
         Task taskWithoutDeadline = new TaskBuilder().withTaskName("Task 1").withTaskDeadline("Empty").build();
         model.addTask(taskWithoutDeadline);
         Index noDeadlineTask = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size());
-        UnmarkTaskCommand unmarkTaskCommand  = new UnmarkTaskCommand(noDeadlineTask);
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(noDeadlineTask);
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
                 Messages.formatTask(taskWithoutDeadline));
