@@ -17,8 +17,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.task.Task;
 import seedu.address.model.TaskList;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
 public class UnmarkTaskCommandTest {
