@@ -19,6 +19,7 @@ public class TaskListTest {
     private Task task1;
     private Task task2;
     private Task task3;
+    private Task task4;
 
     @BeforeEach
     public void setUp() {
@@ -28,6 +29,7 @@ public class TaskListTest {
         task1 = new TaskBuilder().withTaskName("Task 1").build();
         task2 = new TaskBuilder().withTaskName("Task 2").build();
         task3 = new TaskBuilder().withTaskName("Task 3").build();
+        task4 = new TaskBuilder().withTaskName("Task 4").build();
     }
 
     @Test
@@ -80,14 +82,17 @@ public class TaskListTest {
         task1 = new TaskBuilder().withTaskName("Task 1").withTaskDeadline("10-10-2024 10:00").build();
         task2 = new TaskBuilder().withTaskName("Task 2").withTaskDeadline("11-10-2024 10:00").build();
         task3 = new TaskBuilder().withTaskName("Task 3").withTaskDeadline("12-10-2024 10:00").build();
+        task4 = new TaskBuilder().withTaskName("Task 4").withTaskDeadline("12-10-2024 10:00").build();
 
         sortedList.addTask(task1);
         sortedList.addTask(task2);
         sortedList.addTask(task3);
+        sortedList.addTask(task4);
 
+        toSortList.addTask(task3);
         toSortList.addTask(task2);
         toSortList.addTask(task1);
-        toSortList.addTask(task3);
+        toSortList.addTask(task4);
 
         assertNotEquals(toSortList, sortedList);
 

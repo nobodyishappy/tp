@@ -38,17 +38,30 @@ public class UnmarkTaskCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        Task editedTask = new Task(taskToMark.getName(),
-                taskToMark.getDescription(),
-                taskToMark.getPriority(),
-                taskToMark.getStatus());
+        Task editedTask = getTask(taskToMark);
         editedTask.getStatus().setAsUndone();
 
         model.setTask(taskToMark, editedTask);
 
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, Messages.formatTask(taskToMark)));
     }
-
+    private static Task getTask(Task taskToMark) {
+        Task editedTask;
+        if (taskToMark.getDeadline() != null) {
+            editedTask = new Task(taskToMark.getName(),
+                    taskToMark.getDescription(),
+                    taskToMark.getPriority(),
+                    taskToMark.getStatus(),
+                    taskToMark.getDeadline());
+        } else {
+            editedTask = new Task(taskToMark.getName(),
+                    taskToMark.getDescription(),
+                    taskToMark.getPriority(),
+                    taskToMark.getStatus(),
+                    taskToMark.getDeadline());
+        }
+        return editedTask;
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {

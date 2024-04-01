@@ -96,7 +96,6 @@ public class TaskList {
                             } else if (o2.getDeadline() != null) {
                                 return 1;
                             }
-
                             return 0;
                         }
                     } else {

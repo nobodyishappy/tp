@@ -39,10 +39,20 @@ public class MarkTaskCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        Task editedTask = new Task(taskToMark.getName(),
-                taskToMark.getDescription(),
-                taskToMark.getPriority(),
-                taskToMark.getStatus());
+        Task editedTask;
+        if (taskToMark.getDeadline() != null) {
+            editedTask = new Task(taskToMark.getName(),
+                    taskToMark.getDescription(),
+                    taskToMark.getPriority(),
+                    taskToMark.getStatus(),
+                    taskToMark.getDeadline());
+        } else {
+            editedTask = new Task(taskToMark.getName(),
+                    taskToMark.getDescription(),
+                    taskToMark.getPriority(),
+                    taskToMark.getStatus(),
+                    taskToMark.getDeadline());
+        }
         editedTask.getStatus().setAsDone();
 
         model.setTask(taskToMark, editedTask);
