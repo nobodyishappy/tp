@@ -101,7 +101,7 @@ public class EditTaskCommandTest {
     @Test
     public void equals() {
         Task task4 = new TaskBuilder().withTaskName("task4").build();
-        Task task5 = new TaskBuilder().withTaskName("task4").build();
+        Task task5 = new TaskBuilder().withTaskName("task5").build();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task4).build();
         EditTaskDescriptor descriptor2 = new EditTaskDescriptorBuilder(task5).build();
 
@@ -111,7 +111,7 @@ public class EditTaskCommandTest {
         EditTaskDescriptor copyDescriptor = new EditTaskDescriptor(descriptor);
         EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST, copyDescriptor);
         System.out.println(commandWithSameValues);
-        assertTrue(standardCommand.toString().equals(commandWithSameValues.toString()));
+        assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));

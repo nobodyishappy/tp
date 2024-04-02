@@ -41,7 +41,7 @@ public class EditTaskCommand extends Command {
             + PREFIX_NAME + "name "
             + PREFIX_TASK_DESCRIPTION + "new description "
             + PREFIX_TASK_PRIORITY + "HIGH "
-            + PREFIX_TASK_DEADLINE + "30/03/2024 1000";
+            + PREFIX_TASK_DEADLINE + "30-03-2024 10:00";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -106,7 +106,7 @@ public class EditTaskCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditTaskCommand)) {
             return false;
         }
 
@@ -202,11 +202,6 @@ public class EditTaskCommand extends Command {
                     && Objects.equals(taskDescription, otherEditTaskDescriptor.taskDescription)
                     && Objects.equals(taskPriority, otherEditTaskDescriptor.taskPriority)
                     && Objects.equals(taskDeadline, otherEditTaskDescriptor.taskDeadline);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(taskName, taskDescription, taskPriority, taskDeadline);
         }
 
         @Override
