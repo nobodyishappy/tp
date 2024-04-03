@@ -51,8 +51,8 @@ public class EditTaskCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * @param index              of the task in the task list to edit
-     * @param editTaskDescriptor details to edit the task with
+     * @param index of the task in the task list to edit.
+     * @param editTaskDescriptor details to edit the task with.
      */
     public EditTaskCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(index);
@@ -125,8 +125,7 @@ public class EditTaskCommand extends Command {
 
     /**
      * Stores the details to edit the task with. Each non-empty field value will
-     * replace the
-     * corresponding field value of the task.
+     * replace the corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
         private TaskName taskName;

@@ -212,6 +212,15 @@ Format: `deletetask TASK_INDEX`
 Examples:
 * `deletetask 1`
 
+### Editing a task: `edittask`
+
+Format: `edittask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
+
+Examples:
+* `edittask 1 p/high`
+* `edittask 2 d/new description by/04-04-2024 10:33`
+* `edittask 3 n/new task d/new description p/low by/04-04-2024 10:33`
+
 ### Listing the tasks: `listtask`
 
 Format: `listtask`
@@ -273,6 +282,7 @@ Action     | Format, Examples
 **Help**   | `help`
 **Add Task**   | `addtask n/NAME d/DESCRIPTION p/PRIORITY [by/DEADLINE]`
 **Delete Task**   | `deletetask TASK_INDEX`
+**Edit Task**   | `edittask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
 **Assign Task**   | `assign TASK_INDEX to/PERSON_INDEX​`
 **Mark Task**   | `marktask TASK_INDEX​`
 **Unmark Task**   | `unmarktask TASK_INDEX​`

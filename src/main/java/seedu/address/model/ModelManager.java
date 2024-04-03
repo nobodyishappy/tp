@@ -192,7 +192,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Task}.
+     * Returns an modifiable view of the list of {@code Task}.
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
