@@ -207,12 +207,36 @@ Examples:
 
 ### Deleting a task: `deletetask`
 
+Deletes the specified task from the task list.
+
 Format: `deletetask TASK_INDEX`
 
+* Deletes the task at the specified `TASK_INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
 Examples:
-* `deletetask 1`
+* `listtask` followed by `deletetask 1` deletes the 1st task in the task list.
+* `findtask today` followed by `deletetask 2` deletes the 2nd task in the results of the `findtask` command.
+
+### Editing a task: `edittask`
+
+Edits an existing task in the task listx.
+
+Format: `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
+
+* Edits the task at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `edittask 1 p/high`
+* `edittask 2 d/new description by/04-04-2024 10:33`
+* `edittask 3 n/new task d/new description p/low by/04-04-2024 10:33`
 
 ### Listing the tasks: `listtask`
+
+Shows a list of all tasks in the task list.
 
 Format: `listtask`
 
@@ -273,6 +297,7 @@ Action     | Format, Examples
 **Help**   | `help`
 **Add Task**   | `addtask n/NAME d/DESCRIPTION p/PRIORITY [by/DEADLINE]`
 **Delete Task**   | `deletetask TASK_INDEX`
+**Edit Task**   | `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
 **Assign Task**   | `assign TASK_INDEX to/PERSON_INDEX​`
 **Mark Task**   | `marktask TASK_INDEX​`
 **Unmark Task**   | `unmarktask TASK_INDEX​`

@@ -23,7 +23,7 @@ public class EditTaskDescriptorBuilder {
 
     /**
      * Returns an {@code EditTaskDescriptor} with fields containing {@code task}'s
-     * details
+     * details.
      */
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();

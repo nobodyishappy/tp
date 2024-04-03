@@ -60,9 +60,8 @@ public class TaskList {
     }
 
     /**
-     * Replaces the given task {@code target} in the list with
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the task list.
-     * {@code editedTask}.
      * The task of {@code editedTask} must not be the same as another
      * existing task in the task list.
      */
@@ -90,7 +89,7 @@ public class TaskList {
                     return o1.getStatus().getTaskStatus() ? 1 : -1;
                 }
 
-                // Sort by Priority
+                // Sort by priority
                 if (o2.getPriority().getValue() - o1.getPriority().getValue() != 0) {
                     return o2.getPriority().getValue() - o1.getPriority().getValue();
                 }
