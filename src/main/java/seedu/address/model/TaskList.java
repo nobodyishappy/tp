@@ -13,7 +13,7 @@ import seedu.address.model.task.Task;
  * A class that stores the tasks from users.
  */
 public class TaskList {
-    //private ArrayList<Task> taskList;
+    // private ArrayList<Task> taskList;
     private ObservableList<Task> observableList;
 
     /**
@@ -61,8 +61,8 @@ public class TaskList {
 
     /**
      * Replaces the given task {@code target} in the list with
-     * {@code editedTask}.
      * {@code target} must exist in the task list.
+     * {@code editedTask}.
      * The task of {@code editedTask} must not be the same as another
      * existing task in the task list.
      */
@@ -70,7 +70,6 @@ public class TaskList {
         requireAllNonNull(target, editedTask);
 
         int index = observableList.indexOf(target);
-
         observableList.set(index, editedTask);
     }
 
@@ -80,30 +79,34 @@ public class TaskList {
 
     /**
      * Sorts tasks based on the task priority.
-     *
      */
     public void sortByPriority() {
         observableList.sort(new Comparator<Task>() {
             @Override
             public int compare(Task o1, Task o2) {
-                if (o1.getStatus().compareTo(o2.getStatus()) == 0) {
-                    if (o2.getPriority().getValue() - o1.getPriority().getValue() == 0) {
-                        if (o1.getDeadline().taskDeadline != null && o2.getDeadline().taskDeadline != null) {
-                            return o1.getDeadline().taskDeadline.compareTo(o2.getDeadline().taskDeadline);
-                        } else {
-                            if (o1.getDeadline() != null) {
-                                return -1;
-                            } else if (o2.getDeadline() != null) {
-                                return 1;
-                            }
-                            return 0;
-                        }
-                    } else {
-                        return o2.getPriority().getValue() - o1.getPriority().getValue();
-                    }
-                } else {
+
+                // Sort by status
+                if (o1.getStatus().compareTo(o2.getStatus()) != 0) {
                     return o1.getStatus().getTaskStatus() ? 1 : -1;
                 }
+
+                // Sort by Priority
+                if (o2.getPriority().getValue() - o1.getPriority().getValue() != 0) {
+                    return o2.getPriority().getValue() - o1.getPriority().getValue();
+                }
+
+                // Sort by deadline
+                if (o1.getDeadline().taskDeadline != null && o2.getDeadline().taskDeadline != null) {
+                    return o1.getDeadline().taskDeadline.compareTo(o2.getDeadline().taskDeadline);
+                }
+
+                // Sort by tasks with deadline
+                if (o1.getDeadline() != null) {
+                    return -1;
+                } else if (o2.getDeadline() != null) {
+                    return 1;
+                }
+                return 0;
             }
         });
     }

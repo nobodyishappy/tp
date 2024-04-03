@@ -41,17 +41,16 @@ public class CommandTestUtil {
 
     public static final TaskName VALID_TASK_NAME_FIRST = new TaskName("Implement Testing 1");
     public static final TaskName VALID_TASK_NAME_SECOND = new TaskName("Implement Testing 2");
-    public static final TaskDescription VALID_TASK_DESCRIPTION_FIRST =
-            new TaskDescription("Code for testing of test 1");
-    public static final TaskDescription VALID_TASK_DESCRIPTION_SECOND =
-            new TaskDescription("Code for testing of test 2");
+    public static final TaskDescription VALID_TASK_DESCRIPTION_FIRST = new TaskDescription(
+            "Code for testing of test 1");
+    public static final TaskDescription VALID_TASK_DESCRIPTION_SECOND = new TaskDescription(
+            "Code for testing of test 2");
     public static final TaskStatus VALID_TASK_STATUS = new TaskStatus();
     public static final TaskPriority VALID_TASK_PRIORITY = new TaskPriority();
     public static final Task VALID_TASK_FIRST = new Task(VALID_TASK_NAME_FIRST,
             VALID_TASK_DESCRIPTION_FIRST, VALID_TASK_PRIORITY, VALID_TASK_STATUS);
     public static final Task VALID_TASK_SECOND = new Task(VALID_TASK_NAME_SECOND,
             VALID_TASK_DESCRIPTION_SECOND, VALID_TASK_PRIORITY, VALID_TASK_STATUS);
-
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -82,7 +81,8 @@ public class CommandTestUtil {
 
     /**
      * Executes the given {@code command}, confirms that <br>
-     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult}
+     * <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
@@ -97,7 +97,8 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to
+     * {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
@@ -110,7 +111,8 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered person list and selected person in
+     * {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -122,8 +124,10 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the person at the given
+     * {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
