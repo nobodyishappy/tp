@@ -214,7 +214,7 @@ Examples:
 
 ### Editing a task: `edittask`
 
-Format: `edittask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
+Format: `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
 
 Examples:
 * `edittask 1 p/high`
@@ -282,7 +282,7 @@ Action     | Format, Examples
 **Help**   | `help`
 **Add Task**   | `addtask n/NAME d/DESCRIPTION p/PRIORITY [by/DEADLINE]`
 **Delete Task**   | `deletetask TASK_INDEX`
-**Edit Task**   | `edittask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
+**Edit Task**   | `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
 **Assign Task**   | `assign TASK_INDEX to/PERSON_INDEX​`
 **Mark Task**   | `marktask TASK_INDEX​`
 **Unmark Task**   | `unmarktask TASK_INDEX​`
