@@ -69,8 +69,6 @@ public class PersonTest {
 
     @Test
     public void equals() {
-        System.out.println(ALICE.equals(5));
-
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));

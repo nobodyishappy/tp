@@ -22,6 +22,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskPriority;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -31,6 +32,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_TASK_NAME = "";
     private static final String INVALID_TASK_DESCRIPTION = "";
+    private static final String INVALID_TASK_PRIORITY = "0";
     private static final String INVALID_TASK_DATE = "";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -41,6 +43,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_TASK_NAME = "Task 1";
     private static final String VALID_TASK_DESCRIPTION = "Description 1";
+    private static final String VALID_TASK_PRIORITY = "low";
     private static final String VALID_TASK_DATE = "12-12-2024 16:00";
 
     private static final String WHITESPACE = " \t\r\n";
@@ -247,6 +250,29 @@ public class ParserUtilTest {
         String taskDescriptionWithWhitespace = WHITESPACE + VALID_TASK_DESCRIPTION + WHITESPACE;
         TaskDescription expectedTaskDescription = new TaskDescription(VALID_TASK_DESCRIPTION);
         assertEquals(expectedTaskDescription, ParserUtil.parseTaskDescription(taskDescriptionWithWhitespace));
+    }
+
+    @Test
+    public void parseTaskPriority_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTaskPriority((String) null));
+    }
+
+    @Test
+    public void parseTaskPriority_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTaskPriority(INVALID_TASK_PRIORITY));
+    }
+
+    @Test
+    public void parseTaskPriority_validValueWithoutWhitespace_returnsTaskPriority() throws Exception {
+        TaskPriority expectedTaskPriority = new TaskPriority(VALID_TASK_PRIORITY);
+        assertEquals(expectedTaskPriority, ParserUtil.parseTaskPriority(VALID_TASK_PRIORITY));
+    }
+
+    @Test
+    public void parseTaskPriority_validValueWithWhitespace_returnsTrimmedTaskPriority() throws Exception {
+        String taskPriorityWithWhitespace = WHITESPACE + VALID_TASK_PRIORITY + WHITESPACE;
+        TaskPriority expectedTaskPriority = new TaskPriority(VALID_TASK_PRIORITY);
+        assertEquals(expectedTaskPriority, ParserUtil.parseTaskPriority(taskPriorityWithWhitespace));
     }
 
     @Test

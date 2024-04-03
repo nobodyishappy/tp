@@ -15,6 +15,22 @@ public class TaskPriorityTest {
     }
 
     @Test
+    public void isValidTaskPriority() {
+        // null description
+        assertThrows(NullPointerException.class, () -> TaskDescription.isValidTaskDescription(null));
+
+        // invalid description
+        assertFalse(TaskPriority.isValidTaskPriority("")); // empty string
+        assertFalse(TaskPriority.isValidTaskPriority(" ")); // spaces only
+
+        // valid description
+        assertTrue(TaskPriority.isValidTaskPriority("low")); // alphabets only
+        assertTrue(TaskPriority.isValidTaskPriority("1")); // numbers only
+        assertTrue(TaskPriority.isValidTaskPriority("HIGH")); // Capital letters
+        assertTrue(TaskPriority.isValidTaskPriority("High")); // Mix of upper and lowercase letters
+    }
+
+    @Test
     public void toStringTest() {
         TaskPriority taskPriority1 = new TaskPriority("1");
         TaskPriority taskPriority2 = new TaskPriority("LOW");

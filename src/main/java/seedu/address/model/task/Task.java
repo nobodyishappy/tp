@@ -14,9 +14,9 @@ public class Task {
 
     /**
      * The constructor of the class.
-     * @param name Name of the task.
+     * @param name        Name of the task.
      * @param description Description of the task.
-     * @param status Status of the task.
+     * @param status      Status of the task.
      */
     public Task(TaskName name, TaskDescription description, TaskPriority priority, TaskStatus status) {
         this.name = name;
@@ -28,16 +28,16 @@ public class Task {
 
     /**
      * The constructor of the class.
-     * @param name Name of the task.
+     * @param name        Name of the task.
      * @param description Description of the task.
-     * @param status Status of the task.
-     * @param deadline Deadline of the task.
+     * @param status      Status of the task.
+     * @param deadline    Deadline of the task.
      */
     public Task(TaskName name,
-                TaskDescription description,
-                TaskPriority priority,
-                TaskStatus status,
-                TaskDeadline deadline) {
+            TaskDescription description,
+            TaskPriority priority,
+            TaskStatus status,
+            TaskDeadline deadline) {
         this.name = name;
         this.description = description;
         this.priority = priority;
@@ -91,7 +91,7 @@ public class Task {
             return true;
         }
 
-        //instanceof handles null
+        // instanceof handles null
         if (!(other instanceof Task)) {
             return false;
         }
@@ -99,27 +99,26 @@ public class Task {
         Task otherTask = (Task) other;
         return this.name.equals(otherTask.name)
                 && this.description.equals(otherTask.description)
+                && this.priority.equals(otherTask.priority)
                 && this.deadline.equals(otherTask.deadline);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description, deadline);
+        return Objects.hash(name, description, priority, deadline);
     }
 
     /**
-     * Compare with other tasks for sorting in tags
+     * Compare with other tasks for sorting in tags.
      * @param otherTask Task to be compared to
      * @return Value of the comparison
      */
     public int compare(Task otherTask) {
         if (this.getName().taskName.compareTo(otherTask.getName().taskName) == 0) {
-            return this.getDescription()
-                    .taskDescription.compareTo(otherTask.getDescription().taskDescription);
+            return this.getDescription().taskDescription.compareTo(otherTask.getDescription().taskDescription);
         } else {
-            return this.getName()
-                    .taskName.compareTo(otherTask.getName().taskName);
+            return this.getName().taskName.compareTo(otherTask.getName().taskName);
         }
     }
 }

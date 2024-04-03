@@ -104,8 +104,23 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Deletes the assigned task for a {@code persons}.
-     * {@code task} must exist be assigned to be deleted.
+     * Sets the assigned task for a {@code person}.
+     * {@code target} must exist to be deleted.
+     * {@code editedTask} must exist to be updated.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        for (Person person : internalList) {
+            if (person.hasTask(target)) {
+                Person updatedPerson = person.deleteTask(target).addTask(editedTask);
+                setPerson(person, updatedPerson);
+            }
+        }
+    }
+
+    /**
+     * Deletes the assigned task for a {@code person}.
+     * Assigned {@code task} to be deleted.
      */
     public void deleteAssignedTask(Task task) {
         requireAllNonNull(task);
