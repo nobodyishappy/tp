@@ -243,6 +243,22 @@ Format: `listtask`
 Examples:
 * `listtask`
 
+### Finding a task or tasks by task name: `findtask`
+Finds tasks which names contain any of the given keywords.
+
+Format `findtask KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `2103t` will match `2103T`
+* The order of the keywords does not matter. e.g. `findpriority implement` will match `implement findpriority`
+* Only the task name is searched.
+* Only full words will be matched e.g. `prio` will not match `priority`
+* Tasks matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `2103t 2101` will return `2101 CA3`, `2103t milestone`
+
+Examples:
+* `findtask implement` returns `implement findpriority` and `implement mass ops`
+* `findtask cs2103t cs2101` returns `CS2101 CA3`, `CS2103T developer guide`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -301,4 +317,5 @@ Action     | Format, Examples
 **Assign Task**   | `assign TASK_INDEX to/PERSON_INDEX​`
 **Mark Task**   | `marktask TASK_INDEX​`
 **Unmark Task**   | `unmarktask TASK_INDEX​`
+**Find Task**     | `findtask KEYWORD [MORE_KEYWORDS]` <br> e.g., `findtask 2101 2103t`
 **List Task**   | `listtask​`
