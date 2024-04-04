@@ -40,7 +40,7 @@ public class AssignCommand extends Command {
 
     /**
      * @param taskIndex of the task in the filtered task list to be assigned to the person
-     * @param personIndices of the person in the filtered person list to be assigned the task
+     * @param personIndices of the people in the filtered person list to be assigned the task
      */
     public AssignCommand(Index taskIndex, Index[] personIndices) {
         requireAllNonNull(taskIndex, personIndices);
