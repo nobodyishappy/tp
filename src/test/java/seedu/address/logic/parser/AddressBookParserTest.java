@@ -102,7 +102,7 @@ public class AddressBookParserTest {
         AssignCommand command = (AssignCommand) parser.parseCommand(
                 AssignCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
                 + PREFIX_TO + " " + INDEX_FIRST.getOneBased());
-        assertEquals(new AssignCommand(INDEX_FIRST, INDEX_FIRST), command);
+        assertEquals(new AssignCommand(INDEX_FIRST, new Index[] { INDEX_FIRST }), command);
     }
 
     @Test

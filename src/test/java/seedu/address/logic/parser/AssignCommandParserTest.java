@@ -5,9 +5,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AssignCommand;
 
@@ -24,7 +26,8 @@ public class AssignCommandParserTest {
 
     @Test
     public void parse_validArgs_success() {
-        assertParseSuccess(parser, "1" + TO_ONE, new AssignCommand(INDEX_FIRST, INDEX_FIRST));
+        assertParseSuccess(parser, "1" + TO_ONE + " 2", new AssignCommand(INDEX_FIRST,
+                new Index[] { INDEX_FIRST, INDEX_SECOND }));
     }
 
     @Test

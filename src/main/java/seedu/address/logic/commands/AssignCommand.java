@@ -49,23 +49,29 @@ public class AssignCommand extends Command {
         this.personIndices = personIndices;
     }
 
-    private void verifyAllWithinRange(Index[] targetIndices, int range) throws CommandException {
-        if (Arrays.stream(targetIndices).anyMatch(targetIndex -> targetIndex.getZeroBased() >= range)) {
+    private void verifyAllTaskIndicesWithinRange(Index[] taskIndices, int range) throws CommandException {
+        if (Arrays.stream(taskIndices).anyMatch(targetIndex -> targetIndex.getZeroBased() >= range)) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+    }
+
+    private void verifyAllPersonIndicesWithinRange(Index[] personIndices, int range) throws CommandException {
+        if (Arrays.stream(personIndices).anyMatch(personIndex -> personIndex.getZeroBased() >= range)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
     }
 
     private Task getTaskToAssign(Model model) throws CommandException {
         // Use filtered list
         List<Task> lastShownTaskList = model.getFilteredTaskList();
-        verifyAllWithinRange(new Index[] { taskIndex }, lastShownTaskList.size());
+        verifyAllTaskIndicesWithinRange(new Index[] { taskIndex }, lastShownTaskList.size());
 
         return lastShownTaskList.get(taskIndex.getZeroBased());
     }
 
     private Person[] getPeopleToBeAssigned(Model model) throws CommandException {
         List<Person> lastShownPersonList = model.getFilteredPersonList();
-        verifyAllWithinRange(personIndices, lastShownPersonList.size());
+        verifyAllPersonIndicesWithinRange(personIndices, lastShownPersonList.size());
 
         return Arrays.stream(personIndices).distinct()
                 .map(targetIndex -> lastShownPersonList.get(targetIndex.getZeroBased()))
