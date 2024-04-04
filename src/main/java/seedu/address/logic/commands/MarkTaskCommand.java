@@ -11,7 +11,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskStatus;
 
 /**
  * Mark the tasks identified using their displayed index from the task list as done.
