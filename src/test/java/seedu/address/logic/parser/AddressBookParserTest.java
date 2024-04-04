@@ -110,7 +110,7 @@ public class AddressBookParserTest {
         UnassignCommand command = (UnassignCommand) parser.parseCommand(
                 UnassignCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
                         + PREFIX_TO + " " + INDEX_FIRST.getOneBased());
-        assertEquals(new UnassignCommand(INDEX_FIRST, INDEX_FIRST), command);
+        assertEquals(new UnassignCommand(INDEX_FIRST, new Index[] { INDEX_FIRST }), command);
     }
 
     @Test

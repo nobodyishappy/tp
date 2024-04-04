@@ -34,20 +34,21 @@ class AssignCommandTest {
 
     @Test
     public void execute_assignTaskUnfilteredListSingleValidIndex_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
-        Set<Task> editedTasks = new HashSet<>(firstPerson.getTasks());
         Task taskToAssign = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
-        editedTasks.add(taskToAssign);
-        Person editedPerson = new PersonBuilder(firstPerson).withTasks(editedTasks).build();
+
+        Person personToBeAssigned = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
 
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST, new Index[] { INDEX_FIRST });
 
-        String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS, Messages.format(taskToAssign),
-                Messages.format(new Person[] { editedPerson }));
+        String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS,
+                Messages.format(taskToAssign), Messages.format(new Person[] { personToBeAssigned }));
 
         Model expectedModel = new ModelManager(
                 new AddressBook(model.getAddressBook()), new TaskList(model.getTaskList()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
+        Set<Task> editedTasks = new HashSet<>(personToBeAssigned.getTasks());
+        editedTasks.add(taskToAssign);
+        expectedModel.setPerson(personToBeAssigned,
+                new PersonBuilder(personToBeAssigned).withTasks(editedTasks).build());
 
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }

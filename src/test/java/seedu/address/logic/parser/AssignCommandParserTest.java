@@ -26,8 +26,8 @@ public class AssignCommandParserTest {
 
     @Test
     public void parse_validArgs_success() {
-        assertParseSuccess(parser, "1" + TO_ONE + " 2", new AssignCommand(INDEX_FIRST,
-                new Index[] { INDEX_FIRST, INDEX_SECOND }));
+        assertParseSuccess(parser, "1" + TO_ONE + " 2", new AssignCommand(
+                INDEX_FIRST, new Index[] { INDEX_FIRST, INDEX_SECOND }));
     }
 
     @Test
