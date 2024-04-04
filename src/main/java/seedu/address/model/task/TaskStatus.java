@@ -72,4 +72,8 @@ public class TaskStatus {
         TaskStatus otherStatus = (TaskStatus) other;
         return taskStatus == otherStatus.taskStatus;
     }
+
+    public int compareTo(TaskStatus other) {
+        return (other.getTaskStatus() == taskStatus ? 0 : (taskStatus ? 1 : -1));
+    }
 }

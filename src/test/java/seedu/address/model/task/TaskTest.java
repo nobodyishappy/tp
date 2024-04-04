@@ -71,4 +71,11 @@ public class TaskTest {
         Task task2 = new TaskBuilder().withTaskDescription("Task 2").build();
         assertEquals(-1, task1.compare(task2));
     }
+
+    @Test
+    public void compare_differentPriority() {
+        Task task1 = new TaskBuilder().withTaskPriority("1").build();
+        Task task2 = new TaskBuilder().withTaskPriority("2").build();
+        assertFalse(task1.equals(task2));
+    }
 }

@@ -19,7 +19,7 @@ public class MarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "marktask";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks a task from the task list as done. \n"
-            + "Parameter: INDEX (Must be a positive integer) \n"
+            + "Parameter: TASK_INDEX (Must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Task has been mark as done: %1$s";
 
@@ -42,7 +42,8 @@ public class MarkTaskCommand extends Command {
         Task editedTask = new Task(taskToMark.getName(),
                 taskToMark.getDescription(),
                 taskToMark.getPriority(),
-                taskToMark.getStatus());
+                taskToMark.getStatus(),
+                taskToMark.getDeadline());
         editedTask.getStatus().setAsDone();
 
         model.setTask(taskToMark, editedTask);

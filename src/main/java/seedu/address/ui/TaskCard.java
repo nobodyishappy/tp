@@ -51,5 +51,21 @@ public class TaskCard extends UiPart<Region> {
         status.setText(task.getStatus().toString());
         description.setText(task.getDescription().taskDescription);
         deadline.setText(task.getDeadline().toString());
+
+        String settings = "-fx-padding: 1 3 1 3; -fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 12;";
+
+        if (task.getPriority().toString().equalsIgnoreCase("low")) {
+            priority.setStyle("-fx-background-color: #00ff00;" + settings);
+        } else if (task.getPriority().toString().equalsIgnoreCase("medium")) {
+            priority.setStyle("-fx-background-color: #ffae00;" + settings);
+        } else if (task.getPriority().toString().equalsIgnoreCase("high")) {
+            priority.setStyle("-fx-background-color: #ff0000;" + settings);
+        }
+
+        if (task.getStatus().toString().equalsIgnoreCase("Done")) {
+            status.setStyle("-fx-background-color: #00ff00;" + settings);
+        } else if (task.getStatus().toString().equalsIgnoreCase("Not Done")) {
+            status.setStyle("-fx-background-color: #ff0000;" + settings);
+        }
     }
 }

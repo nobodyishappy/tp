@@ -52,7 +52,6 @@ class FindTaskCommandTest {
         TaskNameContainsKeywordsPredicate predicate = preparePredicate("task1 task2 task3");
         FindTaskCommand command = new FindTaskCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
-        System.out.println(expectedModel.getFilteredTaskList().toString());
         assertEquals(expectedMessage, command.execute(expectedModel).getFeedbackToUser());
         assertEquals(Arrays.asList(TASK_1, TASK_2, TASK_3), model.getFilteredTaskList());
     }

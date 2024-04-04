@@ -18,7 +18,7 @@ public class UnmarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "unmarktask";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks a task from the task list as undone. \n"
-            + "Parameter: INDEX (Must be a positive integer) \n"
+            + "Parameter: TASK_INDEX (Must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Task has been mark as undone: %1$s";
 
@@ -41,7 +41,8 @@ public class UnmarkTaskCommand extends Command {
         Task editedTask = new Task(taskToMark.getName(),
                 taskToMark.getDescription(),
                 taskToMark.getPriority(),
-                taskToMark.getStatus());
+                taskToMark.getStatus(),
+                taskToMark.getDeadline());
         editedTask.getStatus().setAsUndone();
 
         model.setTask(taskToMark, editedTask);

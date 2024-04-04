@@ -103,6 +103,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist to be deleted.
+     * {@code editedTask} must exist to be updated.
+     */
+    public void setTask(Task target, Task editedTask) {
+        persons.setTask(target, editedTask);
+    }
+
+    /**
      * Removes {@code task} from the {@code person} in {@code AddressBook}.
      * {@code task} must exist in the task list.
      */
