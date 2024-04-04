@@ -51,11 +51,7 @@ public class MarkTaskCommand extends Command {
                 .toArray(Task[]::new);
 
         Arrays.stream(tasksToMark).forEach(taskToMark -> {
-            Task editedTask = new Task(taskToMark.getName(),
-                    taskToMark.getDescription(),
-                    taskToMark.getPriority(),
-                    new TaskStatus(),
-                    taskToMark.getDeadline());
+            Task editedTask = new Task(taskToMark);
             editedTask.getStatus().setAsDone();
             model.setTask(taskToMark, editedTask);
         });

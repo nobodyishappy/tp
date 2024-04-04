@@ -11,7 +11,7 @@ public class TaskPriorityTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TaskPriority(null));
+        assertThrows(NullPointerException.class, () -> new TaskPriority((TaskPriority) null));
     }
 
     @Test

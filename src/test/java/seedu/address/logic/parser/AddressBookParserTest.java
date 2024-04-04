@@ -131,7 +131,7 @@ public class AddressBookParserTest {
     public void parseCommand_unmarkTask() throws Exception {
         UnmarkTaskCommand command = (UnmarkTaskCommand) parser.parseCommand(
                 UnmarkTaskCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
-        assertEquals(new UnmarkTaskCommand(INDEX_FIRST), command);
+        assertEquals(new UnmarkTaskCommand(new Index[] { INDEX_FIRST }), command);
     }
 
     @Test

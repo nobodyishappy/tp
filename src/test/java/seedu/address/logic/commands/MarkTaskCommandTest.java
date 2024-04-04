@@ -88,7 +88,7 @@ public class MarkTaskCommandTest {
         ModelManager expectedModel = new ModelManager(
                 model.getAddressBook(), new TaskList(model.getTaskList()), new UserPrefs());
         Task editedTask = new Task(taskToMark.getName(), taskToMark.getDescription(), taskToMark.getPriority(),
-                taskToMark.getStatus(), taskToMark.getDeadline());
+                new TaskStatus(), taskToMark.getDeadline());
         editedTask.getStatus().setAsDone();
         expectedModel.setTask(expectedModel.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased()),
                 editedTask);

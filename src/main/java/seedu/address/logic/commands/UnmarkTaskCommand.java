@@ -49,12 +49,11 @@ public class UnmarkTaskCommand extends Command {
                 .map(targetIndex -> lastShownList.get(targetIndex.getZeroBased()))
                 .toArray(Task[]::new);
 
-        Arrays.stream(tasksToUnmark).forEach(taskToUnmark -> model.setTask(taskToUnmark, new Task(
-                taskToUnmark.getName(),
-                taskToUnmark.getDescription(),
-                taskToUnmark.getPriority(),
-                new TaskStatus(),
-                taskToUnmark.getDeadline())));
+        Arrays.stream(tasksToUnmark).forEach(taskToUnmark -> {
+            Task editedTask = new Task(taskToUnmark);
+            editedTask.getStatus().setAsUndone();
+            model.setTask(taskToUnmark, editedTask);
+        });
 
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, Messages.format(tasksToUnmark)));
     }

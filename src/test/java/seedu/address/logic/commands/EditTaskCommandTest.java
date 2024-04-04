@@ -110,7 +110,6 @@ public class EditTaskCommandTest {
         // same values -> returns true
         EditTaskDescriptor copyDescriptor = new EditTaskDescriptor(descriptor);
         EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST, copyDescriptor);
-        System.out.println(commandWithSameValues);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true

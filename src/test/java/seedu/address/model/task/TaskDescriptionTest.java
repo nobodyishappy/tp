@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class TaskDescriptionTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TaskDescription(null));
+        assertThrows(NullPointerException.class, () -> new TaskDescription((TaskDescription) null));
     }
 
     @Test
