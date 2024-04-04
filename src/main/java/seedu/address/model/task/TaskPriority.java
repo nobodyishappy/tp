@@ -22,6 +22,17 @@ public class TaskPriority {
     }
 
     /**
+     * Constructs a copy of {@code TaskPriority}.
+     *
+     * @param copy A {@code TaskPriority} whose copy is to be constructed.
+     */
+    public TaskPriority(TaskPriority copy) {
+        requireNonNull(copy);
+
+        this.taskPriority = copy.taskPriority;
+    }
+
+    /**
      * Constructs an {@code TaskPriority}.
      */
     public TaskPriority(String priority) {

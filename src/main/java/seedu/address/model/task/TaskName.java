@@ -30,6 +30,17 @@ public class TaskName {
     }
 
     /**
+     * Constructs a copy of {@code TaskName}.
+     *
+     * @param copy A {@code TaskName} whose copy is to be constructed.
+     */
+    public TaskName(TaskName copy) {
+        requireNonNull(copy);
+
+        this.taskName = copy.taskName;
+    }
+
+    /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidTaskName(String test) {

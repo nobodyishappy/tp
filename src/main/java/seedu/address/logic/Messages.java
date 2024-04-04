@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -52,10 +53,26 @@ public class Messages {
     }
 
     /**
+     * Formats the {@code people} for display to the user.
+     */
+    public static String format(Person[] people) {
+        return Arrays.stream(people).map(person -> person.getName().toString())
+                .collect(Collectors.joining(", "));
+    }
+
+    /**
      * Formats the {@code task} for display to the user.
      */
-    public static String formatTask(Task task) {
+    public static String format(Task task) {
         return task.getName().taskName;
+    }
+
+    /**
+     * Formats the {@code tasks} for display to the user.
+     */
+    public static String format(Task[] tasks) {
+        return Arrays.stream(tasks).map(task -> task.getName().toString())
+                .collect(Collectors.joining(", "));
     }
 
 }
