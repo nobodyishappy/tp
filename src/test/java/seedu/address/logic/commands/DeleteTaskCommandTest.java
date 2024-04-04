@@ -31,7 +31,7 @@ public class DeleteTaskCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
 
     @Test
-    public void execute_singleValidIndexUnfilteredList_success() {
+    public void execute_singleValidIndex_success() {
         Task taskToDelete = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { INDEX_FIRST });
 
@@ -46,7 +46,7 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_multipleValidIndexUnfilteredList_success() {
+    public void execute_multipleValidIndex_success() {
         Task[] tasksToDelete = new Task[] {
                 model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased()),
                 model.getTaskList().getSerializeTaskList().get(INDEX_SECOND.getZeroBased())
@@ -66,7 +66,7 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_duplicateValidIndexUnfilteredList_success() {
+    public void execute_duplicateValidIndex_success() {
         Task taskToDelete = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { INDEX_FIRST, INDEX_FIRST });
 
@@ -81,7 +81,7 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_singleInvalidTaskIndexUnfilteredList_throwsCommandException() {
+    public void execute_singleInvalidTaskIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { outOfBoundIndex });
 
@@ -89,7 +89,7 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_duplicateInvalidTaskIndexUnfilteredList_throwsCommandException() {
+    public void execute_duplicateInvalidTaskIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { outOfBoundIndex, outOfBoundIndex });
 
@@ -97,7 +97,7 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_someInvalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_someInvalidIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { outOfBoundIndex, INDEX_FIRST });
 
@@ -105,7 +105,7 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_allInvalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_allInvalidIndex_throwsCommandException() {
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] {
                 Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1),
                 Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 2)
