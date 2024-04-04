@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MarkTaskCommand;
 
 /**
@@ -21,7 +22,7 @@ public class MarkTaskCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsMarkTaskCommand() {
-        assertParseSuccess(parser, "1", new MarkTaskCommand(INDEX_FIRST));
+        assertParseSuccess(parser, "1", new MarkTaskCommand(new Index[] { INDEX_FIRST }));
     }
 
     @Test
