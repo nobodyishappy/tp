@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AssignCommand;
 import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
