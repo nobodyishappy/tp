@@ -54,7 +54,7 @@ public class UnmarkTaskCommandTest {
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(noDeadlineTask);
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
-                Messages.formatTask(taskWithoutDeadline));
+                Messages.format(taskWithoutDeadline));
 
         ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
 
@@ -74,7 +74,7 @@ public class UnmarkTaskCommandTest {
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(deadlineTask);
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
-                Messages.formatTask(taskWithDeadline));
+                Messages.format(taskWithDeadline));
 
         ModelManager expectedModel = new ModelManager(new AddressBook(), m.getTaskList(), new UserPrefs());
 
