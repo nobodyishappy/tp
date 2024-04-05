@@ -198,11 +198,19 @@ Step 3. The user executes `assigngroup gn/2103T gt/Task 1` command to assign a t
 
 Step 4. The user executes `addpersontogroup gn/2103T gp/Bob` command to add Bob to the group named "2103T" from the group list. The `addpersontogroup` command calls `Model#addPersonToGroup(String, Person)`, which finds the group with the same name and add the person to the group.
 
+<puml src="diagrams/GroupingState2.puml" alt="GroupingState3" />
+
 Step 5. The user executes `removepersonfromgroup gn/2103T gp/4` command to remove Bob from the group named "2103T" from the group list. The `removepersonfromgroup` command calls `Model#removePersonFromGroup(String, Person)`, which finds the group with the same name and remove the person to the group.
+
+<puml src="diagrams/GroupingState2.puml" alt="GroupingState2" />
 
 Step 6. The user executes `deletetaskgroup gn/2103T gt/Task 1` command to remove a task named "Task 1" from the group named "2103T" from the group list. The `deletetaskgroup` command calls `Model#deleteAssignedTaskGroup(String, Task)`, which finds the group with the same name and remove that task from everyone that is in the group.
 
+<puml src="diagrams/GroupingState1.puml" alt="GroupingState1" />
+
 Step 7. The user executes `deletegroup gn/2103T` command to remove the group from the list. The `deletegroup` command calls `Model#removeGroup(String)`, which finds the group with the same name and remove that group from the list.
+
+<puml src="diagrams/GroupingState0.puml" alt="GroupingState0" />
 
 ### \[Proposed\] Undo/Redo Feature
 
