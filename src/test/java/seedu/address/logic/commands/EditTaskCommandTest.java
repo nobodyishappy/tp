@@ -34,7 +34,7 @@ public class EditTaskCommandTest {
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
-                Messages.formatTask(target));
+                Messages.format(target));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 getTypicalTaskList(), new UserPrefs());
@@ -57,7 +57,7 @@ public class EditTaskCommandTest {
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
-                Messages.formatTask(lastTask));
+                Messages.format(lastTask));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 getTypicalTaskList(), new UserPrefs());
@@ -72,7 +72,7 @@ public class EditTaskCommandTest {
         Task editedTask = model.getFilteredTaskList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
-                Messages.formatTask(editedTask));
+                Messages.format(editedTask));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 model.getTaskList(), new UserPrefs());
@@ -110,7 +110,6 @@ public class EditTaskCommandTest {
         // same values -> returns true
         EditTaskDescriptor copyDescriptor = new EditTaskDescriptor(descriptor);
         EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST, copyDescriptor);
-        System.out.println(commandWithSameValues);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true

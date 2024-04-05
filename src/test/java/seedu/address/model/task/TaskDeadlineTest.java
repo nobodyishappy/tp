@@ -16,7 +16,7 @@ public class TaskDeadlineTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TaskDeadline(null));
+        assertThrows(NullPointerException.class, () -> new TaskDeadline((TaskDeadline) null));
     }
 
     @Test

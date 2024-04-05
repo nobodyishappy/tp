@@ -46,6 +46,19 @@ public class Task {
     }
 
     /**
+     * Constructs a copy of {@code Task}.
+     *
+     * @param copy A {@code Task} whose copy is to be constructed.
+     */
+    public Task(Task copy) {
+        this.name = new TaskName(copy.getName());
+        this.description = new TaskDescription(copy.getDescription());
+        this.priority = new TaskPriority(copy.getPriority());
+        this.status = new TaskStatus(copy.getStatus());
+        this.deadline = new TaskDeadline(copy.getDeadline());
+    }
+
+    /**
      * Gets the name of a task.
      * @return The name of the task.
      */

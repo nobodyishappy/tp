@@ -31,6 +31,17 @@ public class TaskDescription {
     }
 
     /**
+     * Constructs a copy of {@code TaskDescription}.
+     *
+     * @param copy A {@code TaskDescription} whose copy is to be constructed.
+     */
+    public TaskDescription(TaskDescription copy) {
+        requireNonNull(copy);
+
+        this.taskDescription = copy.taskDescription;
+    }
+
+    /**
      * Returns true if a given string is a valid description.
      */
     public static boolean isValidTaskDescription(String test) {

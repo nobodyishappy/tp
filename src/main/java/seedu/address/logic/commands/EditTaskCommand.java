@@ -81,7 +81,7 @@ public class EditTaskCommand extends Command {
         // Updates the task list.
         model.setTask(taskToEdit, editedTask);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, Messages.formatTask(taskToEdit)));
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, Messages.format(taskToEdit)));
     }
 
     /**

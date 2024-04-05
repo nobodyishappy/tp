@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class TaskStatusTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TaskStatus(null));
+        assertThrows(NullPointerException.class, () -> new TaskStatus((TaskStatus) null));
     }
 
     @Test
