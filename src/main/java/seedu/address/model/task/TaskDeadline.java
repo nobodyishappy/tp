@@ -53,6 +53,18 @@ public class TaskDeadline {
     }
 
     /**
+     * Constructs a copy of {@code TaskDeadline}.
+     *
+     * @param copy A {@code TaskDeadline} whose copy is to be constructed.
+     */
+    public TaskDeadline(TaskDeadline copy) {
+        requireNonNull(copy);
+
+        this.taskDeadline = copy.taskDeadline;
+        this.isEmpty = copy.isEmpty;
+    }
+
+    /**
      * Returns true if a given string is a valid deadline.
      */
     public static boolean isValidTaskDeadline(String deadline) {

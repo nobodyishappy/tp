@@ -24,16 +24,25 @@ public class AssignCommandParser implements Parser<AssignCommand> {
                 PREFIX_TO);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TO);
-        Index taskIndex;
-        Index personIndex;
         try {
-            taskIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TO).orElse(""));
+            Index taskIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+
+            String trimmedArgs = argMultimap.getValue(PREFIX_TO).orElse("").trim();
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+            }
+
+            String[] stringPersonIndices = trimmedArgs.split("\\s+");
+
+            Index[] personIndices = new Index[stringPersonIndices.length];
+            for (int i = 0; i < stringPersonIndices.length; i++) {
+                personIndices[i] = ParserUtil.parseIndex(stringPersonIndices[i]);
+            }
+            return new AssignCommand(taskIndex, personIndices);
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AssignCommand.MESSAGE_USAGE), ive);
         }
-
-        return new AssignCommand(taskIndex, personIndex);
     }
 }

@@ -23,8 +23,19 @@ public class TaskStatus {
     }
 
     /**
+     * Constructs a copy of {@code TaskStatus}.
+     *
+     * @param copy A {@code TaskStatus} whose copy is to be constructed.
+     */
+    public TaskStatus(TaskStatus copy) {
+        requireNonNull(copy);
+
+        this.taskStatus = copy.taskStatus;
+    }
+
+    /**
      * Constructs an {@code TaskStatus}.
-     * @param name A valid status from json.
+     * @param status A valid status from json.
      */
     public TaskStatus(String status) {
         requireNonNull(status);
