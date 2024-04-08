@@ -32,7 +32,7 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: TASK_INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "TASK_NAME] "
             + "[" + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION] "
             + "[" + PREFIX_TASK_PRIORITY + "TASK_PRIORITY] "
@@ -81,7 +81,7 @@ public class EditTaskCommand extends Command {
         // Updates the task list.
         model.setTask(taskToEdit, editedTask);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, Messages.formatTask(taskToEdit)));
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, Messages.format(taskToEdit)));
     }
 
     /**

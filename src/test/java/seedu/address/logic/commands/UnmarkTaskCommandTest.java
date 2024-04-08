@@ -9,6 +9,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -19,29 +21,105 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskStatus;
 import seedu.address.testutil.TaskBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code UnmarkTaskCommand}.
+ */
 public class UnmarkTaskCommandTest {
+
     private Model model = new ModelManager(new AddressBook(), getTypicalTaskList(), new UserPrefs());
 
     @Test
-    public void execute_validIndexTaskList_success() {
-        Task taskToMark = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
-        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(INDEX_FIRST);
+    public void execute_singleValidIndex_success() {
+        Task taskToUnmark = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { INDEX_FIRST });
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
-                Messages.formatTask(taskToMark));
+                Messages.format(taskToUnmark));
 
-        ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
-        taskToMark.getStatus().setAsUndone();
+        ModelManager expectedModel = new ModelManager(
+                model.getAddressBook(), new TaskList(model.getTaskList()), new UserPrefs());
+        expectedModel.setTask(taskToUnmark, new Task(
+                taskToUnmark.getName(), taskToUnmark.getDescription(), taskToUnmark.getPriority(),
+                new TaskStatus(), taskToUnmark.getDeadline()));
 
         assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexTaskList_throwsCommandException() {
+    public void execute_multipleValidIndex_success() {
+        Task[] tasksToUnmark = new Task[] {
+                model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased()),
+                model.getTaskList().getSerializeTaskList().get(INDEX_SECOND.getZeroBased())
+        };
+
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { INDEX_FIRST, INDEX_SECOND });
+
+        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
+                Messages.format(tasksToUnmark));
+
+        ModelManager expectedModel = new ModelManager(
+                model.getAddressBook(), new TaskList(model.getTaskList()), new UserPrefs());
+        Arrays.stream(tasksToUnmark).forEach(taskToUnmark -> expectedModel.setTask(taskToUnmark, new Task(
+                taskToUnmark.getName(),
+                taskToUnmark.getDescription(),
+                taskToUnmark.getPriority(),
+                new TaskStatus(),
+                taskToUnmark.getDeadline())));
+
+        assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_duplicateValidIndex_success() {
+        Task taskToUnmark = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { INDEX_FIRST, INDEX_FIRST });
+
+        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
+                Messages.format(taskToUnmark));
+
+        ModelManager expectedModel = new ModelManager(
+                model.getAddressBook(), new TaskList(model.getTaskList()), new UserPrefs());
+        expectedModel.setTask(taskToUnmark, new Task(
+                taskToUnmark.getName(), taskToUnmark.getDescription(), taskToUnmark.getPriority(),
+                new TaskStatus(), taskToUnmark.getDeadline()));
+
+        assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_singleInvalidTaskIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1);
-        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(outOfBoundIndex);
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { outOfBoundIndex });
+
+        assertCommandFailure(unmarkTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_duplicateInvalidTaskIndex_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1);
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { outOfBoundIndex, outOfBoundIndex });
+
+        assertCommandFailure(unmarkTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_someInvalidIndex_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1);
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { outOfBoundIndex, INDEX_FIRST });
+
+        assertCommandFailure(unmarkTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_allInvalidIndex_throwsCommandException() {
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] {
+                Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 1),
+                Index.fromOneBased(model.getTaskList().getSerializeTaskList().size() + 2)
+        });
 
         assertCommandFailure(unmarkTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
@@ -51,10 +129,10 @@ public class UnmarkTaskCommandTest {
         Task taskWithoutDeadline = new TaskBuilder().withTaskName("Task 1").withTaskDeadline("Empty").build();
         model.addTask(taskWithoutDeadline);
         Index noDeadlineTask = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size());
-        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(noDeadlineTask);
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { noDeadlineTask });
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
-                Messages.formatTask(taskWithoutDeadline));
+                Messages.format(taskWithoutDeadline));
 
         ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
 
@@ -71,10 +149,10 @@ public class UnmarkTaskCommandTest {
                 .build();
         m.addTask(taskWithDeadline);
         Index deadlineTask = Index.fromOneBased(m.getTaskList().getSerializeTaskList().size());
-        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(deadlineTask);
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { deadlineTask });
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
-                Messages.formatTask(taskWithDeadline));
+                Messages.format(taskWithDeadline));
 
         ModelManager expectedModel = new ModelManager(new AddressBook(), m.getTaskList(), new UserPrefs());
 
@@ -83,14 +161,14 @@ public class UnmarkTaskCommandTest {
 
     @Test
     public void equals() {
-        UnmarkTaskCommand unmarkTaskFirstCommand = new UnmarkTaskCommand(INDEX_FIRST);
-        UnmarkTaskCommand unmarkTaskSecondCommand = new UnmarkTaskCommand(INDEX_SECOND);
+        UnmarkTaskCommand unmarkTaskFirstCommand = new UnmarkTaskCommand(new Index[] { INDEX_FIRST });
+        UnmarkTaskCommand unmarkTaskSecondCommand = new UnmarkTaskCommand(new Index[] { INDEX_SECOND });
 
         // same object -> returns true
         assertTrue(unmarkTaskFirstCommand.equals(unmarkTaskFirstCommand));
 
         // same values -> returns true
-        UnmarkTaskCommand unmarkTaskFirstCommandCopy = new UnmarkTaskCommand(INDEX_FIRST);
+        UnmarkTaskCommand unmarkTaskFirstCommandCopy = new UnmarkTaskCommand(new Index[] { INDEX_FIRST });
         assertTrue(unmarkTaskFirstCommand.equals(unmarkTaskFirstCommandCopy));
 
         // different types -> returns false
@@ -105,9 +183,13 @@ public class UnmarkTaskCommandTest {
 
     @Test
     public void toStringMethod() {
-        Index targetIndex = Index.fromOneBased(1);
-        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(targetIndex);
-        String expected = UnmarkTaskCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        Index[] targetIndices = new Index[] {
+                Index.fromOneBased(1),
+                Index.fromOneBased(2)
+        };
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(targetIndices);
+        String expected = UnmarkTaskCommand.class.getCanonicalName() + "{targetIndices="
+                + Arrays.toString(targetIndices) + "}";
         assertEquals(expected, unmarkTaskCommand.toString());
     }
 }

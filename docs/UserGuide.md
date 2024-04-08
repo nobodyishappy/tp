@@ -23,7 +23,7 @@ TeamTracker is a **desktop app for managing contacts and tasks, optimized for us
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TeamTracker.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/UI_v1.3a.png)
+   ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -207,14 +207,27 @@ Examples:
 
 ### Deleting a task: `deletetask`
 
+Deletes the specified task from the task list.
+
 Format: `deletetask TASK_INDEX`
 
+* Deletes the task at the specified `TASK_INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
 Examples:
-* `deletetask 1`
+* `listtask` followed by `deletetask 1` deletes the 1st task in the task list.
+* `findtask today` followed by `deletetask 2` deletes the 2nd task in the results of the `findtask` command.
 
 ### Editing a task: `edittask`
 
-Format: `edittask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
+Edits an existing task in the task listx.
+
+Format: `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
+
+* Edits the task at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
 
 Examples:
 * `edittask 1 p/high`
@@ -223,10 +236,28 @@ Examples:
 
 ### Listing the tasks: `listtask`
 
+Shows a list of all tasks in the task list.
+
 Format: `listtask`
 
 Examples:
 * `listtask`
+
+### Finding a task or tasks by task name: `findtask`
+Finds tasks which names contain any of the given keywords.
+
+Format `findtask KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `2103t` will match `2103T`
+* The order of the keywords does not matter. e.g. `findpriority implement` will match `implement findpriority`
+* Only the task name is searched.
+* Only full words will be matched e.g. `prio` will not match `priority`
+* Tasks matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `2103t 2101` will return `2101 CA3`, `2103t milestone`
+
+Examples:
+* `findtask implement` returns `implement findpriority` and `implement mass ops`
+* `findtask cs2103t cs2101` returns `CS2101 CA3`, `CS2103T developer guide`
 
 ### Exiting the program : `exit`
 
@@ -282,8 +313,9 @@ Action     | Format, Examples
 **Help**   | `help`
 **Add Task**   | `addtask n/NAME d/DESCRIPTION p/PRIORITY [by/DEADLINE]`
 **Delete Task**   | `deletetask TASK_INDEX`
-**Edit Task**   | `edittask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
+**Edit Task**   | `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
 **Assign Task**   | `assign TASK_INDEX to/PERSON_INDEX​`
 **Mark Task**   | `marktask TASK_INDEX​`
 **Unmark Task**   | `unmarktask TASK_INDEX​`
+**Find Task**     | `findtask KEYWORD [MORE_KEYWORDS]` <br> e.g., `findtask 2101 2103t`
 **List Task**   | `listtask​`
