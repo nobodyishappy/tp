@@ -113,7 +113,7 @@ public class Person {
     }
 
     /**
-     * Returns the all the assigned task in string.
+     * Returns all the assigned task in string.
      */
     public String getTaskString() {
         final StringBuilder builder = new StringBuilder();
