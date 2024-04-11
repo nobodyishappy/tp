@@ -113,6 +113,18 @@ public class Person {
     }
 
     /**
+     * Returns all the assigned task in string.
+     */
+    public String getTaskString() {
+        final StringBuilder builder = new StringBuilder();
+        tasks.forEach(builder::append);
+        if (builder.length() != 0) {
+            return builder.substring(0, builder.length() - 2);
+        }
+        return builder.toString();
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -151,5 +163,4 @@ public class Person {
                 .add("tasks", tasks)
                 .toString();
     }
-
 }

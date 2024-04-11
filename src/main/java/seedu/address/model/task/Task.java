@@ -122,6 +122,11 @@ public class Task {
         return Objects.hash(name, description, priority, deadline);
     }
 
+    @Override
+    public String toString() {
+        return name.toString() + ", ";
+    }
+
     /**
      * Compare with other tasks for sorting in tags.
      * @param otherTask Task to be compared to
