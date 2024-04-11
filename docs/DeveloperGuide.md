@@ -217,23 +217,28 @@ Step 7. The user executes `deletegroup gn/2103T` command to remove the group fro
 
 ### \[Proposed\] Undo/Redo Feature
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook` and `VersionedTaskList`. The `VersionedAddressBook` extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `addressBookStatePointer`. The `VersionedTaskList` extends `TaskList` with an undo/redo history, stored internally as an `taskListStateList` and `taskListStatePointer`. 
 
-* `VersionedAddressBook#commit()` — Saves the current address book and task list state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book and task list state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book and task list state from its history.
+Additionally, they implements the following operations:
+
+* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedTaskList#commit()` — Saves the current task list state in its history.
+* `VersionedTaskList#undo()` — Restores the previous task list state from its history.
+* `VersionedTaskList#redo()` — Restores a previously undone task list state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commit()`, `Model#undo()` and `Model#redo()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book and task list state, with the `addressBookStatePointer` and `taskListStatePointer`.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` and `VersionedTaskList` will be initialized with the initial address book and task list state, with the `addressBookStatePointer` and `taskListStatePointer` respectively.
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `add n/task 1 …​` to add a new task. The `addtask` command also calls `Model#commit()`, causing another modified task kust state to be saved into the `taskListStateList`.
+Step 2. The user executes `addtask n/task1 …​` to add a new task. The `addtask` command also calls `Model#commit()`, causing another modified task list state to be saved into the `taskListStateList`.
 
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
+<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" /> 
 
 <box type="info" seamless>
 
@@ -241,9 +246,15 @@ Step 2. The user executes `add n/task 1 …​` to add a new task. The `addtask`
 
 </box>
 
-Step 3. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which will shift the `taskListStatePointer` once to the left, pointing it to the previous task list state, and restores the task list to that state.
+Step 3. The user executes `add n/Brook …​` to add a new person.  The `add` command also calls `Model#commit()`, causing another modified task list state to be saved into the `addressBookStateList`.
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
+
+<box type="info" seamless>
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which will shift the `addressBookStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+
+<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
 
 <box type="info" seamless>
@@ -268,31 +279,33 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 
 The `redo` command does the opposite — it calls `Model#redo()`, which shifts the pointers once to the right, pointing to the previously undone state, and restores the address book or task list to that state.
 
+Step 5. The user decides that adding the person was not a mistake, and decides to redo that action by executing the `redo` command. The `redo` command will call `Model#redo()`, which will shift the `addressBookStatePointer` once to the right, pointing it to the next address book state, and restores the address book to that state.
+
+<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
+
 <box type="info" seamless>
 
 **Note:** If the `addressBookStatePointer` is at index `addressBookStateList.size() - 1` or `taskListStatePointer` is at index `taskListStateList.size() - 1`, pointing to the latest state, then there are no undone states to restore for the respective commands. The `redo` command uses `Model#canRedo()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </box>
 
-Step 4. The user then decides to execute the command `listtask`. Commands that do not modify the task list, such as `listtask`, will usually not call `Model#commit()`, `Model#undo()` or `Model#redo()`. Thus, the `taskListStateList` and `taskListStatePointer` remains unchanged.
+Step 6. The user then decides to execute the command `listtask`. Commands that do not modify the address book task list, such as `listtask`, will usually not call `Model#commit()`, `Model#undo()` or `Model#redo()`. Thus, the state lists and state pointers remains unchanged.
 
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
+<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire address book and task list.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
+* **Alternative 2:** Individual command knows how to undo/redo by itself.
   * Pros: Will use less memory (e.g. for `deletetask`, just save the task being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
 
 
 --------------------------------------------------------------------------------------------------------------------
