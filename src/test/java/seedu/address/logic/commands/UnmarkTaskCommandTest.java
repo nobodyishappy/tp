@@ -141,22 +141,20 @@ public class UnmarkTaskCommandTest {
 
     @Test
     public void execute_taskWithDeadline() {
-        TaskList taskList = new TaskList();
-        Model m = new ModelManager(new AddressBook(), taskList, new UserPrefs());
         Task taskWithDeadline = new TaskBuilder()
                 .withTaskName("Task 1")
                 .withTaskDeadline("12-12-2024 16:00")
                 .build();
-        m.addTask(taskWithDeadline);
-        Index deadlineTask = Index.fromOneBased(m.getTaskList().getSerializeTaskList().size());
+        model.addTask(taskWithDeadline);
+        Index deadlineTask = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size());
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { deadlineTask });
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
                 Messages.format(taskWithDeadline));
 
-        ModelManager expectedModel = new ModelManager(new AddressBook(), m.getTaskList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
 
-        assertCommandSuccess(unmarkTaskCommand, m, expectedMessage, expectedModel);
+        assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
