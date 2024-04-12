@@ -25,7 +25,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/chin-herng)]
 
 * Role: Developer
-* Responsibilities: Assing/Unassign + Mass Operations Features
+* Responsibilities: Assign/Unassign + Mass Operations Features
 
 ### Dinh Tran Hai Chien
 
