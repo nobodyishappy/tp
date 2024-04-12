@@ -40,7 +40,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_TASK_DESCRIPTION, PREFIX_TASK_DEADLINE);
+        argMultimap.verifyNoDuplicatePrefixesFor(
+                PREFIX_NAME, PREFIX_TASK_DESCRIPTION, PREFIX_TASK_PRIORITY, PREFIX_TASK_DEADLINE);
 
         TaskName name = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get());
         TaskDescription description = ParserUtil.parseTaskDescription(
