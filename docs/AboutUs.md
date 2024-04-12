@@ -16,7 +16,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/breezetall)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Priority
+* Responsibilities: List Task + Priority Features
 
 ### Chong Chin Herng
 
@@ -43,7 +43,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/nobodyishappy)]
 
 * Role: Developer
-* Responsibilities: Mark/Unmark + Deadline Features
+* Responsibilities: Mark/Unmark Task + Deadline Features
 
 
 ### Yong Shi Kang
