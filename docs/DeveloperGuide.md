@@ -11,12 +11,6 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
-
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -250,8 +244,6 @@ Step 3. The user executes `add n/Brook …​` to add a new person.  The `add` c
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
-<box type="info" seamless>
-
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which will shift the `addressBookStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
@@ -305,9 +297,6 @@ Step 6. The user then decides to execute the command `listtask`. Commands that d
   * Pros: Will use less memory (e.g. for `deletetask`, just save the task being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -350,11 +339,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | busy group leader                          | see an overview of all the saved task           | save time                                                              |
 | `* *`    | student                                    | set deadline for my tasks                       | see which task need to be done earlier                                 |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TeamTracker` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Assigns a task**
 
@@ -434,7 +422,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **System admin commands**: commands or instructions that are used through a command-line interface (CLI)
 or a terminal window
-* **Action**: The AddressBook processing a user command
+* **Action**: TeamTracker processing a user command
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -464,8 +452,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -473,7 +459,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First person is deleted from the list. Name of the deleted person shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
@@ -481,12 +467,44 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+### Deleting a task
+
+1. Deleting a task while all tasks are being shown
+   1. Prerequisites: List all tasks using the `listtask` command. Multiple tasks in the list.
+
+   1. Test case: `deletetask 1`<br>
+      Expected: First task is deleted from the list. Name of the deleted task shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `deletetask 0`<br>
+      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect deletetask commands to try: `deletetask`, `deletetask x` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+
+### Editing a task
+
+1. Editing a task while all tasks are being shown
+   1. Prerequisites: List all tasks using the `listtask` command. Multiple tasks in the list.
+
+   1. Test case: `edittask 1 p/low`<br>
+      Expected: First task is edited. Name of the edit task shown in the status message. The priority will be updated to `LOW` in this case.
+
+   1. Test case: `edittask 0 p/low`<br>
+      Expected: No task is edited. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect edittask commands to try: `edittask`, `edittask 1`, `edittask 1 p/very high`, `edittask x` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
+   1. Prerequisites: One or more of the data files does not exist in the data folder.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Test case: tasklist.json is missing from the data folder on launch<br>
+      Expected: TeamTracker should still launch and function as normal.
 
-1. _{ more test cases …​ }_
+   1. Other missing files: addressbook.json or both the data files<br>
+   Expected: Similar to previous.
+   

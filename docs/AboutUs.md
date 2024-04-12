@@ -7,8 +7,6 @@
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Abdul Khaliq
@@ -17,27 +15,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/breezetall)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Dev Ops + Priority
 
 ### Chong Chin Herng
 
 <img src="images/chin-herng.png" width="200px">
 
 [[github](http://github.com/chin-herng)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Assing/Unassign + Mass Operations Features
 
 ### Dinh Tran Hai Chien
 
 <img src="images/kaya3842.png" width="200px">
 
 [[github](http://github.com/Kaya3842)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Add Task + Find Task Features
 
 ### Tang Hao Liang
 
@@ -46,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/nobodyishappy)]
 
 * Role: Developer
-* Responsibilities: Mark/Unmark Feature
+* Responsibilities: Mark/Unmark + Deadline Features
 
 
 ### Yong Shi Kang
@@ -56,4 +53,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/yskie)]
 
 * Role: Developer
-* Responsibilities: Deletion Feature
+* Responsibilities: Delete Task + Edit Task Features
