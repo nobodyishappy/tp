@@ -26,31 +26,47 @@ what matters most without any hassle.
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+Run `java -version` on your command terminal to check your Java version.
 
-1. Download the latest `TeamTracker.jar` from [here](https://github.com/AY2324S2-CS2103T-W13-4/tp/releases).
+2. Download the latest `TeamTracker.jar` from [here](https://github.com/AY2324S2-CS2103T-W13-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TeamTracker.
+3. Copy the file to the folder you want to use as the _home folder_ for your TeamTracker.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TeamTracker.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the
+`java -jar TeamTracker.jar`command to run the application (if you are not sure how to use the command terminal,
+refer to [this](#for-user-with-no-experience-with-command-terminal-navigating-the-command-terminal) 
+section for a more detailed guide).<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/UI.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing 
+Enter will open the help window.<br>
+
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `listtask` : Lists all tasks.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact 
+   named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `deletetask 2` : Deletes the 2nd task shown in the current list.
 
    * `clear` : Deletes all contacts.
 
-   * `add n/Task 1 d/Do homework` : Add a task named `Task 1`
+   * `addtask n/Task 1 d/Do homework p/low` : Add a task named `Task 1` with description `Do homework`
+   and priority `LOW`.
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## (For user with no experience on command terminal) Open and navigate the command terminal
+
+1. Click on the Windows icon on your computer, search "Terminal", then open the app.
+A UI similar to the below should appear.<br>
+    ![Terminal](images/Terminal.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
