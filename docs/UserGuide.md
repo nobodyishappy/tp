@@ -6,7 +6,17 @@
 
 # TeamTracker User Guide
 
-TeamTracker is a **desktop app for managing contacts and tasks, optimized for use via a Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you need help with managing tasks, TeamTracker can help to track your task so that you would not have trouble remembering your tasks.
+Welcome to TeamTracker, your **ultimate solution for managing contacts and tasks!** 
+
+
+Designed with **simplicity** in mind, TeamTracker seamlessly **combines** the ease of a **Graphical User Interface 
+(GUI)** with the efficiency of a **Command Line Interface (CLI)**, catering to users of all technical abilities.
+
+
+Don't worry if you're not tech-savvy – TeamTracker is designed for **effortless use**, whether you're a coding geek
+or just getting started. Our **intuitive interface** makes task and contact management a breeze, so you can focus on
+what matters most without any hassle.
+
 
 <!-- * Table of Contents -->
 <page-nav-print />
