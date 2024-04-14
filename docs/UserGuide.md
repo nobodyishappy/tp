@@ -291,7 +291,7 @@ Format: `unmarktask TASK_INDEX [MORE_TASK_INDICES]`
 * The indices refer to the index numbers shown in the displayed task list.
 * The indices **must be positive integers** 1, 2, 3, ...
 * If at least one of the indices are invalid, the command fails, e.g. `list` followed by `unmarktask 1 2` fails if there is only one task in the task list.
-* * If a specified task is already marked as not done, the command still succeeds, and no change will occur to the task.
+* If a specified task is already marked as not done, the command still succeeds, and no change will occur to the task.
 
 Examples:
 * `list` followed by `unmarktask 1 2` marks the first two tasks in the task list as not done.
