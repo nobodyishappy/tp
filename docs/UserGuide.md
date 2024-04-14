@@ -74,7 +74,7 @@ Read the [Quick start](#quick-start) section again to check the Java version req
 --------------------------------------------------------------------------------------------------------------------
 ### Basic tutorial (for starters)
 
-In this tutorial, we'll guide you through the basics of using our app to manage your tasks efficiently. With 
+In this tutorial, we will guide you through the basics of using our app to manage your tasks efficiently. With 
 TeamTracker, staying organized has never been easier. Let's get started!
 
 The image below is the application interface with more detailed annotations for you to gain a better understanding
@@ -84,12 +84,27 @@ of each part in our app.
 
 You can see that the UI is divided into four main parts:
 
-- Command Box: This is where you enter your command into the app.
-- Message Box: After you entered a command, the message showing the result of a command will be shown here.
-- Person List: Displays the list of people stored in your app.
-  - Each person
-- Task List: Displays the list of tasks stored in your app.
-  - Each task
+* Command Box: This is where you enter your command into the app.
+* Message Box: After you entered a command, the message showing the result of a command will be shown here.
+* Person List: Displays the list of people stored in your app.
+  * Each person has a **name** that is displayed beside their number on the list. As names are the most natural way for you 
+to distinct between people, we made it the most notable part for person so that you can look at different people with ease.
+  * Under the name are other personal information of a person. From top to bottom, they are **phone number, address and email**.
+These additional information are used when you need to contact a friend or group mate about any issues you might have.
+  * Additional information that will be shown later is the **tasks assigned to a person**. When a task is assigned
+to a person, that task will be displayed as a block under the person's name. In this image, there are no tasks assigned
+to any person.
+* Task List: Displays the list of tasks stored in your app.
+  * Each task has a **task name** beside their number on the list. Similar to person, names are the best way for you
+to distinct between tasks, so we choose it to be the most notable part in each task.
+  * Beside task name is another essential aspect for managing tasks, which is **task status**. A task can either be
+<span style="color:green">Done</span> or <span style="color:red">Not Done</span>. Therefore, when you look at tasks, 
+you would prioritize tasks that are unfinished before those that are done already. 
+  * Under the task name is task priority, which can be <span style="color:green">Low</span>, <span style="color:yellow">Medium</span>,
+or <span style="color:red">High</span>. This also determines how important a task is so you can choose which one to finish first.
+  * Under the task priority is task description, which contains the details of a task that task name did not cover.
+  * Another additional information that was left out in this part is task deadline. Deadline contains a date and time and
+it tells you when a task is due so that you can plan accordingly.
 
 Now, let's try to add a task into our task list. Type `addtask n/MA HW d/math homework 4 week 12 p/high` into the 
 command box and press Enter. The result should be similar to this:
@@ -121,12 +136,36 @@ the [Features](#features) section to unlock the full potential of TeamTracker.
 
 ## Features
 
-### Notes about tasks order
+### Notes
 
-In our application, tasks are ordered 
+#### Notes about tasks order
 
+When managing tasks in TeamTracker, it's essential to understand the order in which tasks are displayed to ensure 
+efficient organization:
 
-### Notes about the command format
+<box type="info" seamless>
+* Tasks are first sorted based on their status, with those marked as "not done" appearing before
+those marked as "done." This prioritization allows users to focus on pending tasks before reviewing completed ones, 
+facilitating better task management.
+* Within each status category, tasks are sorted based on their priority level. Tasks with a high priority are 
+displayed first, followed by those with a medium priority, and finally, tasks with a low priority. 
+This hierarchy ensures that urgent tasks are prominently featured, allowing users to address critical matters promptly.
+* In the event of a tie in priority level, tasks are further sorted by their deadline. Tasks with a closer deadline are
+displayed before later deadline. This is another factor for you to decide which task should be handled immediately.
+* If all other factors result in a tie, tasks are further sorted lexicographically, based on their names 
+then descriptions. This ensures a consistent and predictable order for tasks with the same priority, 
+enabling users to easily locate specific tasks within their lists.
+</box>
+
+#### Notes about reading command guide
+
+Each command in this guide are formatted with the following conventions:
+* Description: This part tells you what the function of each command is.
+* Format: How you should input each command into the app.
+* Tips/Notes (if there is any): This part contains further details for the input of each command.
+* Result: How the app will behave based on what input you give for each command.
+
+#### Notes about the command format
 
 <box type="info" seamless>
 
@@ -143,61 +182,83 @@ In our application, tasks are ordered
 as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* These commands currently support mass operations, which means they can be applied on multiple inputs in one command,
+as long as you specified all inputs:
+  * delete
+  * assign
+  * unassign
+  * marktask
+  * unmarktask
+  * deletetask
+
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span 
 multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </box>
 
-### Viewing help : `help`
+### Managing Person
 
-Shows a message explaining how to access the help page (the User Guide).
+#### Adding a person: `add`
 
-![help message](images/helpMessage_v1.3a.PNG)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
+Adds a person to the person list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:**
+* Names should only contain alphanumeric characters and spaces, and it should not be blank.
+* Phone numbers should only contain numbers, and it should be at least 3 digits long.
+* Emails must be in the format local-part@domain.
+* A person can have any number of tasks assigned (including 0)
 </box>
+
+Result:
+* If all input you provided is valid, that person will be added to the person list with their respective personal
+information.
+* If any of the input (names, phone numbers, emails, address) you provided is invalid, the respective error message for that
+invalid input will appear, so that you know how to change your input accordingly,
+* If any of the input (names, phone numbers, emails, address) is missing, the invalid command format message will be shown,
+along with the correct format for the command.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
+* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
-### Listing all persons : `list`
+#### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons stored.
 
 Format: `list`
 
-### Editing a person : `edit`
+Result: Show the full person list. 
 
-Edits an existing person in the address book.
+Example: `list`
+
+#### Editing a person : `edit`
+
+Edits an existing person in the list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
+Notes:
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+Result:
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+#### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
+Notes:
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -205,32 +266,47 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+Result:
+* If no matching name is found, an empty list is displayed
+* If the search find at least one person, all person found will be displayed as a list and they are sorted by
+their names lexicographically.
+
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult_v1.3a.PNG)
 
-### Deleting a person : `delete`
+#### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `delete INDEX [MORE_INDEX]`
 
+Notes:
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+Result:
+* If one of the `INDEX` you provided is not on the displayed list, an error message will be shown. It will tell you the index
+you provided is invalid
+* Otherwise, the person(s) with the indices you provide on the displayed person list is/are deleted.
+
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the person list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### Adding a task: `addtask`
+Result: delete all person on the person list.
+
+### Managing task
+
+#### Adding a task: `addtask`
 
 * Adds a task to the task list with three levels of priority (LOW, MEDIUM, HIGH).
 * Priority can also be in integers (1-Low, 2-Medium, 3-High).
@@ -238,43 +314,85 @@ Format: `clear`
 
 Format: `addtask n/NAME d/DESCRIPTION p/PRIORITY [by/DEADLINE]​`
 
+Notes:
+* Task name can be any characters, not just alphanumeric. Same for task description.
+* Task priority currently has three values: <span style="color:green">Low</span>, <span style="color:yellow">Medium</span>,
+or <span style="color:red">High</span>, and their respective numerical values are 1, 2, and 3. Therefore, for priority,
+you can use both low, medium and high or 1, 2, 3 respectively.
+* Task deadline must be in the format `dd-MM-yyyy HH:mm`.
+
+Result:
+* If any of the compulsory input is missing, an error message of invalid command format will appear.
+* If task priority are specified with a value different from the {low, medium, high, 1, 2, 3} set, an error message
+about task priority will be shown.
+* If the deadline is not in the correct DateTime format, an error message about deadline will be displayed.
+* Otherwise, if all the inputs are valid, a new task is added to the task list using the information provided.
+
 Examples:
 * `addtask n/Task 1 d/Do homework p/HIGH`
 * `addtask n/Task 1 d/Do homework p/1`
 * `addtask n/Task 1 d/Do homework p/HIGH by/12-12-2024 23:59`
 
-### Assigning a task: `assign`
+#### Assigning a task: `assign`
 
-Assigns a task to a person.
+Assigns a task to one or more person.
 
-Format: `assign TASK_INDEX to/PERSON_INDEX`
+Format: `assign TASK_INDEX to/PERSON_INDEX [OTHER_PERSON_INDEX]`
+
+Notes:
+* The `TASK_INDEX` and `PERSON_INDEX` are from the displayed list.
+* You can only assign one task to many person at once, not the other way.
+* If you provide duplicate `PERSON_INDEX`, all duplicated index will be counted as one person and the command will still
+be valid
+
+Result:
+* If at least one of the index provided is invalid, an error message will be displayed.
+* Otherwise, the task assigned will be shown under each assigned person's name.
+
+![UI_assign](images/UI_assign.png)
 
 Examples:
 * `assign 1 to/1`
 
-### Unassigning a task: `unassign`
+#### Unassigning a task: `unassign`
 
-Unassigns a task to a person.
+Unassigns a task from a person.
 
-Format: `unassign TASK_INDEX to/PERSON_INDEX`
+Format: `unassign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDEX]`
+
+Notes:
+* The `TASK_INDEX` and `PERSON_INDEX` are from the displayed list.
+* You can only assign one task to many person at once, not the other way.
+* If you provide duplicate `PERSON_INDEX`, all duplicated index will be counted as one person and the command will still
+  be valid
+
+Result:
+* If at least one of the index provided is invalid, an error message will be displayed.
+* Otherwise, that task under each assigned person's name will be deleted and the person(s) is/are unassigned from the task.
 
 Examples:
 * `unassign 1 to/1`
 
-### Clearing the tasks of a person: `cleartask`
+#### Clearing the tasks of a person: `cleartask`
 
 Clears the tasks of a person.
 
 Format: `cleartask PERSON_INDEX`
 
+Result: Delete all tasks assigned to a person
+
 Examples
 * `cleartask 1`
 
-### Marking a task: `marktask`
+#### Marking a task: `marktask`
 
 Marks a task to the task list as done.
 
-Format: `marktask TASK_INDEX`
+Format: `marktask TASK_INDEX [MORE_TASk_INDEX]`
+
+Notes:
+
+Result:
 
 Examples:
 * `marktask 1`
@@ -284,6 +402,10 @@ Examples:
 Marks a task to the task list as not done.
 
 Format: `unmarktask TASK_INDEX`
+
+Notes:
+
+Result:
 
 Examples:
 * `unmarktask 1`
@@ -298,6 +420,9 @@ Format: `deletetask TASK_INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+Result:
+
+
 Examples:
 * `listtask` followed by `deletetask 1` deletes the 1st task in the task list.
 * `findtask today` followed by `deletetask 2` deletes the 2nd task in the results of the `findtask` command.
@@ -311,6 +436,9 @@ Format: `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY
 * Edits the task at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+Result:
+
 
 Examples:
 * `edittask 1 p/high`
@@ -338,21 +466,34 @@ Format `findtask KEYWORD [MORE_KEYWORDS]`
 * Tasks matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `2103t 2101` will return `2101 CA3`, `2103t milestone`
 
+Result:
+
+
 Examples:
 * `findtask implement` returns `implement findpriority` and `implement mass ops`
 * `findtask cs2103t cs2101` returns `CS2101 CA3`, `CS2103T developer guide`
 
-### Exiting the program : `exit`
+### Others
+
+#### Viewing help : `help`
+
+Shows a message explaining how to access the help page (the User Guide).
+
+![help message](images/helpMessage_v1.3a.PNG)
+
+Format: `help`
+
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+#### Saving the data
 
 AddressBook and TaskList data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 TaskList data are saved automatically as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are welcome to update data directly by editing that data file.
@@ -364,7 +505,7 @@ If your changes to the data file makes its format invalid, TeamTracker will disc
 Furthermore, certain edits can cause the TeamTracker to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Archiving data files `[coming in v2.0]`
+#### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
