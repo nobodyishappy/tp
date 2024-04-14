@@ -127,18 +127,20 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult_v1.3a.PNG)
 
-### Deleting a person : `delete`
+### Deleting persons : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified persons from the address book.
 
-Format: `delete INDEX`
+Format: `delete PERSON_INDEX [MORE_PERSON_INDICES]`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Duplicate indices will be removed, e.g. `delete 1 1` is the same as `delete 1`.
+* The order of the indices do not matter, e.g. `delete 1 2` is the same as `delete 2 1`.
+* The indices refer to the index numbers shown in the displayed person list.
+* The indices **must be positive integers** 1, 2, 3, ...
+* If at least one of the indices are invalid, the command fails, e.g. `list` followed by `delete 1 2` fails if there is only one person in the address book.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 1 2` deletes the first two persons in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
@@ -162,21 +164,35 @@ Examples:
 
 ### Assigning a task: `assign`
 
-Assigns a task to a person.
+Assigns a task to persons.
 
-Format: `assign TASK_INDEX to/PERSON_INDEX`
+Format: `assign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDICES]`
+
+* Duplicate person indices will be removed, e.g. `assign 1 to/1 1` is the same as `assign 1 to/ 1`.
+* The order of the person indices do not matter, e.g. `assign 1 to/1 2` is the same as `assign 1 to/2 1`.
+* The task/person indices refer to the index numbers shown in the displayed task/person list.
+* The indices **must be positive integers** 1, 2, 3, ...
+* If at least one of the indices are invalid, the command fails, e.g. `list` followed by `assign 1 to/1 2` fails if there is only one person in the address book.
 
 Examples:
-* `assign 1 to/1`
+* `list` and `listtask` followed by `assign 1 to/1 2` assigns the 1st task in the task list to the first two persons in the address book.
+* `find Betsy` and `findtask implement` followed by `assign 1 to/1` assigns the 1st task in the results of the `findtask` command to the 1st person in the results of the `find` command.
 
 ### Unassigning a task: `unassign`
 
-Unassigns a task to a person.
+Unassigns a task to persons.
 
-Format: `unassign TASK_INDEX to/PERSON_INDEX`
+Format: `unassign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDICES]`
+
+* Duplicate person indices will be removed, e.g. `unassign 1 to/1 1` is the same as `unassign 1 to/ 1`.
+* The order of the person indices do not matter, e.g. `unassign 1 to/1 2` is the same as `unassign 1 to/2 1`.
+* The task/person indices refer to the index numbers shown in the displayed task/person list.
+* The indices **must be positive integers** 1, 2, 3, ...
+* If at least one of the indices are invalid, the command fails, e.g. `list` followed by `unassign 1 to/1 2` fails if there is only one person in the address book.
 
 Examples:
-* `unassign 1 to/1`
+* `list` and `listtask` followed by `unassign 1 to/1 2` unassigns the 1st task in the task list to the first two persons in the address book.
+* `find Betsy` and `findtask implement` followed by `unassign 1 to/1` unassigns the 1st task in the results of the `findtask` command to the 1st person in the results of the `find` command.
 
 ### Clearing the tasks of a person: `cleartask`
 
@@ -187,37 +203,53 @@ Format: `cleartask PERSON_INDEX`
 Examples
 * `cleartask 1`
 
-### Marking a task: `marktask`
+### Marking tasks: `marktask`
 
-Marks a task to the task list as done.
+Marks tasks in the task list as done.
 
-Format: `marktask TASK_INDEX`
+Format: `marktask TASK_INDEX [MORE_TASK_INDICES]`
 
-Examples:
-* `marktask 1`
-
-### Unmarking a task: `unmarktask`
-
-Marks a task to the task list as not done.
-
-Format: `unmarktask TASK_INDEX`
+* Duplicate indices will be removed, e.g. `marktask 1 1` is the same as `marktask 1`.
+* The order of the indices do not matter, e.g. `marktask 1 2` is the same as `marktask 2 1`.
+* The indices refer to the index numbers shown in the displayed task list.
+* The indices **must be positive integers** 1, 2, 3, ...
+* If at least one of the indices are invalid, the command fails, e.g. `list` followed by `marktask 1 2` fails if there is only one task in the task list.
 
 Examples:
-* `unmarktask 1`
+* `list` followed by `marktask 1 2` marks the first two tasks in the task list as done.
+* `findtask implement` followed by `marktask 1` marks the 1st task in the results of the `find` command as done.
+
+### Unmarking tasks: `unmarktask`
+
+Marks tasks in the task list as not done.
+
+Format: `unmarktask TASK_INDEX [MORE_TASK_INDICES]`
+
+* Duplicate indices will be removed, e.g. `unmarktask 1 1` is the same as `unmarktask 1`.
+* The order of the indices do not matter, e.g. `unmarktask 1 2` is the same as `unmarktask 2 1`.
+* The indices refer to the index numbers shown in the displayed task list.
+* The indices **must be positive integers** 1, 2, 3, ...
+* If at least one of the indices are invalid, the command fails, e.g. `list` followed by `unmarktask 1 2` fails if there is only one task in the task list.
+
+Examples:
+* `list` followed by `unmarktask 1 2` marks the first two tasks in the task list as not done.
+* `findtask implement` followed by `unmarktask 1` marks the 1st task in the results of the `find` command as not done.
 
 ### Deleting a task: `deletetask`
 
-Deletes the specified task from the task list.
+Deletes the specified tasks from the task list.
 
-Format: `deletetask TASK_INDEX`
+Format: `deletetask TASK_INDEX [MORE_TASK_INDICES]`
 
-* Deletes the task at the specified `TASK_INDEX`.
-* The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Duplicate indices will be removed, e.g. `deletetask 1 1` is the same as `deletetask 1`.
+* The order of the indices do not matter, e.g. `deletetask 1 2` is the same as `deletetask 2 1`.
+* The indices refer to the index numbers shown in the displayed task list.
+* The indices **must be positive integers** 1, 2, 3, ...
+* If at least one of the indices are invalid, the command fails, e.g. `listtask` followed by `deletetask 1 2` fails if there is only one task in the task list.
 
 Examples:
-* `listtask` followed by `deletetask 1` deletes the 1st task in the task list.
-* `findtask today` followed by `deletetask 2` deletes the 2nd task in the results of the `findtask` command.
+* `listtask` followed by `deletetask 1 2` deletes the first two tasks in the task list.
+* `findtask implement` followed by `deletetask 1` deletes the 1st task in the results of the `findtask` command.
 
 ### Editing a task: `edittask`
 
