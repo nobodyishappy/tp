@@ -164,6 +164,62 @@ Examples:
 * `addtask n/Task 1 d/Do homework p/1`
 * `addtask n/Task 1 d/Do homework p/HIGH by/12-12-2024 23:59`
 
+### Listing the tasks: `listtask`
+
+Shows a list of all tasks in the task list.
+
+Format: `listtask`
+
+Examples:
+* `listtask`
+
+### Editing a task: `edittask`
+
+Edits an existing task in the task list.
+
+Format: `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
+
+* Edits the task at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `edittask 1 p/high`
+* `edittask 2 d/new description by/04-04-2024 10:33`
+* `edittask 3 n/new task d/new description p/low by/04-04-2024 10:33`
+
+### Finding a task or tasks by task name: `findtask`
+Finds tasks which names contain any of the given keywords.
+
+Format `findtask KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `2103t` will match `2103T`
+* The order of the keywords does not matter. e.g. `findpriority implement` will match `implement findpriority`
+* Only the task name is searched.
+* Only full words will be matched e.g. `prio` will not match `priority`
+* Tasks matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `2103t 2101` will return `2101 CA3`, `2103t milestone`
+
+Examples:
+* `findtask implement` returns `implement findpriority` and `implement mass ops`
+* `findtask cs2103t cs2101` returns `CS2101 CA3`, `CS2103T developer guide`
+
+### Deleting a task: `deletetask`
+
+Deletes the specified tasks from the task list.
+
+Format: `deletetask TASK_INDEX [MORE_TASK_INDICES]`
+
+* Duplicate indices will be removed, e.g. `deletetask 1 1` is the same as `deletetask 1`.
+* The order of the indices does not matter, e.g. `deletetask 1 2` is the same as `deletetask 2 1`.
+* The indices refer to the index numbers shown in the displayed task list.
+* The indices **must be positive integers** 1, 2, 3, ...
+* If at least one of the indices are invalid, the command fails, e.g. `listtask` followed by `deletetask 1 2` fails if there is only one task in the task list.
+
+Examples:
+* `listtask` followed by `deletetask 1 2` deletes the first two tasks in the task list.
+* `findtask implement` followed by `deletetask 1` deletes the 1st task in the results of the `findtask` command.
+
 ### Assigning a task: `assign`
 
 Assigns a task to persons.
@@ -240,62 +296,6 @@ Format: `unmarktask TASK_INDEX [MORE_TASK_INDICES]`
 Examples:
 * `list` followed by `unmarktask 1 2` marks the first two tasks in the task list as not done.
 * `findtask implement` followed by `unmarktask 1` marks the 1st task in the results of the `find` command as not done.
-
-### Deleting a task: `deletetask`
-
-Deletes the specified tasks from the task list.
-
-Format: `deletetask TASK_INDEX [MORE_TASK_INDICES]`
-
-* Duplicate indices will be removed, e.g. `deletetask 1 1` is the same as `deletetask 1`.
-* The order of the indices does not matter, e.g. `deletetask 1 2` is the same as `deletetask 2 1`.
-* The indices refer to the index numbers shown in the displayed task list.
-* The indices **must be positive integers** 1, 2, 3, ...
-* If at least one of the indices are invalid, the command fails, e.g. `listtask` followed by `deletetask 1 2` fails if there is only one task in the task list.
-
-Examples:
-* `listtask` followed by `deletetask 1 2` deletes the first two tasks in the task list.
-* `findtask implement` followed by `deletetask 1` deletes the 1st task in the results of the `findtask` command.
-
-### Editing a task: `edittask`
-
-Edits an existing task in the task listx.
-
-Format: `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
-
-* Edits the task at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-
-Examples:
-* `edittask 1 p/high`
-* `edittask 2 d/new description by/04-04-2024 10:33`
-* `edittask 3 n/new task d/new description p/low by/04-04-2024 10:33`
-
-### Listing the tasks: `listtask`
-
-Shows a list of all tasks in the task list.
-
-Format: `listtask`
-
-Examples:
-* `listtask`
-
-### Finding a task or tasks by task name: `findtask`
-Finds tasks which names contain any of the given keywords.
-
-Format `findtask KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `2103t` will match `2103T`
-* The order of the keywords does not matter. e.g. `findpriority implement` will match `implement findpriority`
-* Only the task name is searched.
-* Only full words will be matched e.g. `prio` will not match `priority`
-* Tasks matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `2103t 2101` will return `2101 CA3`, `2103t milestone`
-
-Examples:
-* `findtask implement` returns `implement findpriority` and `implement mass ops`
-* `findtask cs2103t cs2101` returns `CS2101 CA3`, `CS2103T developer guide`
 
 ### Exiting the program : `exit`
 
