@@ -426,6 +426,22 @@ or a terminal window
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. **Loosen the constraints for a valid name**: The current constraints for a valid name that it should only contain alphanumeric characters and spaces, and it should not be blank, are too restricted as certain actual names (such as those containing `s/o` or the character `'`) are not supported under these constraints. We plan to loosen these constraints by accepting any character, as long as the given name is not blank.
+2. **Loosen the constraints for a valid phone number**: The current constraints for a valid phone number that it should only contain numbers, and it should be at least 3 digits long, are too restricted as users may want to enter a phone number with the `-` characters and spaces. We plan to loosen these constraints by accepting these characters as well.
+3. **Tighten the definition of two contacts being the same**: The current definition that two contacts are the same if and only if the two contacts have the same name, is too restricted because it is extremely common that two different people share the same name, yet they need to be treated as different contacts. We plan to tighten this definition to also require the two contacts to have the same phone number, email and address.
+4. **Change the handling of invalid deadlines**: The current behaviour of `addtask` and `edittask` against invalid dates, where for example dates like `30-02-2024` is implicitly replaced by `29-02-2024`, is counter-intuitive to the users. We plan to explicitly display an error message like `Invalid date` to the user whenever a non-existent date is given.
+5. **Make 'failed task addition due to invalid priority' message more specific**: The current error message for a failed task addition when the given priority is invalid `Task priority can take either an integer or low, medium, high, and it should not be blank` is inaccurate. We plan to make the error message also mention the range of accepted integers: `Task priority can take either an integer between 1 and 3, or low, medium, high, and it should not be blank`.
+6. **Make 'invalid index' message more specific**: The current error message displayed when a given index is out of range `The person index provided is invalid` or `The task index provided is invalid` is too general. We plan to make the error message also mention which indices are invalid: `The person index 2, 3, 4 are invalid`, since mass ops fails whenever at least one of the provided indices is invalid.
+7. **Support the clearing of all tasks in the task list**: The current lack of such a command makes the feature of 'clearing all entries' rather incomplete. We plan to add a command that can clear all tasks in the task list, correspondingly similar to the `clear` command which clears all persons in the address book.
+8. **Support the removal of deadline from tasks by means of editing the task**: The current method of removing deadline from tasks, which requires users to delete and add the same task, inconveniences users. We plan to support the removal of deadline from tasks using the `edittask` command, where deadline can be removed from tasks by providing a blank `by/` parameter.
+9. **Enhance the colour combination of priority level blocks in the UI**: The current UI display for a low priority level, involving a striking green colour block with a white colour font, makes it difficult for users to see the label for the block. We plan to make the green colour of the block less striking, e.g. using dark green (`#006400`) or forest green (`#228B22`) instead.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
