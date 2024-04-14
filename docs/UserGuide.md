@@ -134,7 +134,7 @@ Deletes the specified persons from the address book.
 Format: `delete PERSON_INDEX [MORE_PERSON_INDICES]`
 
 * Duplicate indices will be removed, e.g. `delete 1 1` is the same as `delete 1`.
-* The order of the indices do not matter, e.g. `delete 1 2` is the same as `delete 2 1`.
+* The order of the indices does not matter, e.g. `delete 1 2` is the same as `delete 2 1`.
 * The indices refer to the index numbers shown in the displayed person list.
 * The indices **must be positive integers** 1, 2, 3, ...
 * If at least one of the indices are invalid, the command fails, e.g. `list` followed by `delete 1 2` fails if there is only one person in the address book.
@@ -148,6 +148,8 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+
+* There is currently no support for clearing all entries form the task list. This feature will be one of the application's planned enhancements. As a temporary workaround, users can execute `deletetask` with task indices from 1 to the number of tasks in the task list.
 
 ### Adding a task: `addtask`
 
@@ -169,10 +171,11 @@ Assigns a task to persons.
 Format: `assign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDICES]`
 
 * Duplicate person indices will be removed, e.g. `assign 1 to/1 1` is the same as `assign 1 to/ 1`.
-* The order of the person indices do not matter, e.g. `assign 1 to/1 2` is the same as `assign 1 to/2 1`.
+* The order of the person indices does not matter, e.g. `assign 1 to/1 2` is the same as `assign 1 to/2 1`.
 * The task/person indices refer to the index numbers shown in the displayed task/person list.
 * The indices **must be positive integers** 1, 2, 3, ...
 * If at least one of the indices are invalid, the command fails, e.g. `list` followed by `assign 1 to/1 2` fails if there is only one person in the address book.
+* If a specified person is already assigned the task, the command still succeeds, and no change will occur to the person.
 
 Examples:
 * `list` and `listtask` followed by `assign 1 to/1 2` assigns the 1st task in the task list to the first two persons in the address book.
@@ -185,10 +188,11 @@ Unassigns a task to persons.
 Format: `unassign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDICES]`
 
 * Duplicate person indices will be removed, e.g. `unassign 1 to/1 1` is the same as `unassign 1 to/ 1`.
-* The order of the person indices do not matter, e.g. `unassign 1 to/1 2` is the same as `unassign 1 to/2 1`.
+* The order of the person indices does not matter, e.g. `unassign 1 to/1 2` is the same as `unassign 1 to/2 1`.
 * The task/person indices refer to the index numbers shown in the displayed task/person list.
 * The indices **must be positive integers** 1, 2, 3, ...
 * If at least one of the indices are invalid, the command fails, e.g. `list` followed by `unassign 1 to/1 2` fails if there is only one person in the address book.
+* If a specified person is already not assigned the task, the command still succeeds, and no change will occur to the person.
 
 Examples:
 * `list` and `listtask` followed by `unassign 1 to/1 2` unassigns the 1st task in the task list to the first two persons in the address book.
@@ -210,10 +214,11 @@ Marks tasks in the task list as done.
 Format: `marktask TASK_INDEX [MORE_TASK_INDICES]`
 
 * Duplicate indices will be removed, e.g. `marktask 1 1` is the same as `marktask 1`.
-* The order of the indices do not matter, e.g. `marktask 1 2` is the same as `marktask 2 1`.
+* The order of the indices does not matter, e.g. `marktask 1 2` is the same as `marktask 2 1`.
 * The indices refer to the index numbers shown in the displayed task list.
 * The indices **must be positive integers** 1, 2, 3, ...
 * If at least one of the indices are invalid, the command fails, e.g. `list` followed by `marktask 1 2` fails if there is only one task in the task list.
+* If a specified task is already marked as done, the command still succeeds, and no change will occur to the task.
 
 Examples:
 * `list` followed by `marktask 1 2` marks the first two tasks in the task list as done.
@@ -226,10 +231,11 @@ Marks tasks in the task list as not done.
 Format: `unmarktask TASK_INDEX [MORE_TASK_INDICES]`
 
 * Duplicate indices will be removed, e.g. `unmarktask 1 1` is the same as `unmarktask 1`.
-* The order of the indices do not matter, e.g. `unmarktask 1 2` is the same as `unmarktask 2 1`.
+* The order of the indices does not matter, e.g. `unmarktask 1 2` is the same as `unmarktask 2 1`.
 * The indices refer to the index numbers shown in the displayed task list.
 * The indices **must be positive integers** 1, 2, 3, ...
 * If at least one of the indices are invalid, the command fails, e.g. `list` followed by `unmarktask 1 2` fails if there is only one task in the task list.
+* * If a specified task is already marked as not done, the command still succeeds, and no change will occur to the task.
 
 Examples:
 * `list` followed by `unmarktask 1 2` marks the first two tasks in the task list as not done.
@@ -242,7 +248,7 @@ Deletes the specified tasks from the task list.
 Format: `deletetask TASK_INDEX [MORE_TASK_INDICES]`
 
 * Duplicate indices will be removed, e.g. `deletetask 1 1` is the same as `deletetask 1`.
-* The order of the indices do not matter, e.g. `deletetask 1 2` is the same as `deletetask 2 1`.
+* The order of the indices does not matter, e.g. `deletetask 1 2` is the same as `deletetask 2 1`.
 * The indices refer to the index numbers shown in the displayed task list.
 * The indices **must be positive integers** 1, 2, 3, ...
 * If at least one of the indices are invalid, the command fails, e.g. `listtask` followed by `deletetask 1 2` fails if there is only one task in the task list.
