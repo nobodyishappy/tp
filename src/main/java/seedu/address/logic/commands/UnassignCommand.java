@@ -29,7 +29,7 @@ public class UnassignCommand extends Command {
             + "by the index numbers used in the last person listing. "
             + "Does nothing if the task not assigned to a person.\n"
             + "Parameters: TASK_INDEX (must be a positive integer) "
-            + "to/ PERSON_INDEX [MORE_PERSON_INDICES] (must be distinct positive integers)\n"
+            + "to/ PERSON_INDEX [MORE_PERSON_INDICES] (must be positive integers)\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "to/ 1 2";
 
