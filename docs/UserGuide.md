@@ -244,9 +244,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 Notes:
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* Existing values will be updated to the input values for that respective field.
 
 Result:
+* If no fields is provided, an error message will be displayed.
+* Otherwise, the app replaces the value in the field you specified with the value you provided.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -290,7 +292,7 @@ Notes:
 Result:
 * If one of the `INDEX` you provided is not on the displayed list, an error message will be shown. It will tell you the index
 you provided is invalid
-* Otherwise, the person(s) with the indices you provide on the displayed person list is/are deleted.
+* Otherwise, the person(s) with the index(or indices) you provide on the displayed person list is/are deleted.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the person list.
@@ -386,26 +388,34 @@ Examples
 
 #### Marking a task: `marktask`
 
-Marks a task to the task list as done.
+Marks a task in the task list as <span style="color:green">Done</span>.
 
 Format: `marktask TASK_INDEX [MORE_TASk_INDEX]`
 
 Notes:
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Result:
+* If at least one of the index provided is invalid, an error message will be displayed.
+* Otherwise, the task(s) at the index (or indices) provided will be marked as <span style="color:green">Done</span>
 
 Examples:
 * `marktask 1`
 
 ### Unmarking a task: `unmarktask`
 
-Marks a task to the task list as not done.
+Marks a task in the task list as <span style="color:red">Not Done</span>.
 
 Format: `unmarktask TASK_INDEX`
 
 Notes:
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Result:
+* If at least one of the index provided is invalid, an error message will be displayed.
+* Otherwise, the task(s) at the index (or indices) provided will be marked as <span style="color:red">Not Done</span>.
 
 Examples:
 * `unmarktask 1`
@@ -416,11 +426,13 @@ Deletes the specified task from the task list.
 
 Format: `deletetask TASK_INDEX`
 
+Notes:
 * Deletes the task at the specified `TASK_INDEX`.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Result:
+* If at least one of the index provided is invalid, an error message will be displayed.
 
 
 Examples:
@@ -429,16 +441,19 @@ Examples:
 
 ### Editing a task: `edittask`
 
-Edits an existing task in the task listx.
+Edits an existing task in the task list.
 
 Format: `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
 
+Notes:
 * Edits the task at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Result:
-
+* If the `TASK_INDEX` provided is invalid, an error message is displayed.
+* If no optional fields is provided, an error message is displayed.
+* Otherwise, the app replaces the value in the field you specified with the value you provided.
 
 Examples:
 * `edittask 1 p/high`
@@ -451,14 +466,17 @@ Shows a list of all tasks in the task list.
 
 Format: `listtask`
 
+Result: List all tasks stored in the app.
+
 Examples:
 * `listtask`
 
 ### Finding a task or tasks by task name: `findtask`
 Finds tasks which names contain any of the given keywords.
 
-Format `findtask KEYWORD [MORE_KEYWORDS]`
+Format: `findtask KEYWORD [MORE_KEYWORDS]`
 
+Notes:
 * The search is case-insensitive. e.g `2103t` will match `2103T`
 * The order of the keywords does not matter. e.g. `findpriority implement` will match `implement findpriority`
 * Only the task name is searched.
@@ -467,7 +485,8 @@ Format `findtask KEYWORD [MORE_KEYWORDS]`
   e.g. `2103t 2101` will return `2101 CA3`, `2103t milestone`
 
 Result:
-
+* If no matching task name is found, an empty list is displayed.
+* If the search find at least one task, all tasks found will be displayed as a sorted task list.
 
 Examples:
 * `findtask implement` returns `implement findpriority` and `implement mass ops`
@@ -483,11 +502,15 @@ Shows a message explaining how to access the help page (the User Guide).
 
 Format: `help`
 
+Result: Display a box that contains the link to the User Guide.
+
 #### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+Result: Close the app.
 
 #### Saving the data
 
