@@ -6,16 +6,22 @@
 
 # TeamTracker User Guide
 
-Welcome to TeamTracker, your **ultimate solution for managing contacts and tasks!** 
-
+### Welcome to TeamTracker, your ultimate solution for managing contacts and tasks!
 
 Designed with **simplicity** in mind, TeamTracker seamlessly **combines** the ease of a **Graphical User Interface 
 (GUI)** with the efficiency of a **Command Line Interface (CLI)**, catering to users of all technical abilities.
 
+Tailored for **individuals with fast typing speeds** who prefer **keyboard-centric navigation** to 
+**mouse-driven interfaces**, TeamTracker is the ideal solution for anyone looking to 
+enhance their task management workflow.
 
-Don't worry if you're not tech-savvy – TeamTracker is designed for **effortless use**, whether you're a coding geek
+Don't worry if you are not tech-savvy – TeamTracker is designed for **effortless use**, whether you are a coding geek
 or just getting started. Our **intuitive interface** makes task and contact management a breeze, so you can focus on
 what matters most without any hassle.
+
+This User Guide serves as your **comprehensive resource** for mastering TeamTracker's features and 
+**maximizing its potential**. Whether you're a seasoned pro or new to task management software, 
+this guide will equip you with the knowledge needed to harness the **full capabilities** of TeamTracker.
 
 
 <!-- * Table of Contents -->
@@ -24,6 +30,8 @@ what matters most without any hassle.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+
+### Install and launch application
 
 1. Ensure you have Java `11` or above installed in your Computer.
 Run `java -version` on your command terminal to check your Java version.
@@ -34,30 +42,31 @@ Run `java -version` on your command terminal to check your Java version.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the
 `java -jar TeamTracker.jar`command to run the application (if you are not sure how to use the command terminal,
-refer to [this](#for-user-with-no-experience-with-command-terminal-navigating-the-command-terminal) 
+refer to [this](#if-you-have-no-experience-on-command-terminal-open-and-navigate-the-command-terminal) 
 section for a more detailed guide).<br>
    A GUI similar to the below should be displayed in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/UI.png)
 
 5. Congratulations, you are now a TeamTracker user! Get ready to take control of your tasks and contacts efficiently!<br>
-You can begin with the [Basic tutorial](#basic-tutorial-for-starters) section or refer to the [Features](#features) section
-if you already had prior experience.
+You can begin with the [Basic tutorial](#basic-tutorial-for-starters) section or refer to the [Features](#features) 
+section if you already had prior experience.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### (For user with no experience on command terminal) Open and navigate the command terminal
+### (If you have no experience on command terminal) Open and navigate the command terminal
 
-1. Click on the Windows icon on your computer, search "Terminal", then open the first app that popped up.
+1. Click on the Windows icon on your computer, search "Terminal", open the first app that popped up.
 A UI similar to the below should appear.<br>
     ![Terminal](images/Terminal_start.png)
 2. Go to the folder you put the file `TeamTracker.jar`. Then, right-click on the jar file, select "Properties",
 and copy the details in the "Location:" field. Use the picture below for references.
     ![Properties](images/Properties.png)
-3. Go back to the Terminal, type `cd` followed by a whitespace, then paste the Location you just copied. 
+3. Go back to the Terminal, type `cd` followed by a whitespace, then paste the Location you just copied and Enter. 
 Now you should be at the folder where `TeamTracker.jar` is stored.
-4. Type `java -jar TeamTracker.jar` to run the application and the GUI will be displayed. You might run `java -version` to check the Java version
-of your computer before running the jar file. Read the [Quick start](#quick-start) section again to check the Java
-version required for our app.
+4. Type `java -jar TeamTracker.jar` then Enter to run the application and the app User Interface should be displayed.<br>
+   ![Ui](images/UI.png)
+If not, you might run `java -version` to check the Java version of your computer before running the jar file. 
+Read the [Quick start](#quick-start) section again to check the Java version required for our app.
 5. Congratulations, you are now a TeamTracker user! Get ready to take control of your tasks and contacts efficiently!<br>
    You can begin with the [Basic tutorial](#basic-tutorial-for-starters) section or refer to the [Features](#features) section
    if you already had prior experience.
@@ -68,14 +77,19 @@ version required for our app.
 In this tutorial, we'll guide you through the basics of using our app to manage your tasks efficiently. With 
 TeamTracker, staying organized has never been easier. Let's get started!
 
-Below is some details of the GUI for your reference
+The image below is the application interface with more detailed annotations for you to gain a better understanding
+of each part in our app.
 
 ![UI_annotated](images/UI_annotated.png)
 
+You can see that the UI is divided into four main parts:
+
 - Command Box: This is where you enter your command into the app.
-- Message Box: Displays the message showing the result of a command.
+- Message Box: After you entered a command, the message showing the result of a command will be shown here.
 - Person List: Displays the list of people stored in your app.
+  - Each person
 - Task List: Displays the list of tasks stored in your app.
+  - Each task
 
 Now, let's try to add a task into our task list. Type `addtask n/MA HW d/math homework 4 week 12 p/high` into the 
 command box and press Enter. The result should be similar to this:
@@ -88,7 +102,8 @@ number 1 on the list. Therefore, to mark that task as done, type `marktask 1` an
 ![UI_marktask](images/UI_marktask.png)
 
 Here you might ask "Why is the task MA HW moved to number 3?". That is because we want you to see the tasks that you
-have not finished first when you look at the list. More details are given in the [Note about task list]() section.
+have not finished first when you look at the list. More details are given in the 
+[Notes about tasks order](#notes-about-tasks-order) section.
 
 After you have finished the task "MA HW", you might no longer need to store that task in the app. 
 In that case, type `deletetask 3` since the task is now at position number 3 on the list. And this is what 
@@ -108,8 +123,12 @@ the [Features](#features) section to unlock the full potential of TeamTracker.
 
 ### Notes about tasks order
 
+In our application, tasks are ordered 
+
 
 ### Notes about the command format
+
+<box type="info" seamless>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Shi Kang`.
@@ -126,6 +145,7 @@ as `help`, `list`, `exit` and `clear`) will be ignored.<br>
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span 
 multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
 </box>
 
 ### Viewing help : `help`
