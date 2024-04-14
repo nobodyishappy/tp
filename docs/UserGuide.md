@@ -514,23 +514,43 @@ Result: Close the app.
 
 #### Saving the data
 
-AddressBook and TaskList data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+AddressBook and TaskList data are saved in the hard disk automatically after any command that changes the data. 
+There is no need to save manually.
 
 #### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-TaskList data are saved automatically as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are welcome to update data directly by editing that data file.
+AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. 
+Advanced users are welcome to update data directly by editing that data file.
+TaskList data are saved automatically as a JSON file `[JAR file location]/data/tasklist.json`.
+Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, TeamTracker will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the TeamTracker to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, TeamTracker will discard all data and start with an 
+empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the TeamTracker to behave in unexpected ways (e.g., if a value 
+entered is outside the acceptable range). Therefore, edit the data file only if you are 
+confident that you can update it correctly.
 </box>
 
-#### Archiving data files `[coming in v2.0]`
+### Future updates
 
-_Details coming soon ..._
+#### Create group `[coming in v2.0]`
+
+The `Create group` command enables users to select a list of unique individuals from their contacts and 
+create a group comprising those chosen members.
+
+#### Clear task list `[coming in v2.0]`
+
+This command will be very similar to the `clear` command, but instead of clearing the person list, this command would
+clear the task list instead.
+
+#### Undo a command `[coming in v2.0]`
+
+The `Undo` command in TeamTracker offers users the convenience of reverting the most recent action with a 
+simple command. Whether an accidental deletion or unintended modification, this feature provides you a quick 
+and efficient way to backtrack the last action, restoring the previous state effortlessly.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -538,6 +558,17 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TeamTracker home folder.
+
+**Q**: Why is there no way to delete only the deadline of a task?<br>
+**A**: Currently we do not have a command that supports such specific task. However, one alternative to achieve your
+desired result is to delete the task you want to remove the deadline, then add that task again with all the old fields
+except for deadline. The process is somewhat tedious, but it gives you what you desired.
+
+**Q**: Why do you allow duplicate person names? How am I going to differentiate them in the application?<br>
+**A**: We strongly believed that in real life context, people sharing the same name is not a rare occurrence.
+Therefore, we believe it is beneficial for you to be able to add multiple people with the same name. In case of
+differentiate between people with same name, you can use other information such as phone numbers or 
+emails to point out people with the same name.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -551,18 +582,20 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
+**List**   | `list`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+**Delete** | `delete PERSON_INDEX` [MORE_PERSON_INDICES]<br> e.g., `delete 3`
+**Clear**  | `clear`
 **Add Task**   | `addtask n/NAME d/DESCRIPTION p/PRIORITY [by/DEADLINE]`
-**Delete Task**   | `deletetask TASK_INDEX`
+**Assign Task**   | `assign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDICES]​`
+**Unassign Task**   | `unassign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDICES]​`
+**ClearTask**   | `cleartask PERSON_INDEX`
+**Mark Task**   | `marktask TASK_INDEX [MORE_TASK_INDICES]​`
+**Unmark Task**   | `unmarktask TASK_INDEX [MORE_TASK_INDICES]​`
+**Delete Task**   | `deletetask TASK_INDEX [MORE_TASK_INDICES`
 **Edit Task**   | `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
-**Assign Task**   | `assign TASK_INDEX to/PERSON_INDEX​`
-**Mark Task**   | `marktask TASK_INDEX​`
-**Unmark Task**   | `unmarktask TASK_INDEX​`
-**Find Task**     | `findtask KEYWORD [MORE_KEYWORDS]` <br> e.g., `findtask 2101 2103t`
 **List Task**   | `listtask​`
+**Find Task**     | `findtask KEYWORD [MORE_KEYWORDS]` <br> e.g., `findtask 2101 2103t`
+**Help**   | `help`
