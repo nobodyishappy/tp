@@ -36,30 +36,12 @@ Run `java -version` on your command terminal to check your Java version.
 `java -jar TeamTracker.jar`command to run the application (if you are not sure how to use the command terminal,
 refer to [this](#for-user-with-no-experience-with-command-terminal-navigating-the-command-terminal) 
 section for a more detailed guide).<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the below should be displayed in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/UI.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing 
-Enter will open the help window.<br>
-
-   Some example commands you can try:
-
-   * `listtask` : Lists all tasks.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact 
-   named `John Doe` to the Address Book.
-
-   * `deletetask 2` : Deletes the 2nd task shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `addtask n/Task 1 d/Do homework p/low` : Add a task named `Task 1` with description `Do homework`
-   and priority `LOW`.
-
-   * `exit` : Exits the app.
-
-6. Congratulations, you are now a TeamTracker user! Get ready to take control of your tasks and contacts efficiently!
-   Refer to the [Features](#features) section below for details of each command.
+5. Congratulations, you are now a TeamTracker user! Get ready to take control of your tasks and contacts efficiently!<br>
+You can begin with the [Basic tutorial](#basic-tutorial-for-starters) section or refer to the [Features](#features) section
+if you already had prior experience.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -73,20 +55,61 @@ and copy the details in the "Location:" field. Use the picture below for referen
     ![Properties](images/Properties.png)
 3. Go back to the Terminal, type `cd` followed by a whitespace, then paste the Location you just copied. 
 Now you should be at the folder where `TeamTracker.jar` is stored.
-4. Type `java -jar TeamTracker.jar` to run the application. You might run `java -version` to check the Java version
+4. Type `java -jar TeamTracker.jar` to run the application and the GUI will be displayed. You might run `java -version` to check the Java version
 of your computer before running the jar file. Read the [Quick start](#quick-start) section again to check the Java
 version required for our app.
-5. Congratulations, you are now a TeamTracker user! Get ready to take control of your tasks and contacts efficiently!
-Refer to the [Features](#features) section below for details of each command.
+5. Congratulations, you are now a TeamTracker user! Get ready to take control of your tasks and contacts efficiently!<br>
+   You can begin with the [Basic tutorial](#basic-tutorial-for-starters) section or refer to the [Features](#features) section
+   if you already had prior experience.
 
+--------------------------------------------------------------------------------------------------------------------
+### Basic tutorial (for starters)
+
+In this tutorial, we'll guide you through the basics of using our app to manage your tasks efficiently. With 
+TeamTracker, staying organized has never been easier. Let's get started!
+
+Below is some details of the GUI for your reference
+
+![UI_annotated](images/UI_annotated.png)
+
+- Command Box: This is where you enter your command into the app.
+- Message Box: Displays the message showing the result of a command.
+- Person List: Displays the list of people stored in your app.
+- Task List: Displays the list of tasks stored in your app.
+
+Now, let's try to add a task into our task list. Type `addtask n/MA HW d/math homework 4 week 12 p/high` into the 
+command box and press Enter. The result should be similar to this:
+
+![UI_addtask](images/UI_addtask.png)
+
+After you finish a task, you can mark that task as done. From the image above, you can see that the task "MA HW" is at
+number 1 on the list. Therefore, to mark that task as done, type `marktask 1` and this should be your result:
+
+![UI_marktask](images/UI_marktask.png)
+
+Here you might ask "Why is the task MA HW moved to number 3?". That is because we want you to see the tasks that you
+have not finished first when you look at the list. More details are given in the [Note about task list]() section.
+
+After you have finished the task "MA HW", you might no longer need to store that task in the app. 
+In that case, type `deletetask 3` since the task is now at position number 3 on the list. And this is what 
+you should see:
+
+![UI_deletetask](images/UI_deletetask.png)
+
+Congratulations! You have learned how to add, mark, and delete tasks using TeamTracker. With these basic commands,
+you can start managing your tasks with ease.
+
+For a comprehensive overview of all the powerful commands at your fingertips, be sure to check out 
+the [Features](#features) section to unlock the full potential of TeamTracker.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
-<box type="info" seamless>
+### Notes about tasks order
 
-**Notes about the command format:**<br>
+
+### Notes about the command format
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Shi Kang`.
@@ -107,7 +130,7 @@ multiple lines as space characters surrounding line-breaks may be omitted when c
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page (the User Guide).
 
 ![help message](images/helpMessage_v1.3a.PNG)
 
