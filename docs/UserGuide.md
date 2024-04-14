@@ -58,15 +58,27 @@ Enter will open the help window.<br>
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Congratulations, you are now a TeamTracker user! Get ready to take control of your tasks and contacts efficiently!
+   Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## (For user with no experience on command terminal) Open and navigate the command terminal
+### (For user with no experience on command terminal) Open and navigate the command terminal
 
-1. Click on the Windows icon on your computer, search "Terminal", then open the app.
+1. Click on the Windows icon on your computer, search "Terminal", then open the first app that popped up.
 A UI similar to the below should appear.<br>
-    ![Terminal](images/Terminal.png)
+    ![Terminal](images/Terminal_start.png)
+2. Go to the folder you put the file `TeamTracker.jar`. Then, right-click on the jar file, select "Properties",
+and copy the details in the "Location:" field. Use the picture below for references.
+    ![Properties](images/Properties.png)
+3. Go back to the Terminal, type `cd` followed by a whitespace, then paste the Location you just copied. 
+Now you should be at the folder where `TeamTracker.jar` is stored.
+4. Type `java -jar TeamTracker.jar` to run the application. You might run `java -version` to check the Java version
+of your computer before running the jar file. Read the [Quick start](#quick-start) section again to check the Java
+version required for our app.
+5. Congratulations, you are now a TeamTracker user! Get ready to take control of your tasks and contacts efficiently!
+Refer to the [Features](#features) section below for details of each command.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -77,18 +89,20 @@ A UI similar to the below should appear.<br>
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Shi Kang`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [by/DEADLINE]` can be used as `n/Task 1 by/23-12-2024 23:59` or as `n/Task 1`.
+  e.g `n/TASK_NAME [by/DEADLINE]` can be used as `n/Task 1 by/23-12-2024 23:59` or as `n/Task 1`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such 
+as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span 
+multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
 ### Viewing help : `help`
