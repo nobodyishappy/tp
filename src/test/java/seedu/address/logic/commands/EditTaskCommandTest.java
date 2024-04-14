@@ -33,7 +33,7 @@ public class EditTaskCommandTest {
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST, descriptor);
 
-        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
+        String expectedMessage = String.format(EditTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(target));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
@@ -56,7 +56,7 @@ public class EditTaskCommandTest {
                 .withPriority("medium").build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
 
-        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
+        String expectedMessage = String.format(EditTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(lastTask));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
@@ -71,7 +71,7 @@ public class EditTaskCommandTest {
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST, new EditTaskDescriptor());
         Task editedTask = model.getFilteredTaskList().get(INDEX_FIRST.getZeroBased());
 
-        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
+        String expectedMessage = String.format(EditTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(editedTask));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),

@@ -23,7 +23,7 @@ public class UnmarkTaskCommand extends Command {
             + ": Marks the tasks identified by the index numbers used in the displayed task list as undone. \n"
             + "Parameter: INDEX [MORE_INDICES] (must be positive integers) \n"
             + "Example: " + COMMAND_WORD + " 1 2";
-    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Tasks have been marked as undone: %1$s";
+    public static final String MESSAGE_SUCCESS = "Tasks have been marked as undone: %1$s";
 
     private final Index[] targetIndices;
 
@@ -54,7 +54,7 @@ public class UnmarkTaskCommand extends Command {
             model.setTask(taskToUnmark, editedTask);
         });
 
-        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, Messages.format(tasksToUnmark)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(tasksToUnmark)));
     }
 
     @Override
