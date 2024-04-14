@@ -149,7 +149,7 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-* There is currently no support for clearing all entries form the task list. This feature will be one of the application's planned enhancements. As a temporary workaround, users can execute `deletetask` with task indices from 1 to the number of tasks in the task list.
+* There is currently no support for clearing all entries from the task list. This feature will be one of the application's planned enhancements. As a temporary workaround, users can execute `deletetask` with task indices from 1 to the number of tasks in the task list.
 
 ### Adding a task: `addtask`
 
