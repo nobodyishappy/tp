@@ -82,6 +82,8 @@ Read the [Quick start](#quick-start) section again to check the Java version req
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ### Basic tutorial (for starters)
 
 In this tutorial, we will guide you through the basics of using our app to manage your tasks efficiently. With 
@@ -116,6 +118,8 @@ or <span style="color:red">High</span>. This also determines how important a tas
   * Another additional information that was left out in this part is task deadline. Deadline contains a date and time and
 it tells you when a task is due so that you can plan accordingly.
 
+<div style="page-break-after: always;"></div>
+
 Now, let's try to add a task into our task list. Type `addtask n/MA HW d/math homework 4 week 12 p/high` into the 
 command box and press Enter. The result should be similar to this: <br>
 
@@ -125,6 +129,8 @@ After you finish a task, you can mark that task as done. From the image above, y
 number 1 on the list. Therefore, to mark that task as done, type `marktask 1` and this should be your result: <br>
 
 ![UI_marktask](images/UI_marktask.png =500x400)
+
+<div style="page-break-after: always;"></div>
 
 Here you might ask "Why is the task MA HW moved to number 3?". That is because we want you to see the tasks that you
 have not finished first when you look at the list. More details are given in the 
@@ -214,6 +220,8 @@ multiple lines as space characters surrounding line-breaks may be omitted when c
 
 </box>
 
+<div style="page-break-after: always;"></div>
+
 ### Managing Person
 
 #### Adding a person: `add`
@@ -272,6 +280,8 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
 
+<div style="page-break-after: always;"></div>
+
 #### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -325,6 +335,8 @@ Clears all entries from the address book.
 Format: `clear`
 
 Result: delete all person on the person list.
+
+<div style="page-break-after: always;"></div>
 
 ### Managing task
 
@@ -429,7 +441,7 @@ Notes:
 Result:
 * If at least one of the index provided is invalid, an error message will be displayed.
 * Otherwise, the task(s) at the index (or indices) provided will be marked as <span style="color:green">Done</span>
-* 
+
 Examples:
 * `list` followed by `marktask 1 2` marks the first two tasks in the task list as done.
 * `findtask implement` followed by `marktask 1` marks the 1st task in the results of the `find` command as done.
@@ -456,6 +468,7 @@ Examples:
 * `list` followed by `unmarktask 1 2` marks the first two tasks in the task list as not done.
 * `findtask implement` followed by `unmarktask 1` marks the 1st task in the results of the `find` command as not done.
 
+<div style="page-break-after: always;"></div>
 
 #### Deleting a task: `deletetask`
 
@@ -509,6 +522,8 @@ Result: List all tasks stored in the app.
 
 Examples:
 * `listtask`
+
+<div style="page-break-after: always;"></div>
 
 #### Finding a task or tasks by task name: `findtask`
 Finds tasks which names contain any of the given keywords.
@@ -572,6 +587,8 @@ entered is outside the acceptable range). Therefore, edit the data file only if 
 confident that you can update it correctly.
 </box>
 
+<div style="page-break-after: always;"></div>
+
 ### Future updates
 
 #### Create group `[coming in v2.0]`
@@ -592,8 +609,6 @@ and efficient way to backtrack the last action, restoring the previous state eff
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -612,13 +627,13 @@ emails to point out people with the same name.
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
