@@ -156,17 +156,18 @@ When managing tasks in TeamTracker, it's essential to understand the order in wh
 efficient organization:
 
 <box type="info" seamless>
+
 * Tasks are first sorted based on their status, with those marked as "not done" appearing before
 those marked as "done." This prioritization allows users to focus on pending tasks before reviewing completed ones, 
 facilitating better task management.
 * Within each status category, tasks are sorted based on their priority level. Tasks with a high priority are 
-displayed first, followed by those with a medium priority, and finally, tasks with a low priority. 
-This hierarchy ensures that urgent tasks are prominently featured, allowing users to address critical matters promptly.
+displayed first, followed by those with a medium priority, and finally, tasks with a low priority. This hierarchy ensures that urgent tasks are prominently featured, allowing users to address critical matters promptly.
 * In the event of a tie in priority level, tasks are further sorted by their deadline. Tasks with a closer deadline are
 displayed before later deadline. This is another factor for you to decide which task should be handled immediately.
 * If all other factors result in a tie, tasks are further sorted lexicographically, based on their names 
 then descriptions. This ensures a consistent and predictable order for tasks with the same priority, 
 enabling users to easily locate specific tasks within their lists.
+
 </box>
 
 #### Notes about reading command guide
