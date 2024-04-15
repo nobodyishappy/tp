@@ -27,6 +27,8 @@ this guide will equip you with the knowledge needed to harness the **full capabi
 <!-- * Table of Contents -->
 <page-nav-print />
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -45,7 +47,8 @@ Run `java -version` on your command terminal to check your Java version.
 refer to [this](#if-you-have-no-experience-on-command-terminal-open-and-navigate-the-command-terminal) 
 section for a more detailed guide).<br>
    A GUI similar to the below should be displayed in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+
+   ![Ui](images/Ui.png =500x400)
 
 5. Congratulations, you are now a TeamTracker user! Get ready to take control of your tasks and contacts efficiently!<br>
 You can begin with the [Basic tutorial](#basic-tutorial-for-starters) section or refer to the [Features](#features) 
@@ -57,14 +60,20 @@ section if you already had prior experience.
 
 1. Search for "Terminal", open the first app that popped up.
 A UI similar to the below should appear.<br>
-    ![Terminal](images/Terminal_start.png)
+
+    ![Terminal](images/Terminal_start.png =500x400)
+
 2. Go to the folder you put the file `TeamTracker.jar`. Then, right-click on the jar file, select "Properties",
-and copy the details in the "Location:" field. Use the picture below for references.
-    ![Properties](images/Properties.png)
+and copy the details in the "Location:" field. Use the picture below for references.<br>
+
+    ![Properties](images/Properties.png =200x500)
+
 3. Go back to the Terminal, type `cd` followed by a whitespace, then paste the location you just copied and Enter. 
 Now you should be at the folder where `TeamTracker.jar` is stored.
 4. Type `java -jar TeamTracker.jar` then Enter to run the application and the app User Interface should be displayed.<br>
-   ![Ui](images/Ui.png)
+
+   ![Ui](images/Ui.png =500x400)
+
 If not, you might run `java -version` to check the Java version of your computer before running the jar file. 
 Read the [Quick start](#quick-start) section again to check the Java version required for our app.
 5. Congratulations, you are now a TeamTracker user! Get ready to take control of your tasks and contacts efficiently!<br>
@@ -72,15 +81,16 @@ Read the [Quick start](#quick-start) section again to check the Java version req
    if you already had prior experience.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ### Basic tutorial (for starters)
 
 In this tutorial, we will guide you through the basics of using our app to manage your tasks efficiently. With 
 TeamTracker, staying organized has never been easier. Let's get started!
 
 The image below is the application interface with more detailed annotations for you to gain a better understanding
-of each part in our app.
+of each part in our app. <br>
 
-![UI_annotated](images/UI_annotated.png)
+![UI_annotated](images/UI_annotated.png =500x400)
 
 You can see that the UI is divided into four main parts:
 
@@ -107,14 +117,14 @@ or <span style="color:red">High</span>. This also determines how important a tas
 it tells you when a task is due so that you can plan accordingly.
 
 Now, let's try to add a task into our task list. Type `addtask n/MA HW d/math homework 4 week 12 p/high` into the 
-command box and press Enter. The result should be similar to this:
+command box and press Enter. The result should be similar to this: <br>
 
-![UI_addtask](images/UI_addtask.png)
+![UI_addtask](images/UI_addtask.png =500x400)
 
 After you finish a task, you can mark that task as done. From the image above, you can see that the task "MA HW" is at
-number 1 on the list. Therefore, to mark that task as done, type `marktask 1` and this should be your result:
+number 1 on the list. Therefore, to mark that task as done, type `marktask 1` and this should be your result: <br>
 
-![UI_marktask](images/UI_marktask.png)
+![UI_marktask](images/UI_marktask.png =500x400)
 
 Here you might ask "Why is the task MA HW moved to number 3?". That is because we want you to see the tasks that you
 have not finished first when you look at the list. More details are given in the 
@@ -122,9 +132,9 @@ have not finished first when you look at the list. More details are given in the
 
 After you have finished the task "MA HW", you might no longer need to store that task in the app. 
 In that case, type `deletetask 3` since the task is now at position number 3 on the list. And this is what 
-you should see:
+you should see: <br>
 
-![UI_deletetask](images/UI_deletetask.png)
+![UI_deletetask](images/UI_deletetask.png =500x400)
 
 Congratulations! You have learned how to add, mark, and delete tasks using TeamTracker. With these basic commands,
 you can start managing your tasks with ease.
@@ -133,6 +143,8 @@ For a comprehensive overview of all the powerful commands at your fingertips, be
 the [Features](#features) section to unlock the full potential of TeamTracker.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -252,7 +264,7 @@ Result:
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
 
 #### Locating persons by name: `find`
 
@@ -276,7 +288,7 @@ their names lexicographically.
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult_v1.3a.PNG)
+  ![result for 'find alex david'](images/findAlexDavidResult_v1.4.png =500x400)
 
 #### Deleting a person : `delete`
 
@@ -355,7 +367,7 @@ Result:
 * If at least one of the index provided is invalid, an error message will be displayed.
 * Otherwise, the task assigned will be shown under each assigned person's name.
 
-![UI_assign](images/UI_assign.png)
+![UI_assign](images/UI_assign.png =500x400)
 
 Examples:
 * `list` and `listtask` followed by `assign 1 to/1 2` assigns the 1st task in the task list to the first two persons in the address book.
@@ -574,6 +586,8 @@ and efficient way to backtrack the last action, restoring the previous state eff
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -591,6 +605,8 @@ differentiate between people with same name, you can use other information such 
 emails to point out people with the same name.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Known issues
 
