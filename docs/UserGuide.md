@@ -61,7 +61,7 @@ A UI similar to the below should appear.<br>
 2. Go to the folder you put the file `TeamTracker.jar`. Then, right-click on the jar file, select "Properties",
 and copy the details in the "Location:" field. Use the picture below for references.
     ![Properties](images/Properties.png)
-3. Go back to the Terminal, type `cd` followed by a whitespace, then paste the Location you just copied and Enter. 
+3. Go back to the Terminal, type `cd` followed by a whitespace, then paste the location you just copied and Enter. 
 Now you should be at the folder where `TeamTracker.jar` is stored.
 4. Type `java -jar TeamTracker.jar` then Enter to run the application and the app User Interface should be displayed.<br>
    ![Ui](images/Ui.png)
@@ -239,7 +239,7 @@ Example: `list`
 
 Edits an existing person in the list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
+Format: `edit PERSON_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 Notes:
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
@@ -316,7 +316,7 @@ Result: delete all person on the person list.
 * Priority can also be in integers (1-Low, 2-Medium, 3-High).
 * The deadline is optional for the adding of tasks.
 
-Format: `addtask n/NAME d/DESCRIPTION p/PRIORITY [by/DEADLINE]​`
+Format: `addtask n/TASK_NAME d/TASK_DESCRIPTION p/TASK_PRIORITY [by/TASK_DEADLINE]​`
 
 Notes:
 * Task name can be any characters, not just alphanumeric. Same for task description.
@@ -383,9 +383,9 @@ Examples:
 * `list` and `listtask` followed by `unassign 1 to/1 2` unassigns the 1st task in the task list to the first two persons in the address book.
 * `find Betsy` and `findtask implement` followed by `unassign 1 to/1` unassigns the 1st task in the results of the `findtask` command to the 1st person in the results of the `find` command.
 
-#### Clearing the all tasks of a person: `cleartask`
+#### Clearing all tasks of a person: `cleartask`
 
-Clears the all tasks of a person.
+Clears all tasks of a person.
 
 Format: `cleartask PERSON_INDEX`
 
@@ -541,9 +541,8 @@ There is no need to save manually.
 #### Editing the data file
 
 AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. 
-Advanced users are welcome to update data directly by editing that data file.
 TaskList data are saved automatically as a JSON file `[JAR file location]/data/tasklist.json`.
-Advanced users are welcome to update data directly by editing that data file.
+Advanced users are welcome to update data directly by editing the data files.
 
 <box type="warning" seamless>
 
@@ -605,18 +604,18 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
 **List**   | `list`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Delete** | `delete PERSON_INDEX` [MORE_PERSON_INDICES]<br> e.g., `delete 3`
+**Edit**   | `edit PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
+**Delete** | `delete PERSON_INDEX [MORE_PERSON_INDICES]` <br> e.g., `delete 3`
 **Clear**  | `clear`
-**Add Task**   | `addtask n/NAME d/DESCRIPTION p/PRIORITY [by/DEADLINE]`
-**Assign Task**   | `assign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDICES]​`
-**Unassign Task**   | `unassign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDICES]​`
-**Clear Person Task**   | `cleartask PERSON_INDEX`
-**Mark Task**   | `marktask TASK_INDEX [MORE_TASK_INDICES]​`
-**Unmark Task**   | `unmarktask TASK_INDEX [MORE_TASK_INDICES]​`
-**Delete Task**   | `deletetask TASK_INDEX [MORE_TASK_INDICES`
-**Edit Task**   | `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​`
+**Add Task**   | `addtask n/TASK_NAME d/TASK_DESCRIPTION p/TASK_PRIORITY [by/TASK_DEADLINE]​` <br> e.g., `addtask n/Task 1 d/Do homework p/HIGH by/12-12-2024 23:59`
+**Assign Task**   | `assign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDICES]​` <br> e.g., `assign 1 to/1`
+**Unassign Task**   | `unassign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDICES]​`<br> e.g., `unassign 1 to/1 2`
+**Clear Person Task**   | `cleartask PERSON_INDEX` <br> e.g., `cleartask 3`
+**Mark Task**   | `marktask TASK_INDEX [MORE_TASK_INDICES]​` <br> e.g., `marktask 3`
+**Unmark Task**   | `unmarktask TASK_INDEX [MORE_TASK_INDICES]​` <br> e.g., `unmarktask 3`
+**Delete Task**   | `deletetask TASK_INDEX [MORE_TASK_INDICES` <br> e.g., `deletetask 3`
+**Edit Task**   | `edittask TASK_INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [p/TASK_PRIORITY] [by/TASK_DEADLINE]​` <br> e.g., `edittask 1 p/high`
 **List Task**   | `listtask​`
 **Find Task**     | `findtask KEYWORD [MORE_KEYWORDS]` <br> e.g., `findtask 2101 2103t`
 **Help**   | `help`
