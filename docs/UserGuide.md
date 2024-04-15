@@ -173,10 +173,15 @@ enabling users to easily locate specific tasks within their lists.
 #### Notes about reading command guide
 
 Each command in this guide are formatted with the following conventions:
+
+<box type="info" seamless>
+
 * Description: This part tells you what the function of each command is.
 * Format: How you should input each command into the app.
 * Tips/Notes (if there is any): This part contains further details for the input of each command.
 * Result: How the app will behave based on what input you give for each command.
+
+</box>
 
 #### Notes about the command format
 
