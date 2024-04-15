@@ -45,7 +45,7 @@ Run `java -version` on your command terminal to check your Java version.
 refer to [this](#if-you-have-no-experience-on-command-terminal-open-and-navigate-the-command-terminal) 
 section for a more detailed guide).<br>
    A GUI similar to the below should be displayed in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/UI.png)
+   ![Ui](images/Ui.png)
 
 5. Congratulations, you are now a TeamTracker user! Get ready to take control of your tasks and contacts efficiently!<br>
 You can begin with the [Basic tutorial](#basic-tutorial-for-starters) section or refer to the [Features](#features) 
@@ -55,7 +55,7 @@ section if you already had prior experience.
 
 ### (If you have no experience on command terminal) Open and navigate the command terminal
 
-1. Click on the Windows icon on your computer, search "Terminal", open the first app that popped up.
+1. Search for "Terminal", open the first app that popped up.
 A UI similar to the below should appear.<br>
     ![Terminal](images/Terminal_start.png)
 2. Go to the folder you put the file `TeamTracker.jar`. Then, right-click on the jar file, select "Properties",
@@ -64,7 +64,7 @@ and copy the details in the "Location:" field. Use the picture below for referen
 3. Go back to the Terminal, type `cd` followed by a whitespace, then paste the Location you just copied and Enter. 
 Now you should be at the folder where `TeamTracker.jar` is stored.
 4. Type `java -jar TeamTracker.jar` then Enter to run the application and the app User Interface should be displayed.<br>
-   ![Ui](images/UI.png)
+   ![Ui](images/Ui.png)
 If not, you might run `java -version` to check the Java version of your computer before running the jar file. 
 Read the [Quick start](#quick-start) section again to check the Java version required for our app.
 5. Congratulations, you are now a TeamTracker user! Get ready to take control of your tasks and contacts efficiently!<br>
@@ -361,7 +361,7 @@ Examples:
 * `list` and `listtask` followed by `assign 1 to/1 2` assigns the 1st task in the task list to the first two persons in the address book.
 * `find Betsy` and `findtask implement` followed by `assign 1 to/1` assigns the 1st task in the results of the `findtask` command to the 1st person in the results of the `find` command.
 
-### Unassigning a task: `unassign`
+#### Unassigning a task: `unassign`
 
 Unassigns a task to persons.
 
@@ -383,9 +383,9 @@ Examples:
 * `list` and `listtask` followed by `unassign 1 to/1 2` unassigns the 1st task in the task list to the first two persons in the address book.
 * `find Betsy` and `findtask implement` followed by `unassign 1 to/1` unassigns the 1st task in the results of the `findtask` command to the 1st person in the results of the `find` command.
 
-#### Clearing the tasks of a person: `cleartask`
+#### Clearing the all tasks of a person: `cleartask`
 
-Clears the tasks of a person.
+Clears the all tasks of a person.
 
 Format: `cleartask PERSON_INDEX`
 
@@ -394,7 +394,7 @@ Result: Delete all tasks assigned to a person
 Examples
 * `cleartask 1`
 
-### Marking tasks: `marktask`
+#### Marking tasks: `marktask`
 
 Marks a task in the task list as <span style="color:green">Done</span>.
 
@@ -612,7 +612,7 @@ Action     | Format, Examples
 **Add Task**   | `addtask n/NAME d/DESCRIPTION p/PRIORITY [by/DEADLINE]`
 **Assign Task**   | `assign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDICES]​`
 **Unassign Task**   | `unassign TASK_INDEX to/PERSON_INDEX [MORE_PERSON_INDICES]​`
-**ClearTask**   | `cleartask PERSON_INDEX`
+**Clear Person Task**   | `cleartask PERSON_INDEX`
 **Mark Task**   | `marktask TASK_INDEX [MORE_TASK_INDICES]​`
 **Unmark Task**   | `unmarktask TASK_INDEX [MORE_TASK_INDICES]​`
 **Delete Task**   | `deletetask TASK_INDEX [MORE_TASK_INDICES`
@@ -620,3 +620,4 @@ Action     | Format, Examples
 **List Task**   | `listtask​`
 **Find Task**     | `findtask KEYWORD [MORE_KEYWORDS]` <br> e.g., `findtask 2101 2103t`
 **Help**   | `help`
+**Exit**   | `exit`
