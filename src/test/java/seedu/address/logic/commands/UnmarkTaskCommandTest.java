@@ -37,7 +37,7 @@ public class UnmarkTaskCommandTest {
         Task taskToUnmark = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { INDEX_FIRST });
 
-        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
+        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(taskToUnmark));
 
         ModelManager expectedModel = new ModelManager(
@@ -58,7 +58,7 @@ public class UnmarkTaskCommandTest {
 
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { INDEX_FIRST, INDEX_SECOND });
 
-        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
+        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(tasksToUnmark));
 
         ModelManager expectedModel = new ModelManager(
@@ -78,7 +78,7 @@ public class UnmarkTaskCommandTest {
         Task taskToUnmark = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { INDEX_FIRST, INDEX_FIRST });
 
-        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
+        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(taskToUnmark));
 
         ModelManager expectedModel = new ModelManager(
@@ -131,7 +131,7 @@ public class UnmarkTaskCommandTest {
         Index noDeadlineTask = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size());
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { noDeadlineTask });
 
-        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
+        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(taskWithoutDeadline));
 
         ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
@@ -149,7 +149,7 @@ public class UnmarkTaskCommandTest {
         Index deadlineTask = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size());
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(new Index[] { deadlineTask });
 
-        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS,
+        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(taskWithDeadline));
 
         ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());

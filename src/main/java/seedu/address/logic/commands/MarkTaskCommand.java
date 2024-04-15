@@ -21,10 +21,10 @@ public class MarkTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the tasks identified by the index numbers used in the displayed task list as done. \n"
-            + "Parameter: INDEX [MORE_INDICES] (must be distinct positive integers) \n"
+            + "Parameter: INDEX [MORE_INDICES] (must be positive integers) \n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_MARK_TASK_SUCCESS = "Tasks have been marked as done: %1$s";
+    public static final String MESSAGE_SUCCESS = "Tasks have been marked as done: %1$s";
 
     private final Index[] targetIndices;
 
@@ -55,7 +55,7 @@ public class MarkTaskCommand extends Command {
             model.setTask(taskToMark, editedTask);
         });
 
-        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, Messages.format(tasksToMark)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(tasksToMark)));
     }
 
     @Override

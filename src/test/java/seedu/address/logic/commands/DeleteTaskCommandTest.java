@@ -35,7 +35,7 @@ public class DeleteTaskCommandTest {
         Task taskToDelete = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { INDEX_FIRST });
 
-        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASKS_SUCCESS,
+        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(taskToDelete));
 
         ModelManager expectedModel = new ModelManager(
@@ -54,7 +54,7 @@ public class DeleteTaskCommandTest {
 
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { INDEX_FIRST, INDEX_SECOND });
 
-        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASKS_SUCCESS,
+        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(tasksToDelete));
 
         ModelManager expectedModel = new ModelManager(
@@ -70,7 +70,7 @@ public class DeleteTaskCommandTest {
         Task taskToDelete = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(new Index[] { INDEX_FIRST, INDEX_FIRST });
 
-        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASKS_SUCCESS,
+        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(taskToDelete));
 
         ModelManager expectedModel = new ModelManager(

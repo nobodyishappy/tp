@@ -37,7 +37,7 @@ public class MarkTaskCommandTest {
         Task taskToMark = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(new Index[] { INDEX_FIRST });
 
-        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS,
+        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(taskToMark));
 
         ModelManager expectedModel = new ModelManager(
@@ -59,7 +59,7 @@ public class MarkTaskCommandTest {
 
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(new Index[] { INDEX_FIRST, INDEX_SECOND });
 
-        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS,
+        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(tasksToMark));
 
         ModelManager expectedModel = new ModelManager(
@@ -82,7 +82,7 @@ public class MarkTaskCommandTest {
         Task taskToMark = model.getTaskList().getSerializeTaskList().get(INDEX_FIRST.getZeroBased());
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(new Index[] { INDEX_FIRST, INDEX_FIRST });
 
-        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS,
+        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(taskToMark));
 
         ModelManager expectedModel = new ModelManager(
@@ -137,7 +137,7 @@ public class MarkTaskCommandTest {
         Index noDeadlineTask = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size());
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(new Index[] { noDeadlineTask });
 
-        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS,
+        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(taskWithoutDeadline));
 
         ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());
@@ -155,7 +155,7 @@ public class MarkTaskCommandTest {
         Index noDeadlineTask = Index.fromOneBased(model.getTaskList().getSerializeTaskList().size());
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(new Index[] { noDeadlineTask });
 
-        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS,
+        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_SUCCESS,
                 Messages.format(taskWithDeadline));
 
         ModelManager expectedModel = new ModelManager(new AddressBook(), model.getTaskList(), new UserPrefs());

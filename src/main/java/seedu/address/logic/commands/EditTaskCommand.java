@@ -43,7 +43,7 @@ public class EditTaskCommand extends Command {
             + PREFIX_TASK_PRIORITY + "HIGH "
             + PREFIX_TASK_DEADLINE + "30-03-2024 10:00";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
+    public static final String MESSAGE_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "Duplicate task exists in the task list.";
 
@@ -81,7 +81,7 @@ public class EditTaskCommand extends Command {
         // Updates the task list.
         model.setTask(taskToEdit, editedTask);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, Messages.format(taskToEdit)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(taskToEdit)));
     }
 
     /**
